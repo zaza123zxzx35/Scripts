@@ -1,0 +1,522 @@
+<title>Animals Match — เกมคำศัพท์สัตว์</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Itim&display=swap">
+<style>
+:root{
+  --mint:#E7F1EA;
+  --mint-2:#D5E8DC;
+  --card:#FFFFFF;
+  --ink:#1B2B26;
+  --ink-2:#4E6660;
+  --teal:#0B7A6A;
+  --teal-dk:#075B4F;
+  --sun:#F5B72A;
+  --coral:#E8664F;
+  --good:#1B9E5F;
+  --line:#C7DCD0;
+  --shadow:0 4px 0 var(--line);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--mint);color:var(--ink);
+  font-family:'Itim','Noto Sans Thai',system-ui,sans-serif;
+  min-height:100vh;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:clamp(1rem,3vw,2rem);min-height:100vh;display:flex;flex-direction:column;gap:1.1rem}
+.en{font-family:'Fredoka','Itim',sans-serif}
+button{font-family:inherit;cursor:pointer;border:none}
+button:focus-visible,[tabindex]:focus-visible{outline:4px solid var(--sun);outline-offset:3px}
+
+/* ---------- screens ---------- */
+.screen{display:flex;flex-direction:column;gap:1.1rem;flex:1}
+[hidden]{display:none!important}
+
+/* ---------- start ---------- */
+.hero{
+  background:var(--card);border-radius:22px;padding:clamp(1.4rem,4vw,2.4rem);
+  border:2px solid var(--line);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:1rem;align-items:center;text-align:center;
+}
+.hero .zoo{font-size:clamp(2rem,7vw,3.2rem);letter-spacing:.1em;line-height:1.2}
+h1{
+  font-family:'Fredoka',sans-serif;font-weight:700;margin:0;
+  font-size:clamp(2rem,6vw,3.4rem);color:var(--teal-dk);line-height:1.1;
+}
+.sub{font-size:clamp(1rem,2.6vw,1.25rem);color:var(--ink-2);margin:0;max-width:34ch}
+.badge{
+  display:inline-flex;gap:.4rem;align-items:center;background:var(--mint-2);color:var(--teal-dk);
+  padding:.3rem .8rem;border-radius:100px;font-size:.95rem;
+}
+
+.opts{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;width:100%}
+.optgrp{display:flex;flex-direction:column;gap:.45rem;align-items:center}
+.optgrp .lb{font-size:.95rem;color:var(--ink-2)}
+.seg{display:flex;background:var(--mint-2);border-radius:14px;padding:4px;gap:4px}
+.seg button{
+  background:transparent;color:var(--teal-dk);font-size:1.05rem;
+  padding:.5rem 1.05rem;border-radius:10px;min-height:44px;
+}
+.seg button[aria-pressed="true"]{background:var(--card);box-shadow:0 2px 0 var(--line);font-weight:600}
+
+.big{
+  background:var(--teal);color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;
+  font-size:clamp(1.3rem,3.6vw,1.7rem);padding:1rem 2.6rem;border-radius:18px;
+  box-shadow:0 5px 0 var(--teal-dk);min-height:68px;
+}
+.big:active{transform:translateY(3px);box-shadow:0 2px 0 var(--teal-dk)}
+.big.alt{background:var(--sun);color:#4A3505;box-shadow:0 5px 0 #C98F13}
+.big.alt:active{box-shadow:0 2px 0 #C98F13}
+.big.ghost{background:var(--card);color:var(--teal-dk);box-shadow:0 4px 0 var(--line);border:2px solid var(--line)}
+
+.note{
+  background:var(--card);border:2px dashed var(--line);border-radius:16px;
+  padding:1rem 1.2rem;color:var(--ink-2);font-size:.98rem;line-height:1.75;
+}
+.note b{color:var(--ink)}
+.note ul{margin:.4rem 0 0;padding-left:1.2rem}
+.note li{margin-bottom:.2rem}
+
+/* ---------- hud ---------- */
+.hud{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.chip{
+  background:var(--card);border:2px solid var(--line);border-radius:14px;
+  padding:.45rem .9rem;font-size:1.05rem;display:flex;gap:.4rem;align-items:center;
+}
+.chip .v{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--teal-dk);font-variant-numeric:tabular-nums}
+.chip.streak{background:var(--sun);border-color:#D9A11F;color:#4A3505}
+.spacer{flex:1}
+.icon{
+  background:var(--card);border:2px solid var(--line);border-radius:14px;
+  width:52px;height:52px;font-size:1.3rem;display:grid;place-items:center;
+}
+.bar{height:14px;background:var(--mint-2);border-radius:100px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:100px;transition:width .35s ease}
+.mid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1rem;min-height:0}
+
+/* ---------- prompt ---------- */
+.stage{
+  background:var(--card);border:2px solid var(--line);border-radius:22px;box-shadow:var(--shadow);
+  padding:clamp(1rem,3vw,1.8rem);display:flex;flex-direction:column;align-items:center;gap:.7rem;
+}
+.ask{font-size:clamp(1rem,2.4vw,1.2rem);color:var(--ink-2)}
+.word{
+  font-family:'Fredoka',sans-serif;font-weight:700;color:var(--teal-dk);
+  font-size:clamp(2.6rem,9vw,4.6rem);line-height:1.1;letter-spacing:.01em;
+}
+.emoji{font-size:clamp(4rem,16vw,8rem);line-height:1.1}
+.say{
+  background:var(--mint-2);color:var(--teal-dk);border-radius:100px;
+  padding:.55rem 1.3rem;font-size:1.05rem;min-height:48px;display:inline-flex;gap:.5rem;align-items:center;
+}
+
+/* ---------- choices ---------- */
+.choices{display:grid;gap:.9rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:720px){.choices.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.choice{
+  background:var(--card);border:3px solid var(--line);border-radius:20px;
+  min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;
+  padding:.9rem .6rem;box-shadow:var(--shadow);transition:transform .12s ease,border-color .12s ease;
+}
+.choice:hover{border-color:var(--teal);transform:translateY(-3px)}
+.choice .pic{font-size:clamp(2.6rem,9vw,3.8rem);line-height:1.15}
+.choice .txt{font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(1.2rem,3.4vw,1.7rem);color:var(--ink)}
+.choice .key{
+  font-family:'Fredoka',sans-serif;font-size:.85rem;color:var(--ink-2);
+  background:var(--mint-2);border-radius:8px;padding:.05rem .45rem;
+}
+.choice.right{border-color:var(--good);background:#E6F6ED}
+.choice.wrong{border-color:var(--coral);background:#FCEBE7}
+.choice.dim{opacity:.45}
+.choice:disabled{cursor:default}
+.choice.right{animation:pop .45s ease}
+.choice.wrong{animation:shake .4s ease}
+@keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.07)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+
+.flash{
+  text-align:center;font-size:clamp(1.2rem,3.4vw,1.6rem);min-height:2.2em;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.flash.ok{color:var(--good)}
+.flash.no{color:var(--coral)}
+
+/* ---------- end ---------- */
+.result{
+  background:var(--card);border:2px solid var(--line);border-radius:22px;box-shadow:var(--shadow);
+  padding:clamp(1.4rem,4vw,2.2rem);display:flex;flex-direction:column;align-items:center;gap:.8rem;text-align:center;
+}
+.stars{font-size:clamp(2.2rem,8vw,3.4rem);letter-spacing:.1em}
+.score{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2.6rem,9vw,4rem);color:var(--teal-dk);line-height:1}
+.miss{width:100%;max-width:560px;text-align:left;background:var(--mint);border-radius:16px;padding:1rem 1.2rem}
+.miss h3{margin:0 0 .5rem;font-family:'Itim',sans-serif;font-weight:400;font-size:1.05rem;color:var(--ink-2)}
+.misslist{display:flex;flex-wrap:wrap;gap:.5rem}
+.misslist span{
+  background:var(--card);border:2px solid var(--coral);color:var(--ink);
+  border-radius:100px;padding:.3rem .85rem;font-family:'Fredoka',sans-serif;font-weight:600;
+}
+.endbtns{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
+footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5rem}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="wrap">
+
+  <!-- ============ START ============ -->
+  <section class="screen" id="s-start">
+    <div class="hero">
+      <div class="zoo" aria-hidden="true">🐶 🐱 🐘 🐰 🐟</div>
+      <h1>Animals Match</h1>
+      <p class="sub">เกมจับคู่คำศัพท์สัตว์ 10 คำ สำหรับ ป.1–3 ฉายหน้าห้องแล้วเล่นได้ทั้งห้อง</p>
+      <span class="badge">หน่วย G1-U05 Animals · ระดับ L1–L2</span>
+
+      <div class="opts">
+        <div class="optgrp">
+          <span class="lb">จำนวนข้อ</span>
+          <div class="seg" id="opt-rounds" role="group" aria-label="จำนวนข้อ">
+            <button type="button" data-v="10" aria-pressed="true">10 ข้อ</button>
+            <button type="button" data-v="15" aria-pressed="false">15 ข้อ</button>
+          </div>
+        </div>
+        <div class="optgrp">
+          <span class="lb">ตัวเลือกต่อข้อ</span>
+          <div class="seg" id="opt-choices" role="group" aria-label="จำนวนตัวเลือก">
+            <button type="button" data-v="3" aria-pressed="false">3 ตัวเลือก</button>
+            <button type="button" data-v="4" aria-pressed="true">4 ตัวเลือก</button>
+          </div>
+        </div>
+        <div class="optgrp">
+          <span class="lb">เสียงอ่านคำศัพท์</span>
+          <div class="seg" id="opt-sound" role="group" aria-label="เสียง">
+            <button type="button" data-v="on" aria-pressed="true">เปิด</button>
+            <button type="button" data-v="off" aria-pressed="false">ปิด</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="big" id="btn-start" type="button">เริ่มเล่น</button>
+    </div>
+
+    <div class="note">
+      <b>สำหรับคุณครู</b>
+      <ul>
+        <li>กด <b>เริ่มเล่น</b> แล้วฉายขึ้นจอได้เลย ไม่ต้องล็อกอิน ไม่ต้องติดตั้งอะไร</li>
+        <li>ให้เด็กตอบพร้อมกันทั้งห้องด้วยการชูนิ้ว 1–4 แล้วครูกดตามเสียงข้างมาก หรือเรียกทีละคนขึ้นมากดเอง</li>
+        <li>กดปุ่ม <b>ฟังคำนี้</b> ให้เด็กออกเสียงตามก่อนตอบ 1 รอบ จะได้ทั้งฟังและพูดในเกมเดียว</li>
+        <li>หน้าจอสรุปตอนจบจะบอกคำที่ตอบผิด ใช้เลือกว่าจะสอนซ้ำคำไหน แล้วกดเล่นซ้ำเฉพาะคำนั้นได้</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PLAY ============ -->
+  <section class="screen" id="s-play" hidden>
+    <div class="hud">
+      <span class="chip">ข้อ <span class="v" id="hud-round">1/10</span></span>
+      <span class="chip">คะแนน <span class="v" id="hud-score">0</span></span>
+      <span class="chip streak" id="hud-streak" hidden>🔥 ตอบถูกติดกัน <span class="v" id="hud-streak-n">0</span></span>
+      <span class="spacer"></span>
+      <button class="icon" id="btn-mute" type="button" aria-label="ปิดเสียง" title="เปิด/ปิดเสียง">🔊</button>
+      <button class="icon" id="btn-quit" type="button" aria-label="ออกจากเกม" title="ออกจากเกม">✕</button>
+    </div>
+    <div class="bar"><i id="bar" style="width:0%"></i></div>
+
+    <div class="mid">
+    <div class="stage">
+      <p class="ask" id="ask">คำนี้คือสัตว์ตัวไหน</p>
+      <div id="prompt-word" class="word">cat</div>
+      <div id="prompt-emoji" class="emoji" hidden>🐱</div>
+      <button class="say" id="btn-say" type="button">🔊 ฟังคำนี้</button>
+    </div>
+
+    <div class="choices four" id="choices"></div>
+    <p class="flash" id="flash" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ============ END ============ -->
+  <section class="screen" id="s-end" hidden>
+    <div class="result">
+      <div class="stars" id="stars">⭐⭐⭐</div>
+      <div class="score" id="final-score">0</div>
+      <p class="sub" id="final-line">คะแนนของเรา</p>
+
+      <div class="miss" id="miss" hidden>
+        <h3>คำที่ยังต้องทบทวน</h3>
+        <div class="misslist" id="misslist"></div>
+      </div>
+
+      <div class="endbtns">
+        <button class="big alt" id="btn-again" type="button">เล่นอีกครั้ง</button>
+        <button class="big ghost" id="btn-retry-miss" type="button" hidden>เล่นซ้ำเฉพาะคำที่ผิด</button>
+        <button class="big ghost" id="btn-home" type="button">กลับหน้าแรก</button>
+      </div>
+    </div>
+    <footer>Animals Match · หน่วย G1-U05 · คลังสื่อการสอนภาษาอังกฤษกลุ่ม VIP</footer>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var WORDS = [
+    { en:"cat",      emoji:"🐱", th:"แมว" },
+    { en:"dog",      emoji:"🐶", th:"สุนัข" },
+    { en:"bird",     emoji:"🐦", th:"นก" },
+    { en:"fish",     emoji:"🐟", th:"ปลา" },
+    { en:"cow",      emoji:"🐮", th:"วัว" },
+    { en:"pig",      emoji:"🐷", th:"หมู" },
+    { en:"duck",     emoji:"🦆", th:"เป็ด" },
+    { en:"rabbit",   emoji:"🐰", th:"กระต่าย" },
+    { en:"elephant", emoji:"🐘", th:"ช้าง" },
+    { en:"monkey",   emoji:"🐵", th:"ลิง" }
+  ];
+
+  var cfg = { rounds:10, choices:4, sound:true };
+  var st  = null;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var screens = { start:$("s-start"), play:$("s-play"), end:$("s-end") };
+
+  function show(name){
+    Object.keys(screens).forEach(function(k){ screens[k].hidden = (k !== name); });
+  }
+
+  /* ---------- audio ---------- */
+  var actx = null;
+  function tone(freq, dur, type, gain){
+    if (!cfg.sound) return;
+    try{
+      if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+      var o = actx.createOscillator(), g = actx.createGain();
+      o.type = type || "sine"; o.frequency.value = freq;
+      g.gain.setValueAtTime(gain || 0.14, actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + dur);
+      o.connect(g); g.connect(actx.destination);
+      o.start(); o.stop(actx.currentTime + dur);
+    }catch(e){}
+  }
+  function chime(){ tone(660,0.16,"sine",0.16); setTimeout(function(){ tone(990,0.22,"sine",0.14); },110); }
+  function buzz(){ tone(180,0.26,"square",0.09); }
+  function fanfare(){ [523,659,784,1047].forEach(function(f,i){ setTimeout(function(){ tone(f,0.28,"triangle",0.12); }, i*150); }); }
+
+  function speak(word){
+    if (!cfg.sound) return;
+    try{
+      if (!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(word);
+      u.lang = "en-US"; u.rate = 0.75; u.pitch = 1.1;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  /* ---------- helpers ---------- */
+  function shuffle(a){
+    var arr = a.slice();
+    for (var i = arr.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  function buildQueue(pool, n){
+    var q = [], deck = [];
+    while (q.length < n){
+      if (!deck.length) deck = shuffle(pool);
+      q.push(deck.pop());
+    }
+    return q;
+  }
+
+  /* ---------- options ---------- */
+  function wireSeg(id, apply){
+    var box = $(id);
+    box.addEventListener("click", function(e){
+      var b = e.target.closest("button");
+      if (!b) return;
+      Array.prototype.forEach.call(box.querySelectorAll("button"), function(x){
+        x.setAttribute("aria-pressed", String(x === b));
+      });
+      apply(b.dataset.v);
+    });
+  }
+  wireSeg("opt-rounds",  function(v){ cfg.rounds  = parseInt(v,10); });
+  wireSeg("opt-choices", function(v){ cfg.choices = parseInt(v,10); });
+  wireSeg("opt-sound",   function(v){ cfg.sound   = (v === "on"); syncMute(); });
+
+  function syncMute(){ $("btn-mute").textContent = cfg.sound ? "🔊" : "🔇"; }
+
+  /* ---------- game ---------- */
+  function start(pool){
+    var source = (pool && pool.length >= 2) ? pool : WORDS;
+    st = {
+      queue: buildQueue(source, cfg.rounds),
+      i: 0, score: 0, streak: 0, best: 0, correct: 0,
+      missed: [], locked: false
+    };
+    show("play");
+    render();
+  }
+
+  function render(){
+    var w = st.queue[st.i];
+    var mode = (st.i % 2 === 0) ? "word2pic" : "pic2word";
+    st.mode = mode; st.answer = w; st.locked = false;
+
+    $("hud-round").textContent = (st.i + 1) + "/" + st.queue.length;
+    $("hud-score").textContent = st.score;
+    $("bar").style.width = ((st.i / st.queue.length) * 100) + "%";
+    $("flash").textContent = ""; $("flash").className = "flash";
+
+    var sEl = $("hud-streak");
+    if (st.streak >= 2){ sEl.hidden = false; $("hud-streak-n").textContent = st.streak; }
+    else sEl.hidden = true;
+
+    if (mode === "word2pic"){
+      $("ask").textContent = "คำนี้คือสัตว์ตัวไหน";
+      $("prompt-word").hidden = false; $("prompt-word").textContent = w.en;
+      $("prompt-emoji").hidden = true;
+      $("btn-say").hidden = false;
+    } else {
+      $("ask").textContent = "สัตว์ตัวนี้ภาษาอังกฤษว่าอะไร";
+      $("prompt-word").hidden = true;
+      $("prompt-emoji").hidden = false; $("prompt-emoji").textContent = w.emoji;
+      $("btn-say").hidden = true;
+    }
+
+    var others = shuffle(WORDS.filter(function(x){ return x.en !== w.en; })).slice(0, cfg.choices - 1);
+    var opts = shuffle(others.concat([w]));
+
+    var box = $("choices");
+    box.className = "choices " + (cfg.choices === 3 ? "three" : "four");
+    box.innerHTML = "";
+
+    opts.forEach(function(o, idx){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "choice";
+      b.dataset.en = o.en;
+      if (mode === "word2pic"){
+        b.innerHTML = '<span class="pic">' + o.emoji + '</span><span class="key">' + (idx+1) + '</span>';
+        b.setAttribute("aria-label", "ตัวเลือกที่ " + (idx+1) + " " + o.th);
+      } else {
+        b.innerHTML = '<span class="txt en">' + o.en + '</span><span class="key">' + (idx+1) + '</span>';
+        b.setAttribute("aria-label", "ตัวเลือกที่ " + (idx+1) + " " + o.en);
+      }
+      b.addEventListener("click", function(){ answer(b, o); });
+      box.appendChild(b);
+    });
+
+    if (mode === "word2pic") setTimeout(function(){ speak(w.en); }, 260);
+  }
+
+  function answer(btn, picked){
+    if (st.locked) return;
+    st.locked = true;
+    var w = st.answer;
+    var right = (picked.en === w.en);
+    var all = Array.prototype.slice.call($("choices").querySelectorAll(".choice"));
+    all.forEach(function(b){ b.disabled = true; });
+
+    if (right){
+      st.correct++; st.streak++; st.best = Math.max(st.best, st.streak);
+      var bonus = Math.min(Math.max(st.streak - 1, 0), 5) * 2;
+      st.score += 10 + bonus;
+      btn.classList.add("right");
+      all.forEach(function(b){ if (b !== btn) b.classList.add("dim"); });
+      $("flash").className = "flash ok";
+      $("flash").textContent = bonus ? ("เก่งมาก! +" + (10 + bonus) + " คะแนน (โบนัสตอบถูกติดกัน)") : "ถูกต้อง! +10 คะแนน";
+      chime(); speak(w.en);
+    } else {
+      st.streak = 0;
+      if (st.missed.indexOf(w.en) === -1) st.missed.push(w.en);
+      btn.classList.add("wrong");
+      all.forEach(function(b){
+        if (b.dataset.en === w.en) b.classList.add("right");
+        else if (b !== btn) b.classList.add("dim");
+      });
+      $("flash").className = "flash no";
+      $("flash").textContent = "ยังไม่ใช่นะ คำตอบคือ " + w.en + " (" + w.th + ")";
+      buzz(); speak(w.en);
+    }
+
+    $("hud-score").textContent = st.score;
+    setTimeout(next, right ? 1000 : 1900);
+  }
+
+  function next(){
+    st.i++;
+    if (st.i >= st.queue.length) finish();
+    else render();
+  }
+
+  function finish(){
+    $("bar").style.width = "100%";
+    var total = st.queue.length;
+    var pct = Math.round((st.correct / total) * 100);
+    var stars = pct >= 90 ? "⭐⭐⭐" : pct >= 70 ? "⭐⭐" : pct >= 40 ? "⭐" : "🌱";
+    $("stars").textContent = stars;
+    $("final-score").textContent = st.score;
+    $("final-line").textContent = "ตอบถูก " + st.correct + " จาก " + total + " ข้อ (" + pct + "%) · ตอบถูกติดกันสูงสุด " + st.best + " ข้อ";
+
+    if (st.missed.length){
+      $("miss").hidden = false;
+      $("btn-retry-miss").hidden = false;
+      var box = $("misslist"); box.innerHTML = "";
+      st.missed.forEach(function(en){
+        var w = WORDS.filter(function(x){ return x.en === en; })[0];
+        var s = document.createElement("span");
+        s.className = "en";
+        s.textContent = w.en + " · " + w.th;
+        box.appendChild(s);
+      });
+    } else {
+      $("miss").hidden = true;
+      $("btn-retry-miss").hidden = true;
+    }
+
+    show("end");
+    fanfare();
+  }
+
+  /* ---------- events ---------- */
+  $("btn-start").addEventListener("click", function(){ start(null); });
+  $("btn-again").addEventListener("click", function(){ start(null); });
+  $("btn-home").addEventListener("click",  function(){ show("start"); });
+  $("btn-retry-miss").addEventListener("click", function(){
+    var pool = WORDS.filter(function(w){ return st.missed.indexOf(w.en) !== -1; });
+    while (pool.length < 2) pool = pool.concat(shuffle(WORDS).slice(0, 2));
+    start(pool);
+  });
+  $("btn-quit").addEventListener("click", function(){ show("start"); });
+  $("btn-say").addEventListener("click", function(){ if (st) speak(st.answer.en); });
+  $("btn-mute").addEventListener("click", function(){
+    cfg.sound = !cfg.sound;
+    syncMute();
+    Array.prototype.forEach.call($("opt-sound").querySelectorAll("button"), function(b){
+      b.setAttribute("aria-pressed", String((b.dataset.v === "on") === cfg.sound));
+    });
+  });
+
+  document.addEventListener("keydown", function(e){
+    if (!screens.play.hidden){
+      var n = parseInt(e.key, 10);
+      if (n >= 1 && n <= 4){
+        var b = $("choices").querySelectorAll(".choice")[n - 1];
+        if (b && !b.disabled) b.click();
+      }
+      if (e.key === " " || e.key === "Enter"){
+        if (st && st.mode === "word2pic"){ e.preventDefault(); speak(st.answer.en); }
+      }
+    } else if (!screens.start.hidden && (e.key === "Enter" || e.key === " ")){
+      if (document.activeElement === document.body){ e.preventDefault(); start(null); }
+    }
+  });
+
+  syncMute();
+})();
+</script>
