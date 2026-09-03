@@ -1,0 +1,1062 @@
+<title>บลูพรินต์กลุ่ม VIP สื่ออังกฤษ ป.1–3</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F5F6F1;
+  --surface:#FFFFFF;
+  --surface-2:#EDEFE8;
+  --band:#E4E8DE;
+  --ink:#161B22;
+  --ink-2:#525C66;
+  --ink-3:#7A848E;
+  --line:#D8DCD2;
+  --line-strong:#B9BFB2;
+  --teal:#0E7C6B;
+  --teal-soft:#DCEDE8;
+  --red:#B23A2B;
+  --red-soft:#F6E3DF;
+  --yellow:#F0CE45;
+  --shadow:0 1px 2px rgba(22,27,34,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12151A;
+    --surface:#191D23;
+    --surface-2:#1F242B;
+    --band:#232931;
+    --ink:#E9EBE4;
+    --ink-2:#A3ACB5;
+    --ink-3:#7C858E;
+    --line:#2B313A;
+    --line-strong:#3C444E;
+    --teal:#5CD3BD;
+    --teal-soft:#16302E;
+    --red:#F0897A;
+    --red-soft:#33211F;
+    --yellow:#E6C44C;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12151A;
+  --surface:#191D23;
+  --surface-2:#1F242B;
+  --band:#232931;
+  --ink:#E9EBE4;
+  --ink-2:#A3ACB5;
+  --ink-3:#7C858E;
+  --line:#2B313A;
+  --line-strong:#3C444E;
+  --teal:#5CD3BD;
+  --teal-soft:#16302E;
+  --red:#F0897A;
+  --red-soft:#33211F;
+  --yellow:#E6C44C;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans Thai','Noto Sans Thai',system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Bai Jamjuree','IBM Plex Sans Thai',sans-serif;text-wrap:balance;margin:0;line-height:1.35}
+p{margin:0}
+a{color:var(--teal)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px}
+
+.mono{font-family:'IBM Plex Mono','IBM Plex Sans Thai',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal);font-weight:500;
+}
+
+/* ---------- masthead ---------- */
+.masthead{
+  border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+.masthead-in{
+  max-width:1180px;margin:0 auto;
+  padding:clamp(2.2rem,6vw,3.6rem) clamp(1rem,4vw,2.5rem) clamp(1.8rem,4vw,2.6rem);
+  display:flex;flex-direction:column;gap:1.1rem;
+}
+h1{font-size:clamp(1.7rem,4.6vw,2.9rem);font-weight:700;letter-spacing:-.01em;max-width:20ch}
+.dek{font-size:1.02rem;color:var(--ink-2);max-width:62ch}
+.meta{
+  display:flex;flex-wrap:wrap;gap:.5rem .5rem;margin-top:.3rem;
+}
+.tag{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.04em;
+  padding:.28rem .6rem;border:1px solid var(--line-strong);border-radius:100px;color:var(--ink-2);
+}
+
+/* ---------- shell ---------- */
+.shell{
+  max-width:1180px;margin:0 auto;
+  padding:clamp(1.8rem,5vw,3rem) clamp(1rem,4vw,2.5rem) 4rem;
+  display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;
+}
+@media (min-width:1000px){
+  .shell{grid-template-columns:200px minmax(0,1fr);gap:3.5rem;align-items:start}
+}
+nav.toc{display:none}
+@media (min-width:1000px){
+  nav.toc{display:block;position:sticky;top:1.8rem}
+}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.15rem}
+.toc a{
+  display:flex;gap:.6rem;text-decoration:none;color:var(--ink-2);
+  font-size:.86rem;line-height:1.5;padding:.35rem .5rem;border-radius:5px;
+}
+.toc a:hover{background:var(--surface-2);color:var(--ink)}
+.toc a.on{color:var(--ink);background:var(--surface-2);font-weight:600}
+.toc a span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--teal);padding-top:.15rem}
+.toc-head{
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);padding:0 .5rem .7rem;
+  border-bottom:1px solid var(--line);margin-bottom:.7rem;
+}
+
+main{min-width:0;display:flex;flex-direction:column;gap:3.2rem}
+
+/* ---------- sections ---------- */
+section{scroll-margin-top:1.5rem}
+.part-head{
+  display:flex;flex-direction:column;gap:.5rem;
+  padding-bottom:1rem;margin-bottom:1.6rem;border-bottom:2px solid var(--ink);
+}
+h2{font-size:clamp(1.35rem,3.2vw,1.85rem);font-weight:700;letter-spacing:-.005em}
+.part-dek{color:var(--ink-2);font-size:.95rem;max-width:64ch}
+.block{display:flex;flex-direction:column;gap:.9rem}
+main > section > .block + .block{margin-top:2.2rem}
+h3{
+  font-size:1.06rem;font-weight:600;display:flex;align-items:baseline;gap:.6rem;
+}
+h3 .num{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--teal);font-weight:500}
+h4{font-size:.95rem;font-weight:600;color:var(--ink);margin-top:.4rem}
+.body{max-width:68ch;color:var(--ink-2)}
+.body strong{color:var(--ink);font-weight:600}
+
+ul.list,ol.list{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.45rem;max-width:68ch;color:var(--ink-2)}
+ul.list li::marker{color:var(--teal)}
+ol.list li::marker{color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:.85rem}
+.list strong{color:var(--ink);font-weight:600}
+
+/* ---------- callout ---------- */
+.callout{
+  background:var(--surface);border:1px solid var(--line);
+  border-left:4px solid var(--teal);border-radius:0 8px 8px 0;
+  padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;box-shadow:var(--shadow);
+}
+.callout.warn{border-left-color:var(--red)}
+.callout h3{margin-bottom:.1rem}
+.callout .body{max-width:none}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th{
+  text-align:left;font-family:'Bai Jamjuree',sans-serif;font-weight:600;
+  font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);
+  padding:.7rem .85rem;border-bottom:1px solid var(--line-strong);white-space:nowrap;
+}
+td{padding:.65rem .85rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);line-height:1.65}
+tr:last-child td{border-bottom:none}
+td strong{color:var(--ink);font-weight:600}
+td.n,th.n{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.wk td{
+  background:var(--band);color:var(--ink);font-family:'Bai Jamjuree',sans-serif;
+  font-weight:600;font-size:.85rem;letter-spacing:.02em;
+}
+
+/* ---------- tree ---------- */
+pre.tree{
+  margin:0;padding:1.1rem 1.2rem;background:var(--surface);border:1px solid var(--line);
+  border-radius:8px;overflow-x:auto;
+  font-family:'IBM Plex Mono','IBM Plex Sans Thai',monospace;font-size:.82rem;line-height:1.75;color:var(--ink-2);
+}
+pre.tree b{color:var(--ink);font-weight:500}
+pre.tree i{color:var(--teal);font-style:normal}
+
+/* ---------- prompt ---------- */
+.prompt{
+  background:var(--surface-2);border-left:3px solid var(--teal);border-radius:0 6px 6px 0;
+  padding:.9rem 1.05rem;font-family:'IBM Plex Mono','IBM Plex Sans Thai',monospace;
+  font-size:.82rem;line-height:1.7;white-space:pre-wrap;overflow-x:auto;color:var(--ink);
+}
+.prompt-label{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+
+/* ---------- ladder ---------- */
+.ladder{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.75rem}
+.ladder li{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem 1.1rem;
+}
+.lv{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:.05em;
+  background:var(--teal);color:var(--paper);border-radius:4px;padding:.25rem .5rem;height:fit-content;
+}
+.ladder .t{font-weight:600;color:var(--ink);font-family:'Bai Jamjuree',sans-serif}
+.ladder .d{color:var(--ink-2);font-size:.92rem}
+.ladder .x{color:var(--ink-3);font-size:.85rem;border-top:1px dashed var(--line);padding-top:.5rem;margin-top:.15rem}
+.ladder .x b{color:var(--teal);font-weight:500}
+
+/* ---------- chat ---------- */
+.chat{display:flex;flex-direction:column;gap:.5rem;max-width:640px}
+.bub{
+  padding:.7rem .95rem;border-radius:14px;font-size:.91rem;line-height:1.7;max-width:88%;
+  white-space:pre-wrap;
+}
+.bub.them{align-self:flex-start;background:var(--surface-2);border-bottom-left-radius:4px;color:var(--ink)}
+.bub.us{align-self:flex-end;background:var(--teal-soft);border-bottom-right-radius:4px;color:var(--ink)}
+.bub-note{font-size:.78rem;color:var(--ink-3);align-self:flex-start;padding-left:.3rem}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;
+  padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:.5rem;
+}
+.card .k{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--teal);
+}
+.card .t{font-family:'Bai Jamjuree',sans-serif;font-weight:600;color:var(--ink);font-size:1rem;line-height:1.4}
+.card .d{font-size:.89rem;color:var(--ink-2)}
+
+/* ---------- script cards ---------- */
+.script{
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;
+}
+.script > .hd{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+  padding:.75rem 1.1rem;background:var(--surface-2);border-bottom:1px solid var(--line);
+}
+.script .hd .t{font-family:'Bai Jamjuree',sans-serif;font-weight:600;color:var(--ink);font-size:.97rem}
+.script .hd .len{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--ink-3);white-space:nowrap}
+.script .bd{padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.6rem}
+.row{display:grid;grid-template-columns:88px minmax(0,1fr);gap:.9rem;align-items:start;font-size:.9rem}
+.row .lb{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-3);padding-top:.28rem;
+}
+.row .vl{color:var(--ink-2)}
+.row .vl b{color:var(--ink);font-weight:600}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.15rem 1.25rem;
+  display:flex;flex-direction:column;gap:.55rem;
+}
+.post .hd{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);padding-bottom:.5rem;border-bottom:1px solid var(--line);margin-bottom:.3rem;
+}
+.post .copy{white-space:pre-wrap;font-size:.92rem;line-height:1.85;color:var(--ink)}
+
+.pill{
+  display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.7rem;
+  padding:.15rem .45rem;border-radius:4px;background:var(--red-soft);color:var(--red);white-space:nowrap;
+}
+.pill.g{background:var(--teal-soft);color:var(--teal)}
+
+footer{
+  border-top:1px solid var(--line);margin-top:1rem;padding-top:1.5rem;
+  font-size:.85rem;color:var(--ink-3);max-width:68ch;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <p class="eyebrow">Master Blueprint · Resource Hub Business</p>
+    <h1>บลูพรินต์กลุ่ม VIP สื่อการสอนภาษาอังกฤษ ป.1–3</h1>
+    <p class="dek">โครงสร้างธุรกิจแบบครบวงจร ตั้งแต่ระบบจัดเก็บไฟล์ การผลิตสื่อ การตั้งราคา แผนการตลาด สคริปต์ปิดการขาย ไปจนถึงแผนปฏิบัติการ 30 วันแรก เขียนให้หยิบไปทำได้ทันทีโดยไม่ต้องแปลงเป็นแผนอีกชั้น</p>
+    <div class="meta">
+      <span class="tag">5 Parts</span>
+      <span class="tag">15 หัวข้อหลักสูตร</span>
+      <span class="tag">5 สคริปต์คลิปสั้น</span>
+      <span class="tag">3 โพสต์ขาย</span>
+      <span class="tag">30-Day Roadmap</span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="toc" aria-label="สารบัญ">
+    <p class="toc-head">สารบัญ</p>
+    <ol>
+      <li><a href="#rec"><span>00</span>ข้อสรุปทิศทาง</a></li>
+      <li><a href="#p1"><span>01</span>โครงสร้างกลุ่ม VIP</a></li>
+      <li><a href="#p2"><span>02</span>การผลิตสื่อ</a></li>
+      <li><a href="#p3"><span>03</span>การตลาดหาลูกค้า</a></li>
+      <li><a href="#p4"><span>04</span>สคริปต์ปิดการขาย</a></li>
+      <li><a href="#p5"><span>05</span>แผน 30 วัน</a></li>
+      <li><a href="#risk"><span>06</span>ข้อควรระวัง</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ============ ANSWER ============ -->
+    <section id="rec">
+      <div class="callout">
+        <p class="eyebrow">ตอบคำถามที่ถามมาก่อน</p>
+        <h3>เริ่มจาก Printable เป็นแกน แล้วใช้ Interactive เป็นอาวุธการตลาด — สัดส่วน 70 / 30</h3>
+        <div class="body">
+          <p>คำตอบไม่ใช่ “เลือกอย่างใดอย่างหนึ่ง” แต่คือ <strong>ลำดับการลงแรง</strong> ครับ เหตุผล 4 ข้อ:</p>
+        </div>
+        <ul class="list">
+          <li><strong>Printable ทำเงินได้เร็วกว่ามาก</strong> ต้นทุนต่อชิ้นต่ำ ผลิตวันละ 5–10 ใบงานได้จริง และเป็นสิ่งที่ครูไทยกดจ่ายทันทีเพราะแก้ปัญหาเฉพาะหน้า “พรุ่งนี้ต้องมีใบงานเข้าห้อง”</li>
+          <li><strong>Interactive คือสิ่งที่ทำให้คุณ “ขายแพงกว่าได้”</strong> กลุ่ม 99–199 บาททุกกลุ่มมี PDF เหมือนกันหมด แต่แทบไม่มีใครมีเกมเว็บที่ครูฉายขึ้นจอแล้วเด็กเล่นได้ทันที นี่คือจุดที่ทำให้ราคา 590–890 บาทมีเหตุผล</li>
+          <li><strong>Interactive คือคอนเทนต์ที่ถ่ายคลิปแล้วไวรัลง่ายที่สุด</strong> ใบงาน PDF ถ่ายคลิปได้ไม่น่าตื่นเต้น แต่คลิป “ฉายจอเดียว เด็กทั้งห้องแย่งกันตอบ” หยุดนิ้วคนดูได้ใน 2 วินาที ใช้ Interactive เป็นตัวเรียกคน แล้วให้ Printable เป็นตัวปิดการขาย</li>
+          <li><strong>ความเสี่ยงของการเริ่มด้วย Interactive ล้วน</strong> คือใช้เวลาพัฒนานาน เปิดตัวช้า และถ้าโรงเรียนอินเทอร์เน็ตไม่ดีหรือไม่มีโปรเจกเตอร์ สื่อจะใช้ไม่ได้เลย สมาชิกจะรู้สึกว่า “จ่ายแล้วใช้ไม่ได้”</li>
+        </ul>
+        <div class="body">
+          <p><strong>แผนปฏิบัติ:</strong> 30 วันแรกผลิตใบงานให้ครบ 4–5 หน่วยแบบมีเฉลย และทำเกม Interactive ให้ได้ <strong>1 ตัวที่ดีมาก</strong> (ไม่ต้อง 10 ตัวที่พอใช้) ใช้เกมตัวนั้นเป็นทั้ง Lead Magnet และพระเอกของคลิปทุกคลิป จากนั้นเดือนที่ 2–3 ค่อยเติมเกมเดือนละ 2–3 ตัวเป็น Monthly Drop ซึ่งจะกลายเป็นเหตุผลให้คนต่ออายุและเป็นเหตุผลให้ขึ้นราคา</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PART 1 ============ -->
+    <section id="p1">
+      <div class="part-head">
+        <p class="eyebrow">Part 01</p>
+        <h2>โครงสร้างและระบบของกลุ่ม VIP</h2>
+        <p class="part-dek">ระบบต้องถูกออกแบบให้ “ครูหาไฟล์ที่ต้องการเจอภายใน 30 วินาที” ถ้าหาไม่เจอ สมาชิกจะรู้สึกว่าไม่คุ้มแม้คลังจะใหญ่แค่ไหน</p>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">1.1</span> สถาปัตยกรรม 3 ชั้น: Drive + Facebook + Master Index</h3>
+        <div class="body">
+          <p>อย่าเก็บไฟล์ไว้ในกลุ่ม Facebook เด็ดขาด เพราะไฟล์จะจมหายไปกับฟีดภายในสัปดาห์เดียว ให้แบ่งหน้าที่ชัดเจน:</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <p class="k">ชั้นที่ 1 · คลัง</p>
+            <p class="t">Google Drive (View only)</p>
+            <p class="d">เก็บไฟล์ทั้งหมด แชร์แบบ “ผู้ที่มีลิงก์ = ผู้อ่าน” ปิดการดาวน์โหลดไม่ได้ก็ไม่เป็นไร แต่ต้องปิดสิทธิ์แก้ไขและใส่ลายน้ำชื่อกลุ่มบนทุกหน้า</p>
+          </div>
+          <div class="card">
+            <p class="k">ชั้นที่ 2 · ชุมชน</p>
+            <p class="t">กลุ่ม Facebook ปิด</p>
+            <p class="d">ใช้ประกาศของใหม่ ถามตอบ อวดผลงานการใช้สื่อ และเก็บ Testimonial ตั้งค่า “คำถามก่อนเข้ากลุ่ม” เพื่อกันคนที่ไม่ได้จ่าย</p>
+          </div>
+          <div class="card">
+            <p class="k">ชั้นที่ 3 · ทางเข้า</p>
+            <p class="t">Master Index (Google Sheet)</p>
+            <p class="d">ตารางเดียวที่มีทุกไฟล์ ค้นด้วย Ctrl+F คำเดียวเจอทันที คอลัมน์: ชั้นปี / หน่วย / หัวข้อ / ประเภทสื่อ / ระดับความยาก / ตัวชี้วัด / ลิงก์</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">1.2</span> โครงสร้างโฟลเดอร์ใน Google Drive</h3>
+        <pre class="tree"><b>📁 VIP-ENGLISH-HUB (Shared Drive)</b>
+├── <b>00_START-HERE</b>            <i>← อ่านก่อน: วิธีใช้คลัง + ลิงก์ Master Index + กติกากลุ่ม</i>
+├── <b>01_GRADE-1</b>
+│   ├── U01_Greetings-and-Self
+│   │   ├── A_WORKSHEETS       <i>ใบงาน + เฉลยแยกไฟล์</i>
+│   │   ├── B_INTERACTIVE      <i>ไฟล์ .txt เก็บลิงก์เกม + QR Code</i>
+│   │   ├── C_FLASHCARDS       <i>แฟลชการ์ด A4 / A5 / ไฟล์ Canva แก้ได้</i>
+│   │   ├── D_LESSON-PLAN      <i>แผนการสอน + ตัวชี้วัดที่แมป + สื่อ PPT</i>
+│   │   └── E_ASSESSMENT       <i>แบบทดสอบก่อน-หลัง + เกณฑ์ให้คะแนน (Rubric)</i>
+│   ├── U02_Alphabet-and-Phonics
+│   ├── U03_Numbers
+│   └── ... (โครงเดียวกันทุกหน่วย)
+├── <b>02_GRADE-2</b>                <i>โครงเดียวกัน</i>
+├── <b>03_GRADE-3</b>                <i>โครงเดียวกัน</i>
+├── <b>04_INTERACTIVE-HUB</b>        <i>รวมเกมเว็บทั้งหมดไว้ที่เดียว เรียงตามหัวข้อ</i>
+├── <b>05_GAME-LINKS</b>             <i>คลังลิงก์ Quizizz / Kahoot / Wordwall / Blooket</i>
+├── <b>06_AI-PROMPT-KIT</b>          <i>Prompt สร้างใบงาน ภาพประกอบ ข้อสอบ แผนการสอน</i>
+├── <b>07_CLASSROOM-KIT</b>          <i>ป้ายติดห้อง เกียรติบัตร สติกเกอร์ให้รางวัล ป้ายชื่อ</i>
+├── <b>08_TEACHER-ADMIN</b>          <i>แบบบันทึกคะแนน ใบเยี่ยมบ้าน เอกสารประกอบวิทยฐานะ</i>
+├── <b>09_MONTHLY-DROP</b>           <i>ของใหม่ประจำเดือน (2026-01, 2026-02, ...) ไฮไลต์ให้เห็นชัด</i>
+└── <b>99_ARCHIVE</b>               <i>ไฟล์เวอร์ชันเก่า ห้ามลบทิ้ง ให้ย้ายมาที่นี่แทน</i></pre>
+        <h4>กฎการตั้งชื่อไฟล์ (บังคับใช้ตั้งแต่ไฟล์แรก)</h4>
+        <div class="prompt">G1-U05-VOC-Animals-L2-BW-v1.pdf
+G1-U05-VOC-Animals-L2-BW-v1-KEY.pdf   ← เฉลยลงท้าย -KEY เสมอ</div>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>ส่วน</th><th>ความหมาย</th><th>ค่าที่ใช้ได้</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">G1</td><td>ระดับชั้น</td><td class="mono">G1 / G2 / G3 / GX (ใช้ได้ทุกชั้น)</td></tr>
+              <tr><td class="mono">U05</td><td>หน่วยการเรียนรู้</td><td class="mono">U01–U15</td></tr>
+              <tr><td class="mono">VOC</td><td>ทักษะหลัก</td><td class="mono">VOC / PHO / GRA / RDG / WRT / LSN / SPK</td></tr>
+              <tr><td class="mono">L2</td><td>ระดับความยาก</td><td class="mono">L1–L5</td></tr>
+              <tr><td class="mono">BW</td><td>โหมดสี</td><td class="mono">BW (ประหยัดหมึก) / CL (สี)</td></tr>
+              <tr><td class="mono">v1</td><td>เวอร์ชัน</td><td class="mono">v1, v2 — แก้แล้วขึ้นเวอร์ชัน ไม่ทับไฟล์เดิม</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="body">
+          <p><strong>กฎเหล็ก 3 ข้อ:</strong> ทุกใบงานต้องมีเฉลย · ทุกโฟลเดอร์ต้องมีไฟล์ <span class="mono">00_INDEX</span> บอกว่าข้างในมีอะไร · ห้ามลบไฟล์ ให้ย้ายเข้า <span class="mono">99_ARCHIVE</span> เพราะสมาชิกเก่าอาจบุ๊กมาร์กลิงก์เดิมไว้</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">1.3</span> สัดส่วนสื่อในกลุ่ม และรอบการเติมของ</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>ประเภทสื่อ</th><th class="n">สัดส่วน</th><th>รายละเอียดที่ต้องมี</th><th class="n">เติมใหม่/เดือน</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Printable PDF Worksheets</strong></td><td class="n">50%</td><td>ใบงาน A4 พร้อมเฉลยแยกไฟล์ มีทั้งเวอร์ชันขาวดำประหยัดหมึกและเวอร์ชันสี ครบ 5 ระดับความยากต่อหัวข้อ</td><td class="n">30–40 ใบ</td></tr>
+              <tr><td><strong>Interactive Web Games</strong></td><td class="n">20%</td><td>เกมเว็บลิงก์เดียว เปิดได้ทั้งมือถือ แท็บเล็ต และโปรเจกเตอร์ ไม่ต้องล็อกอิน ไม่ต้องติดตั้ง มีปุ่มเสียงอ่านคำศัพท์</td><td class="n">2–3 เกม</td></tr>
+              <tr><td><strong>Gamified Kits</strong></td><td class="n">15%</td><td>ลิงก์ Quizizz / Kahoot / Wordwall ที่ก็อปไปแก้เป็นของตัวเองได้ พร้อมแฟลชการ์ด Canva แบบแก้ไขได้</td><td class="n">8–10 ชุด</td></tr>
+              <tr><td><strong>AI Prompt Kit</strong></td><td class="n">10%</td><td>Prompt สร้างใบงาน สร้างภาพประกอบ สร้างข้อสอบ เขียนแผนการสอน พร้อมคลิปสอนใช้สั้น ๆ</td><td class="n">4–5 prompt</td></tr>
+              <tr><td><strong>Teacher Admin & Classroom Kit</strong></td><td class="n">5%</td><td>ป้ายติดห้อง เกียรติบัตร แบบบันทึกคะแนน สื่อบริหารชั้นเรียน — ส่วนนี้ทำให้ครู “รู้สึกว่าคุ้มเกินราคา”</td><td class="n">3–5 ชิ้น</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="body">
+          <p>ประกาศรอบเติมของให้ชัดว่า <strong>ทุกวันที่ 1 และ 16 ของเดือน</strong> เพราะความสม่ำเสมอที่คาดเดาได้คือสิ่งที่ทำให้คนไม่ยกเลิกและกล้าบอกต่อ</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">1.4</span> Value Proposition — จุดขายที่ทำให้ไม่เหมือนกลุ่มแจกใบงาน</h3>
+        <div class="callout">
+          <p class="eyebrow">สโลแกนหลัก</p>
+          <h3>“สอนได้ทั้งบนกระดาษและบนจอ — จบในลิงก์เดียว”</h3>
+          <p class="body">สโลแกนสำรองสำหรับสายผู้ปกครอง: “เปิดคลัง ปริ้นต์ สอนได้เลย ไม่ต้องคิดเองตั้งแต่ศูนย์”</p>
+        </div>
+        <ol class="list">
+          <li><strong>ครบทั้ง Print และ Play ในหัวข้อเดียวกัน</strong> — หัวข้อ Animals ไม่ได้มีแค่ใบงาน แต่มีเกมฉายหน้าห้อง แฟลชการ์ด ข้อสอบ และแผนการสอนแมปกันทั้งชุด ครูไม่ต้องไปหาสื่อจาก 4 แหล่งมาปะติดปะต่อเอง</li>
+          <li><strong>แมปตัวชี้วัดมาให้แล้ว</strong> — ทุกไฟล์ระบุว่าใช้กับตัวชี้วัดใด หยิบไปแนบแผนการสอน เอกสาร ปพ.5 หรือแฟ้มวิทยฐานะได้ทันที นี่คือสิ่งที่กลุ่ม 99 บาททำไม่ได้ เพราะมันต้องใช้ความเข้าใจหลักสูตร ไม่ใช่แค่กราฟิก</li>
+          <li><strong>สมาชิกสั่งหัวข้อได้</strong> — มี Request Board ให้โหวตหัวข้อที่อยากได้ทุกเดือน แล้วผลิตให้จริง คลังจึงโตตามปัญหาจริงของสมาชิก ไม่ใช่ตามที่เจ้าของกลุ่มเดาเอง และคนที่โหวตจะกลายเป็นคนที่บอกต่อให้เอง</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">1.5</span> โครงสร้างราคาและเหตุผลทางจิตวิทยา</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>แพ็กเกจ</th><th class="n">ราคา</th><th>สิทธิ์</th><th>ใช้ตอนไหน</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Founding Member</strong> <span class="pill">100 ที่นั่งแรก</span></td>
+                <td class="n">590</td>
+                <td>เข้าถึงตลอดชีพ + ของใหม่ทุกเดือน + สั่งหัวข้อได้ + ล็อกราคาเดิมตลอดไป</td>
+                <td>สัปดาห์เปิดตัวเท่านั้น</td>
+              </tr>
+              <tr>
+                <td><strong>Lifetime</strong> <span class="pill g">ตัวหลัก</span></td>
+                <td class="n">890 → 1,290</td>
+                <td>สิทธิ์เหมือน Founding แต่ไม่มีสิทธิ์สั่งหัวข้อในรอบแรก</td>
+                <td>ราคาปกติหลังปิด Early Bird</td>
+              </tr>
+              <tr>
+                <td><strong>Annual</strong></td>
+                <td class="n">490 / ปี</td>
+                <td>เข้าถึง 12 เดือน หมดอายุแล้วต่อได้ในราคาเดิม</td>
+                <td>เป็นตัวล่อให้เห็นว่า Lifetime คุ้มกว่า</td>
+              </tr>
+              <tr>
+                <td><strong>School / Team</strong></td>
+                <td class="n">2,900 / 5 ที่นั่ง</td>
+                <td>ใช้ได้ทั้งกลุ่มสาระ ออกใบเสร็จให้ เบิกงบโรงเรียนได้</td>
+                <td>เสนอตอนคุยกับหัวหน้ากลุ่มสาระ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>เหตุผลทางจิตวิทยาเบื้องหลังตัวเลข</h4>
+        <ul class="list">
+          <li><strong>Anchoring ด้วย Annual</strong> — พอเห็น 490 บาทต่อปี ข้าง ๆ 890 บาทตลอดชีพ สมองจะคำนวณทันทีว่า “จ่ายเพิ่ม 400 ได้ตลอดชีวิต” ทำให้ Lifetime กลายเป็นตัวเลือกที่ดูฉลาดที่สุด Annual จึงมีหน้าที่หลักคือทำให้ Lifetime ดูคุ้ม ไม่ใช่ตัวทำเงิน</li>
+          <li><strong>เทียบกับต้นทุนที่เขาจ่ายอยู่แล้ว</strong> — ไม่เทียบกับกลุ่มอื่น ให้เทียบกับ “ค่าถ่ายเอกสารเดือนละ 300 บาท” หรือ “เวลา 6 ชั่วโมงต่อสัปดาห์ที่ต้องนั่งทำสื่อเอง” 890 บาทครั้งเดียวจึงกลายเป็นเรื่องเล็ก</li>
+          <li><strong>ขึ้นราคาแบบมีกติกาที่ประกาศล่วงหน้า</strong> — ประกาศตั้งแต่วันแรกว่า “ทุก 100 สมาชิก ราคาขึ้น 100 บาท” แล้วทำตามจริงทุกครั้ง ความน่าเชื่อถือตรงนี้จะทำให้รอบขึ้นราคาครั้งถัดไปมีคนรีบซื้อจริง ๆ ไม่ใช่แค่คำขู่</li>
+          <li><strong>Grandfather Clause</strong> — คนซื้อก่อนไม่ต้องจ่ายเพิ่มตลอดไป ประโยคนี้เปลี่ยนคนซื้อให้กลายเป็นนักการตลาดให้คุณ เพราะเขาจะรู้สึกว่าตัวเองได้ดีลที่ดีกว่าคนอื่นและอยากเล่าให้เพื่อนฟัง</li>
+          <li><strong>เลขลงท้าย 90 ไม่ใช่ 99</strong> — 890 อ่านว่า “แปดร้อยเก้า” ให้ความรู้สึกเป็นสินค้าคุณภาพมากกว่า 899 ที่ให้ความรู้สึกเป็นของลดราคา สำคัญมากเมื่อคุณตั้งใจขายแพงกว่าตลาด</li>
+          <li><strong>ห้ามลดราคาย้อนหลังเด็ดขาด</strong> — ถ้าจะกระตุ้นยอด ให้ “เพิ่มของแถม” แทนการลดราคา เช่น แถมชุดเกียรติบัตร 20 แบบ การลดราคาครั้งเดียวจะทำลายความเชื่อว่าราคาขึ้นจริงตลอดไป</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PART 2 ============ -->
+    <section id="p2">
+      <div class="part-head">
+        <p class="eyebrow">Part 02</p>
+        <h2>การผลิตสื่อและกรอบพัฒนาคอนเทนต์</h2>
+        <p class="part-dek">เป้าหมายคือทำครั้งเดียวแล้วขายได้ตลอด จึงต้องเริ่มจากหัวข้อที่มีคนหาอยู่แล้วทุกปี ไม่ใช่หัวข้อที่เราอยากทำ</p>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">2.1</span> 15 หัวข้อที่ต้องการสูงสุดในตลาด ป.1–3</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th class="n">#</th><th>หัวข้อ</th><th class="n">ชั้น</th><th>สาระที่แมป</th><th>เหตุผลที่ขายดี</th></tr></thead>
+            <tbody>
+              <tr><td class="n">01</td><td><strong>Greetings & Self-introduction</strong></td><td class="n">ป.1</td><td class="mono">ต 1.2 / ต 1.3</td><td>หน่วยแรกของทุกโรงเรียน ทุกเทอมแรกต้องใช้</td></tr>
+              <tr><td class="n">02</td><td><strong>Alphabet & Phonics A–Z</strong></td><td class="n">ป.1</td><td class="mono">ต 1.1</td><td>ยอดค้นหาสูงตลอดปี ทั้งครูและผู้ปกครอง ต้องมีทั้งใบคัดลายมือและเสียงตัวอักษร</td></tr>
+              <tr><td class="n">03</td><td><strong>Numbers 1–100</strong></td><td class="n">ป.1–2</td><td class="mono">ต 1.1 / ต 3.1</td><td>เชื่อมกับคณิตศาสตร์ ใช้ทำใบงานบูรณาการได้ ครูชอบมาก</td></tr>
+              <tr><td class="n">04</td><td><strong>Colors & Shapes</strong></td><td class="n">ป.1</td><td class="mono">ต 1.1 / ต 3.1</td><td>ทำเป็นสื่อสีสวยได้ง่าย เหมาะเป็น Lead Magnet</td></tr>
+              <tr><td class="n">05</td><td><strong>Animals</strong> (Pet / Farm / Wild)</td><td class="n">ป.1–2</td><td class="mono">ต 1.1 / ต 1.3</td><td>เด็กชอบที่สุด ทำได้ทั้งใบงาน เกม และแฟลชการ์ด ต่อยอดได้ยาวที่สุด</td></tr>
+              <tr><td class="n">06</td><td><strong>My Family</strong></td><td class="n">ป.1–2</td><td class="mono">ต 1.3 / ต 2.1</td><td>ใช้ทำชิ้นงานติดบอร์ดหน้าห้องได้ ครูต้องการงานที่โชว์ได้</td></tr>
+              <tr><td class="n">07</td><td><strong>Body Parts</strong></td><td class="n">ป.2</td><td class="mono">ต 1.1 / ต 3.1</td><td>เข้ากับกิจกรรม TPR และเพลง เหมาะกับคลิปโปรโมต</td></tr>
+              <tr><td class="n">08</td><td><strong>Food & Drink / Fruits</strong></td><td class="n">ป.2</td><td class="mono">ต 1.2 / ต 2.1</td><td>ทำบทบาทสมมติร้านอาหารได้ ครูใช้ทำกิจกรรมวันภาษาอังกฤษ</td></tr>
+              <tr><td class="n">09</td><td><strong>Classroom Objects & Language</strong></td><td class="n">ป.1–3</td><td class="mono">ต 1.1 / ต 4.1</td><td>ใช้ได้ทุกคาบ ทุกชั้น เป็นหัวข้อที่ครูดาวน์โหลดซ้ำบ่อยที่สุด</td></tr>
+              <tr><td class="n">10</td><td><strong>Clothes</strong></td><td class="n">ป.2–3</td><td class="mono">ต 1.1 / ต 1.3</td><td>ทำใบงานตัดแปะแต่งตัวได้ เด็กสนุก ครูถ่ายรูปลงกลุ่ม = โฆษณาฟรี</td></tr>
+              <tr><td class="n">11</td><td><strong>Feelings & Emotions</strong></td><td class="n">ป.2–3</td><td class="mono">ต 1.2 / ต 1.3</td><td>เชื่อมกับ SEL และงานแนะแนว เป็นหัวข้อที่กำลังมาแรง</td></tr>
+              <tr><td class="n">12</td><td><strong>Daily Routines & Telling Time</strong></td><td class="n">ป.3</td><td class="mono">ต 1.3 / ต 3.1</td><td>ยากพอที่ครูจะขี้เกียจทำเอง จึงยอมจ่ายเงินซื้อ</td></tr>
+              <tr><td class="n">13</td><td><strong>Days, Months & Weather</strong></td><td class="n">ป.2–3</td><td class="mono">ต 1.1 / ต 4.2</td><td>ใช้ทำป้ายติดห้องเรียนได้ ครูใช้ทุกวันตอนเช้า</td></tr>
+              <tr><td class="n">14</td><td><strong>Places & Prepositions</strong></td><td class="n">ป.3</td><td class="mono">ต 1.2 / ต 2.2</td><td>เป็นจุดที่เด็กมักสอบตก ครูจึงหาใบงานเสริมมากเป็นพิเศษ</td></tr>
+              <tr><td class="n">15</td><td><strong>Jobs & Can / Can't</strong></td><td class="n">ป.3</td><td class="mono">ต 1.3 / ต 2.2</td><td>ใช้ทำกิจกรรมวันอาชีพและงานเปิดบ้าน โรงเรียนต้องใช้ทุกปี</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="body">
+          <p><strong>โบนัสตามฤดูกาล</strong> ที่ยอดพุ่งเป็นช่วง ๆ และควรทำล่วงหน้า 3 สัปดาห์: Christmas · Halloween · Valentine's · Mother's Day · Loy Krathong · Songkran · English Camp Day ชุดพวกนี้ทำให้คนสมัครกลุ่มในเดือนที่ปกติขายไม่ค่อยออก</p>
+          <p style="margin-top:.6rem">ก่อนใช้งานจริง ให้ตรวจรหัสตัวชี้วัดกับหลักสูตรสถานศึกษาของโรงเรียนเป้าหมายอีกครั้ง เพราะแต่ละโรงเรียนจัดลำดับหน่วยไม่เหมือนกัน</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">2.2</span> พิมพ์เขียวชุดสื่อ 5 ระดับ — ตัวอย่างหัวข้อ Animals</h3>
+        <div class="body">
+          <p>คำศัพท์แกน 10 คำ: <span class="mono">cat · dog · bird · fish · cow · pig · duck · rabbit · elephant · monkey</span> ทุกระดับใช้คำชุดเดียวกัน เพิ่มเฉพาะความยากของภาระงาน นี่คือหัวใจที่ทำให้ชุดสื่อ “เป็นชุดจริง” ไม่ใช่ใบงานสุ่มมากอง</p>
+        </div>
+        <ol class="ladder">
+          <li>
+            <span class="lv">L1</span>
+            <div>
+              <p class="t">Recognition — จำภาพให้ได้ก่อน</p>
+              <p class="d">ใบงานลากเส้นจับคู่ภาพกับคำ · คัดลายมือตามรอยประ · ระบายสีตามคำสั่ง (Color the cat brown) · วงกลมคำที่ตรงกับภาพ</p>
+              <p class="x"><b>Active Learning:</b> TPR ครูพูด “Be a monkey!” เด็กทำท่าประกอบ · <b>Interactive คู่กัน:</b> เกมลากภาพไปวางบนคำ (drag & drop)</p>
+            </div>
+          </li>
+          <li>
+            <span class="lv">L2</span>
+            <div>
+              <p class="t">Vocabulary Build — สะกดคำให้ถูก</p>
+              <p class="d">เติมตัวอักษรที่หายไป (c _ t) · Word Search 10 คำ · ตัดแปะจัดกลุ่ม Farm / Pet / Wild · Crossword ภาพเป็นคำใบ้</p>
+              <p class="x"><b>Active Learning:</b> Flyswatter Game ติดบัตรคำบนกระดาน แบ่ง 2 ทีมวิ่งมาตบคำที่ครูพูด · <b>Interactive คู่กัน:</b> เกมพิมพ์สะกดคำจับเวลา มีเสียงอ่านคำให้ฟัง</p>
+            </div>
+          </li>
+          <li>
+            <span class="lv">L3</span>
+            <div>
+              <p class="t">Structure — เอาคำไปใส่ในประโยค</p>
+              <p class="d">เติมประโยค It's a ___ / They are ___ · เลือก I like / I don't like · ตอบ Yes-No จากคำถาม Can it fly? Can it swim? · เรียงคำเป็นประโยค</p>
+              <p class="x"><b>Active Learning:</b> Four Corners ครูพูดประโยค เด็กวิ่งไปมุมที่ตรงกับคำตอบ · <b>Interactive คู่กัน:</b> เกมต่อประโยคแบบลากคำมาเรียง มีเสียงอ่านประโยคที่สร้างเสร็จ</p>
+            </div>
+          </li>
+          <li>
+            <span class="lv">L4</span>
+            <div>
+              <p class="t">Reading & Writing — อ่านจับใจความและเขียนเอง</p>
+              <p class="d">อ่านบรรยายสั้น 5 ประโยคแล้วระบายสีตามที่อ่าน · ติดป้ายชื่อส่วนต่าง ๆ ของสัตว์ · เขียนบรรยายสัตว์ที่ชอบ 3 ประโยคโดยมีโครงประโยคให้</p>
+              <p class="x"><b>Active Learning:</b> Running Dictation ติดบทอ่านไว้นอกห้อง เด็กผลัดกันวิ่งไปจำมาบอกเพื่อนเขียน · <b>Interactive คู่กัน:</b> เกมฟังแล้วคลิกภาพให้ตรงกับเรื่องที่อ่าน</p>
+            </div>
+          </li>
+          <li>
+            <span class="lv">L5</span>
+            <div>
+              <p class="t">Production & Assessment — สร้างชิ้นงานและวัดผล</p>
+              <p class="d">มินิโปรเจกต์ My Animal Report 1 หน้า (วาด + เขียน 5 ประโยค + นำเสนอ 1 นาที) · เกณฑ์ให้คะแนนการพูด 4 ระดับ · แบบทดสอบหลังเรียน 15 ข้อพร้อมเฉลย · Exit Ticket ใบเล็กท้ายคาบ</p>
+              <p class="x"><b>Active Learning:</b> Gallery Walk ติดผลงานรอบห้อง เด็กเดินดูแล้วแปะสติกเกอร์ให้คะแนนเพื่อน · <b>Interactive คู่กัน:</b> แบบทดสอบออนไลน์ที่ทำเสร็จแล้วออกเกียรติบัตรพิมพ์ได้ทันที</p>
+            </div>
+          </li>
+        </ol>
+        <div class="body">
+          <p><strong>ผลผลิตต่อ 1 หัวข้อ:</strong> ใบงาน 15 ใบ (มีเฉลยครบ) + เกมเว็บ 1–2 ตัว + แฟลชการ์ด 1 ชุด + Quizizz 1 ชุด + แผนการสอน 1 แผน + แบบทดสอบพร้อมเกณฑ์ 1 ชุด ทำแบบนี้ครบ 15 หัวข้อ คลังจะมีของกว่า 300 ชิ้นโดยไม่ต้องคิดใหม่ทุกวัน</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">2.3</span> AI Prompts สำหรับสร้างภาพประกอบและสินทรัพย์</h3>
+        <p class="prompt-label">Prompt A — ภาพขาวดำสำหรับใบงาน (ประหยัดหมึก)</p>
+        <div class="prompt">Simple black and white line art of a [ANIMAL], thick uniform outlines about 4px,
+no shading, no gradient, no cross-hatching, no gray fill, pure white background,
+cute minimal kawaii style for a children's coloring worksheet, front facing,
+full body, centered, large clear enclosed shapes that a 7-year-old can color
+inside the lines, high contrast, clean vector look, isolated subject.
+
+--no color, grayscale shading, texture, watermark, text, letters, background
+scenery, drop shadow, realistic detail, thin sketchy lines</div>
+        <p class="prompt-label">Prompt B — ภาพสีสำหรับสื่อ Interactive</p>
+        <div class="prompt">Flat vector illustration of a [ANIMAL], friendly cartoon character with big
+round eyes and a small smile, soft rounded shapes, thin dark outline,
+limited palette of warm yellow, teal green, soft coral and cream,
+subtle flat shadow only, transparent background, square 1:1 composition,
+consistent character proportions suitable for a matching set of 10 animals,
+modern children's educational app style.
+
+--no gradient mesh, photorealism, 3D render, busy background, text, watermark</div>
+        <p class="prompt-label">Prompt C — Style Lock (ต่อท้ายทุก prompt ในชุดเดียวกัน)</p>
+        <div class="prompt">Keep the exact same art style, line weight, palette and eye shape as the
+previous images in this set. Same head-to-body ratio. Same outline color.</div>
+        <p class="prompt-label">Prompt D — ให้ AI ร่างเนื้อหาใบงานให้ (ใช้กับ Claude หรือ ChatGPT)</p>
+        <div class="prompt">คุณคือครูภาษาอังกฤษระดับประถมศึกษาในไทยที่มีประสบการณ์ 15 ปี
+ช่วยออกแบบเนื้อหาใบงานหัวข้อ [TOPIC] สำหรับนักเรียนชั้น [ป.1/ป.2/ป.3]
+ระดับความยาก L[1-5] ตามเกณฑ์นี้: L1 จำภาพ, L2 สะกดคำ, L3 แต่งประโยค,
+L4 อ่านและเขียน, L5 สร้างชิ้นงาน
+
+ข้อกำหนด:
+- ใช้คำศัพท์แกน 10 คำนี้เท่านั้น: [รายการคำ]
+- คำสั่งภาษาอังกฤษต้องสั้นและง่ายกว่าระดับเนื้อหา 1 ขั้น
+- ใส่คำสั่งภาษาไทยกำกับใต้คำสั่งภาษาอังกฤษทุกข้อ
+- 12-15 ข้อ พอดีกระดาษ A4 หนึ่งหน้า เว้นที่ให้เด็กเขียนตัวใหญ่
+- ส่งเฉลยแยกท้ายไฟล์
+- ปิดท้ายด้วยไอเดียกิจกรรม Active Learning 1 อย่างที่ใช้ใบงานนี้ต่อได้</div>
+        <h4>ข้อควรระวังเวลาใช้ภาพจาก AI</h4>
+        <ul class="list">
+          <li>อย่าให้ AI เขียนตัวอักษรลงในภาพ เพราะมักสะกดผิด ให้พิมพ์ข้อความทับเองใน Canva</li>
+          <li>ตรวจจำนวนขา นิ้ว และหูของสัตว์ทุกภาพก่อนนำลงใบงาน เด็กจับผิดเก่งกว่าที่คิด</li>
+          <li>ห้าม prompt อ้างอิงตัวละครที่มีลิขสิทธิ์ เช่น ชื่อการ์ตูนดัง เพราะขายไม่ได้และเสี่ยงถูกร้องเรียน</li>
+          <li>ตรวจเงื่อนไขการใช้เชิงพาณิชย์ของเครื่องมือ AI ที่ใช้ทุกครั้ง เพราะแต่ละแพลตฟอร์มให้สิทธิ์ไม่เท่ากัน โดยเฉพาะแพ็กเกจฟรี</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PART 3 ============ -->
+    <section id="p3">
+      <div class="part-head">
+        <p class="eyebrow">Part 03</p>
+        <h2>แผนการตลาดและการหาลูกค้า</h2>
+        <p class="part-dek">หลักการเดียว: ให้ของฟรีที่ดีจนคนคิดว่า “ของฟรียังขนาดนี้ ของจ่ายเงินจะขนาดไหน” ไม่ใช่ให้ตัวอย่างครึ่ง ๆ กลาง ๆ</p>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">3.1</span> Lead Magnet 3 ตัว</h3>
+        <div class="grid">
+          <div class="card">
+            <p class="k">Freebie 01 · พิสูจน์ความลึก</p>
+            <p class="t">หน่วย Animals เต็ม 1 หน่วย 10 ใบงาน ครบ 5 ระดับ พร้อมเฉลย</p>
+            <p class="d">ให้ของจริงจากในคลังไปทั้งหน่วย ไม่ตัดทอน คนโหลดจะเห็นทันทีว่าไฟล์เรียงเป็นระบบและมีเฉลยครบ ปิดท้ายไฟล์หน้าสุดท้ายด้วยแผนที่คลังทั้งหมดว่าในกลุ่มมีอีก 14 หน่วยแบบนี้</p>
+          </div>
+          <div class="card">
+            <p class="k">Freebie 02 · พิสูจน์ความต่าง</p>
+            <p class="t">เกม Interactive 1 เกม เล่นได้จริง พร้อม QR</p>
+            <p class="d">อาวุธหลัก ครูเอาไปฉายหน้าห้องได้พรุ่งนี้เช้าโดยไม่ต้องสมัครอะไร ให้ QR เป็นไฟล์ภาพที่ครูแปะลงสไลด์เองได้ พอเด็กสนุก ครูจะกลับมาหาว่ามีเกมอื่นอีกไหม</p>
+          </div>
+          <div class="card">
+            <p class="k">Freebie 03 · พิสูจน์ว่าเราสอนเป็น</p>
+            <p class="t">การ์ด AI Prompt 7 ใบ + คลิปสอนใช้ 3 นาที</p>
+            <p class="d">สอนให้ครูสร้างใบงานเองได้ใน 5 นาที ฟังดูเหมือนตัดขาตัวเอง แต่ผลจริงตรงข้าม เพราะครูส่วนใหญ่จะพบว่าตัวเองไม่มีเวลานั่งทำเอง แล้วเลือกจ่ายเงินซื้อคลังสำเร็จรูปแทน</p>
+          </div>
+        </div>
+        <div class="body">
+          <p><strong>วิธีส่งของฟรีที่เก็บรายชื่อได้:</strong> ให้คนคอมเมนต์คำว่า <span class="mono">ANIMALS</span> ใต้โพสต์แล้วทักอินบ็อกซ์ไปส่งลิงก์ วิธีนี้ได้ทั้งยอด engagement ที่ดันโพสต์ และได้บทสนทนาในแชตซึ่งเป็นจุดที่ปิดการขายจริง อย่าลืมแจ้งวัตถุประสงค์การเก็บข้อมูลและขอความยินยอมให้ชัดเจนตาม PDPA ก่อนเก็บอีเมลหรือเบอร์โทร</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">3.2</span> สคริปต์คลิปสั้น 5 ตัว (TikTok / Reels / Shorts)</h3>
+
+        <div class="script">
+          <div class="hd"><span class="t">01 · ครูตีหนึ่งยังตัดกระดาษ</span><span class="len">18–22 วินาที</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">Hook 0–3s</span><span class="vl"><b>“ตีหนึ่งแล้ว ยังนั่งตัดกระดาษทำสื่ออยู่เลยเหรอครับ”</b> — ถ่ายมุมบนโต๊ะรก มีกรรไกร กาว กระดาษ แสงไฟโต๊ะดวงเดียว</span></div>
+            <div class="row"><span class="lb">Body</span><span class="vl">“ผมเคยเป็นแบบนี้ทุกคืนวันอาทิตย์ จนวันหนึ่งผมลองจับเวลาดู เตรียมสื่อหนึ่งคาบ ผมใช้เวลา 3 ชั่วโมง สอนจริง 50 นาที” (ตัดภาพเป็นหน้าจอคลังไฟล์ที่เรียงเป็นระบบ) “ตอนนี้ผมใช้เวลา 2 นาที กดปริ้นต์ แล้วไปนอน”</span></div>
+            <div class="row"><span class="lb">CTA</span><span class="vl">“คอมเมนต์คำว่า ANIMALS ผมส่งใบงานให้ลองใช้ฟรี 10 ใบ พร้อมเฉลย”</span></div>
+            <div class="row"><span class="lb">ตัวหนังสือบนจอ</span><span class="vl">เตรียมสื่อ 3 ชม. / สอนจริง 50 นาที</span></div>
+          </div>
+        </div>
+
+        <div class="script">
+          <div class="hd"><span class="t">02 · ฉายจอเดียว ทั้งห้องเงียบ</span><span class="len">15–20 วินาที</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">Hook 0–3s</span><span class="vl"><b>“คาบสุดท้ายวันศุกร์ เด็กคุมไม่อยู่ใช่ไหมครับ ลองอันนี้”</b> — ถ่ายจากหลังห้อง เห็นจอโปรเจกเตอร์และหลังหัวเด็ก</span></div>
+            <div class="row"><span class="lb">Body</span><span class="vl">ไม่ต้องพูด ปล่อยเสียงเด็กจริงในห้อง ให้เห็นเกมบนจอ เด็กยกมือแย่งกันตอบ ตัดจังหวะให้เร็ว 3 คัต จบด้วยหน้าจอแสดงคะแนน (เบลอหน้าเด็กทุกคน และขออนุญาตผู้ปกครองก่อนถ่ายเสมอ)</span></div>
+            <div class="row"><span class="lb">CTA</span><span class="vl">“เกมนี้เปิดจากลิงก์เดียว ไม่ต้องโหลดแอป ทักมาขอลิงก์ไปลองได้เลยครับ”</span></div>
+            <div class="row"><span class="lb">ตัวหนังสือบนจอ</span><span class="vl">ลิงก์เดียว · ไม่ต้องติดตั้ง · ใช้ได้บนจอโปรเจกเตอร์</span></div>
+          </div>
+        </div>
+
+        <div class="script">
+          <div class="hd"><span class="t">03 · ค่าถ่ายเอกสารแพงกว่าค่าสมาชิก</span><span class="len">20–25 วินาที</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">Hook 0–3s</span><span class="vl"><b>“ครูใช้เงินตัวเองซื้อสื่อเดือนละเท่าไหร่ ลองบวกดูจริง ๆ นะครับ”</b> — ถ่ายมือกดเครื่องคิดเลข</span></div>
+            <div class="row"><span class="lb">Body</span><span class="vl">“ค่าถ่ายเอกสาร 300 · สติกเกอร์รางวัล 150 · ซื้อไฟล์ใบงานเป็นชุด 200 · รวมเดือนละ 650 ปีหนึ่งเกือบแปดพัน” (หยุดหนึ่งจังหวะ) “คลังของผมจ่ายครั้งเดียว ใช้ได้ตลอด ราคาถูกกว่าที่ครูจ่ายในหนึ่งเดือนครึ่ง”</span></div>
+            <div class="row"><span class="lb">CTA</span><span class="vl">“รอบ Early Bird เหลือกี่ที่นั่ง ผมปักไว้ในคอมเมนต์แรกครับ”</span></div>
+            <div class="row"><span class="lb">ตัวหนังสือบนจอ</span><span class="vl">650 บาท/เดือน → 7,800 บาท/ปี</span></div>
+          </div>
+        </div>
+
+        <div class="script">
+          <div class="hd"><span class="t">04 · แม่ที่อยากสอนลูกแต่ไม่รู้จะเริ่มตรงไหน</span><span class="len">20–25 วินาที</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">Hook 0–3s</span><span class="vl"><b>“ซื้อหนังสือมาสามเล่ม ลูกทำได้สองหน้าแล้วเลิก คุ้นไหมครับ”</b> — ถ่ายกองหนังสือแบบฝึกหัดที่ยังใหม่</span></div>
+            <div class="row"><span class="lb">Body</span><span class="vl">“ปัญหาไม่ใช่ลูกไม่ตั้งใจ แต่หนังสือมันข้ามระดับเร็วเกินไป” (เปิดใบงาน 5 ใบเรียงจากง่ายไปยากให้เห็นชัด) “ของผมไล่ทีละขั้น จากลากเส้นจับคู่ ไปจนถึงเขียนเองสามประโยค เด็กทำได้เองก็อยากทำต่อ”</span></div>
+            <div class="row"><span class="lb">CTA</span><span class="vl">“ทักมาขอชุดทดลอง 10 ใบฟรี ให้ลูกลองทำสุดสัปดาห์นี้ได้เลยครับ”</span></div>
+            <div class="row"><span class="lb">ตัวหนังสือบนจอ</span><span class="vl">L1 → L2 → L3 → L4 → L5</span></div>
+          </div>
+        </div>
+
+        <div class="script">
+          <div class="hd"><span class="t">05 · เบื้องหลังคลัง + ปิดการขาย</span><span class="len">25–30 วินาที</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">Hook 0–3s</span><span class="vl"><b>“นี่คือของทั้งหมดที่ผมใช้เวลาทำหกเดือน”</b> — เลื่อนหน้าจอคลังไฟล์เร็ว ๆ ให้เห็นโฟลเดอร์เรียงกันเป็นระเบียบ</span></div>
+            <div class="row"><span class="lb">Body</span><span class="vl">“ใบงาน 300 กว่าใบ มีเฉลยทุกใบ · เกมฉายหน้าห้อง · แฟลชการ์ดแก้ไขได้ · แผนการสอนแมปตัวชี้วัดมาให้แล้ว · ของใหม่ทุกวันที่ 1 และ 16” (ตัดมาที่หน้าตัวเอง) “ผมไม่ได้ขายไฟล์ ผมขายคืนวันอาทิตย์ให้ครูครับ”</span></div>
+            <div class="row"><span class="lb">CTA</span><span class="vl">“รอบผู้ก่อตั้ง 100 ที่นั่ง ราคานี้ครั้งเดียว หลังจากนี้ขึ้นราคาถาวร ทักมาได้เลยครับ”</span></div>
+            <div class="row"><span class="lb">ตัวหนังสือบนจอ</span><span class="vl">100 ที่นั่ง · ราคานี้ครั้งเดียว</span></div>
+          </div>
+        </div>
+
+        <div class="body">
+          <p><strong>กติกาการถ่ายที่ใช้ได้กับทุกคลิป:</strong> ถ่ายแนวตั้งเสมอ · พูดประโยคแรกภายใน 2 วินาทีโดยไม่ทักทาย · ใส่คำบรรยายเปิดค้างไว้เพราะคนดูส่วนใหญ่ปิดเสียง · ห้ามใส่ลิงก์ในแคปชัน ให้ใช้คำว่า “ทักมา” หรือ “คอมเมนต์” แทน เพราะโพสต์ที่พาคนออกนอกแพลตฟอร์มจะถูกลดการมองเห็น · ถ้ามีเด็กในเฟรม ต้องขออนุญาตผู้ปกครองและเบลอใบหน้าทุกครั้ง</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">3.3</span> แผนโพสต์ Facebook 3 ชิ้น</h3>
+
+        <div class="post">
+          <p class="hd">Post 1 · Storytelling — เล่าปัญหาและทางออก</p>
+          <p class="copy">คืนวันอาทิตย์ที่ผมจำได้ดีที่สุด คือคืนที่ผมนั่งตัดบัตรคำอยู่ถึงตีสอง
+
+พรุ่งนี้มีสอน ป.2 คาบแรก แล้วผมยังไม่มีสื่ออะไรเลย
+
+เช้ามาผมเข้าห้องด้วยตาที่แทบปิด สอนจบคาบ เด็กสนุกดี แต่ระหว่างที่เดินกลับห้องพัก ผมถามตัวเองว่า ผมจะทำแบบนี้ไปอีกกี่ปี
+
+ผมเลยเริ่มทำอย่างหนึ่ง คือทุกครั้งที่ทำสื่อ ผมจะทำให้มัน “ใช้ซ้ำได้” และ “เก็บให้เป็นระบบ” ตั้งชื่อไฟล์ให้ค้นเจอ แยกเฉลยออกจากใบงาน ทำเป็นชุดไล่ระดับจากง่ายไปยาก
+
+หกเดือนผ่านไป ผมมีใบงานสามร้อยกว่าใบ มีเกมที่ฉายหน้าห้องแล้วเด็กแย่งกันตอบ มีแผนการสอนที่แมปตัวชี้วัดไว้แล้ว
+
+แล้วคืนวันอาทิตย์ของผมก็ได้กลับคืนมา
+
+ตอนนี้ผมกำลังเปิดคลังนี้ให้ครูท่านอื่นเข้ามาใช้ด้วย เพราะผมเชื่อว่าไม่มีใครควรต้องนั่งตัดกระดาษถึงตีสองอีกแล้ว
+
+ใครอยากลองก่อน คอมเมนต์คำว่า ANIMALS ไว้ ผมส่งใบงานให้ลองใช้ฟรี 10 ใบ พร้อมเฉลยครับ</p>
+        </div>
+
+        <div class="post">
+          <p class="hd">Post 2 · Value Driven — ให้ไอเดียก่อน แล้วค่อยชวน</p>
+          <p class="copy">แจกไอเดียกิจกรรมที่ผมใช้แล้วได้ผลทุกครั้ง สำหรับสอนคำศัพท์ ป.1-3
+
+1. Flyswatter Game
+ติดบัตรคำบนกระดาน แบ่งเด็กเป็นสองทีม ให้ตัวแทนถือไม้ตียุงคนละอัน ครูพูดคำไหน ใครตบโดนก่อนได้แต้ม เกมนี้ใช้ได้กับทุกหัวข้อ และเด็กที่ไม่เคยยกมือเลยจะเริ่มยกมือ
+
+2. Four Corners
+ติดภาพสี่มุมห้อง ครูพูดประโยค เด็กวิ่งไปมุมที่ตรงกับคำตอบ ได้ทั้งฟังและได้ขยับตัว เหมาะกับคาบบ่ายที่เด็กเริ่มหลับ
+
+3. Running Dictation
+ติดบทอ่านไว้นอกห้อง จับคู่กัน คนหนึ่งวิ่งไปอ่านแล้วจำมาบอก อีกคนเขียน ได้ครบสี่ทักษะในกิจกรรมเดียว
+
+4. Exit Ticket
+ก่อนออกจากห้อง ให้เด็กเขียนคำศัพท์ที่จำได้หนึ่งคำลงกระดาษใบเล็ก แล้วยื่นให้ครูที่ประตู ครูจะรู้ทันทีว่าใครยังไม่ได้
+
+ทั้งสี่กิจกรรมนี้ใช้บัตรคำและใบงานเป็นตัวหลัก
+
+ในคลัง VIP ของผมมีบัตรคำและใบงานที่ทำมาให้ครบทั้ง 15 หัวข้อ ไล่ระดับ 5 ขั้น มีเฉลยทุกใบ และมีเกมที่ฉายหน้าห้องได้เลย
+
+รอบ Early Bird เปิดอยู่ตอนนี้ ทักมาถามได้ครับ</p>
+        </div>
+
+        <div class="post">
+          <p class="hd">Post 3 · Hard Sale — เร่งการตัดสินใจ</p>
+          <p class="copy">เหลือ 23 ที่นั่งสุดท้าย ของรอบผู้ก่อตั้ง
+
+หลังจากครบ 100 ที่นั่ง ราคาจะขึ้นจาก 590 เป็น 890 บาท และจะไม่มีรอบราคานี้อีกครับ
+
+สิ่งที่ได้ทันทีหลังโอน
+· ใบงานกว่า 300 ใบ พร้อมเฉลยทุกใบ ทั้งแบบขาวดำประหยัดหมึกและแบบสี
+· เกม Interactive ฉายหน้าห้องได้ ไม่ต้องติดตั้งอะไร
+· แฟลชการ์ดที่แก้ไขชื่อโรงเรียนเองได้
+· แผนการสอนที่แมปตัวชี้วัดมาให้แล้ว
+· ชุด AI Prompt สำหรับสร้างใบงานเอง
+· ของใหม่ทุกวันที่ 1 และ 16 ของทุกเดือน ตลอดชีพ
+· สิทธิ์สั่งหัวข้อที่อยากได้ เฉพาะรอบผู้ก่อตั้งเท่านั้น
+
+สิ่งที่คนซื้อรอบนี้ได้เปรียบตลอดไป
+คือราคาถูกล็อกไว้ที่ 590 ตลอดชีพ ต่อให้ในอนาคตคลังโตขึ้นเป็นสองเท่าและราคาขึ้นเป็นหลักพัน คุณก็ไม่ต้องจ่ายเพิ่มแม้แต่บาทเดียว
+
+ทักคำว่า VIP มาได้เลยครับ ผมส่งรายละเอียดและตัวอย่างไฟล์จริงให้ดูก่อนตัดสินใจ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PART 4 ============ -->
+    <section id="p4">
+      <div class="part-head">
+        <p class="eyebrow">Part 04</p>
+        <h2>สคริปต์สนทนาและการรับมือข้อโต้แย้ง</h2>
+        <p class="part-dek">กฎเดียวของการขายในแชต: ห้ามส่งเลขบัญชีก่อนที่ลูกค้าจะเห็นภาพว่าตัวเองจะใช้ของยังไง ทุกข้อความก่อนหน้านั้นมีไว้เพื่อให้เขาเห็นภาพนั้น</p>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">4.1</span> Chat Sales Flow 6 ขั้น</h3>
+        <div class="chat">
+          <p class="bub-note">ขั้นที่ 1 — ทักทายและคัดกลุ่มใน 1 ข้อความ (ตอบภายใน 5 นาที)</p>
+          <div class="bub them">สนใจกลุ่ม VIP ค่ะ</div>
+          <div class="bub us">สวัสดีครับ ขอบคุณที่ทักมานะครับ 🙏
+ขอถามสั้น ๆ ก่อนเพื่อจะได้แนะนำให้ตรงที่สุดครับ — คุณครูสอนอยู่ชั้นไหนครับ หรือเป็นคุณพ่อคุณแม่ที่สอนลูกเองครับ</div>
+
+          <p class="bub-note">ขั้นที่ 2 — ขุดปัญหาที่แท้จริง ห้ามข้ามขั้นนี้เด็ดขาด</p>
+          <div class="bub them">สอน ป.2 ค่ะ</div>
+          <div class="bub us">เยี่ยมเลยครับ ป.2 คือชั้นที่คลังของผมมีเยอะที่สุดพอดี
+
+ขอถามอีกข้อเดียวครับ ตอนนี้เรื่องที่กินเวลาคุณครูมากที่สุดคืออะไรครับ ระหว่าง
+1) หาใบงานที่ระดับพอดีกับเด็กไม่เจอ
+2) ทำสื่อเองแล้วไม่มีเวลา
+3) เด็กเบื่อ ไม่ค่อยมีส่วนร่วมในคาบ</div>
+
+          <p class="bub-note">ขั้นที่ 3 — เสนอทางออกที่ตรงกับคำตอบเขา ไม่ใช่ท่องรายการของทั้งหมด</p>
+          <div class="bub them">ข้อ 2 เลยค่ะ ไม่มีเวลาจริง ๆ</div>
+          <div class="bub us">เข้าใจเลยครับ เคสนี้ผมเจอบ่อยที่สุด
+
+ในคลังหัวข้อ ป.2 ทุกหัวข้อจะมีใบงานไล่ระดับ 5 ขั้นให้เลย ตั้งแต่จับคู่ภาพ ไปจนถึงเขียนเองสามประโยค พร้อมเฉลยแยกไฟล์ทุกใบ คุณครูเปิดโฟลเดอร์ เลือกระดับที่ตรงกับเด็ก กดปริ้นต์ จบใน 2 นาทีครับ
+
+เดี๋ยวผมส่งตัวอย่างของจริงให้ดูก่อนนะครับ ไม่ใช่ภาพโฆษณา แต่เป็นไฟล์ที่อยู่ในคลังจริง ๆ</div>
+          <div class="bub us">[ส่งไฟล์ตัวอย่าง 3 ใบ + คลิปเลื่อนหน้าจอคลัง 15 วินาที]</div>
+
+          <p class="bub-note">ขั้นที่ 4 — เสนอแพ็กเกจพร้อมเหตุผลของความเร่งด่วน</p>
+          <div class="bub us">ตอนนี้เปิดอยู่ 2 แบบครับ
+
+รอบผู้ก่อตั้ง 590 บาท เข้าถึงตลอดชีพ ได้ของใหม่ทุกเดือน และล็อกราคานี้ไว้ตลอดไป เหลืออีก 23 ที่นั่ง
+รอบปกติ 890 บาท เริ่มหลังครบ 100 คนครับ
+
+ส่วนต่าง 300 บาทตรงนี้คือเหตุผลเดียวที่ผมแนะนำให้ตัดสินใจรอบนี้ครับ เพราะสิทธิ์ที่ได้เหมือนกันทุกอย่าง</div>
+
+          <p class="bub-note">ขั้นที่ 5 — ปิดการขายด้วยคำถามที่ตอบง่าย ไม่ใช่ยัดเลขบัญชี</p>
+          <div class="bub us">สนใจล็อกที่นั่งรอบผู้ก่อตั้งเลยไหมครับ เดี๋ยวผมส่งรายละเอียดการโอนให้</div>
+          <div class="bub them">เอาค่ะ</div>
+          <div class="bub us">ได้เลยครับ 🙏
+
+ธนาคาร [ชื่อธนาคาร]
+เลขที่บัญชี [เลขบัญชี]
+ชื่อบัญชี [ชื่อ-นามสกุล]
+ยอด 590 บาท
+
+โอนแล้วส่งสลิปมาในแชตนี้ได้เลยครับ ผมเปิดสิทธิ์ให้ภายใน 15 นาที</div>
+
+          <p class="bub-note">ขั้นที่ 6 — ส่งมอบให้ประทับใจจนอยากบอกต่อ</p>
+          <div class="bub us">ได้รับยอดเรียบร้อยครับ ขอบคุณมากครับ 🎉
+
+ยินดีต้อนรับเข้ารอบผู้ก่อตั้งนะครับ นี่คือของทั้งหมดครับ
+1) ลิงก์คลัง Google Drive
+2) ลิงก์ Master Index สำหรับค้นไฟล์ พิมพ์คำเดียวเจอเลยครับ
+3) ลิงก์เข้ากลุ่ม Facebook VIP
+4) ไฟล์ START-HERE แนะนำวิธีใช้คลังใน 3 นาที
+
+แนะนำให้เริ่มจากหัวข้อที่จะสอนสัปดาห์หน้าก่อนนะครับ ถ้าบอกผมมาว่าหัวข้ออะไร ผมจะชี้โฟลเดอร์ให้เลยครับ</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">4.2</span> สคริปต์รับมือข้อโต้แย้ง</h3>
+        <div class="body">
+          <p>ใช้โครงเดียวกันทั้ง 3 ข้อ: <strong>รับฟังก่อน → เปลี่ยนกรอบการเปรียบเทียบ → พิสูจน์ด้วยของจริง → ปิดด้วยคำถามเบา ๆ</strong> ห้ามเถียงและห้ามพูดถึงคู่แข่งในแง่ลบเด็ดขาด</p>
+        </div>
+
+        <div class="script">
+          <div class="hd"><span class="t">“กลุ่มอื่นขายแค่ 99–199 บาทเอง ทำไมกลุ่มนี้แพงกว่า”</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">คำตอบ</span><span class="vl">“เป็นคำถามที่ดีมากครับ และผมตอบตรง ๆ เลยว่าถ้าคุณครูต้องการแค่ไฟล์ PDF ไปปริ้นต์ กลุ่ม 99 บาทตอบโจทย์แล้วครับ ผมไม่แนะนำให้จ่ายแพงกว่าโดยไม่จำเป็น
+
+แต่ของผมต่างกันตรงที่ไม่ได้ขายไฟล์ ผมขายชุดสื่อที่เชื่อมกันครับ หัวข้อเดียวกันจะมีใบงานไล่ระดับ 5 ขั้น มีเกมที่ฉายหน้าห้องได้จริง มีแฟลชการ์ดที่แก้ไขเองได้ มีข้อสอบพร้อมเกณฑ์ให้คะแนน และมีแผนการสอนที่แมปตัวชี้วัดมาให้แล้ว
+
+สามอย่างที่กลุ่มราคานั้นมักไม่มีคือ เฉลยครบทุกใบ ของใหม่ทุกเดือนแบบมีกำหนดชัดเจน และสื่อ Interactive ครับ
+
+ราคาต่างกัน 700 บาท แต่ถ้าคิดเป็นเวลาที่ประหยัดได้ ตกประมาณสัปดาห์ละไม่ถึงสิบบาทเองครับ
+
+เดี๋ยวผมส่งไฟล์จริงหนึ่งหน่วยเต็มไปให้ดูก่อนนะครับ ดูแล้วค่อยตัดสินใจว่าต่างจริงไหม”</span></div>
+          </div>
+        </div>
+
+        <div class="script">
+          <div class="hd"><span class="t">“กลัวซื้อไปแล้วไม่ค่อยได้ใช้ หรือมีไฟล์น้อย”</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">คำตอบ</span><span class="vl">“ความกังวลนี้ถูกต้องมากครับ ผมเองก็เคยซื้อคอร์สแล้วไม่ได้เปิดเหมือนกัน
+
+ผมเลยออกแบบคลังนี้ให้แก้ปัญหานั้นตรง ๆ ครับ
+หนึ่ง มี Master Index เป็นตารางเดียว พิมพ์คำว่า animals หรือ ป.2 ก็เจอไฟล์ทั้งหมดทันที ไม่ต้องไล่เปิดโฟลเดอร์
+สอง มีไฟล์ START-HERE บอกว่าถ้าพรุ่งนี้ต้องสอน ให้เริ่มหยิบตรงไหนก่อน
+สาม ทุกวันที่ 1 และ 16 ผมโพสต์แจ้งของใหม่พร้อมบอกว่าเอาไปใช้กับคาบไหนได้ คุณครูไม่ต้องมานั่งไล่ดูเองครับ
+
+เรื่องจำนวนไฟล์ ตอนนี้มีกว่า 300 ชิ้นครับ เดี๋ยวผมส่งคลิปเลื่อนหน้าจอคลังของจริงให้ดู 15 วินาที จะได้เห็นว่ามีอะไรบ้างจริง ๆ ไม่ต้องเชื่อผมครับ
+
+แล้วถ้าอยากลองก่อน ผมมีชุดทดลองฟรี 10 ใบให้เอาไปใช้สัปดาห์นี้ได้เลย ถ้าใช้แล้วชอบค่อยคุยกันต่อครับ”</span></div>
+          </div>
+        </div>
+
+        <div class="script">
+          <div class="hd"><span class="t">“ขอคิดดูก่อนนะ”</span></div>
+          <div class="bd">
+            <div class="row"><span class="lb">คำตอบ</span><span class="vl">“ได้เลยครับ ไม่ต้องรีบตัดสินใจครับ เรื่องแบบนี้ควรคิดให้ดี
+
+ขอถามข้อเดียวเพื่อจะได้ช่วยได้ตรงจุดนะครับ ที่ยังลังเลอยู่คือเรื่องราคา หรือยังไม่แน่ใจว่าไฟล์จะตรงกับที่สอนอยู่ครับ
+
+ถ้าเป็นเรื่องความตรงกับที่สอน บอกหัวข้อที่จะสอนสัปดาห์หน้ามาได้เลยครับ ผมจะส่งไฟล์จริงจากหัวข้อนั้นไปให้ดูฟรี จะได้เห็นชัดว่าใช้ได้จริงไหม
+
+ส่วนถ้าเป็นเรื่องราคา ผมอยากบอกไว้ตรง ๆ ว่ารอบผู้ก่อตั้งเหลือ 23 ที่นั่งครับ ถ้าครบเมื่อไหร่ราคาจะขึ้นเป็น 890 ถาวร ผมไม่อยากให้คุณครูเสียส่วนต่างตรงนี้ไปเฉย ๆ เลยเรียนให้ทราบไว้ก่อนครับ
+
+ไม่ว่ายังไงก็ทักมาได้ตลอดนะครับ 🙏”</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">4.3</span> ลำดับการติดตามเมื่อทักแล้วเงียบ</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th class="n">เวลา</th><th>เป้าหมาย</th><th>ข้อความที่ส่ง</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="n">+2 ชม.</td>
+                <td>ให้ของ ไม่ทวงถาม</td>
+                <td>“ส่งไฟล์ตัวอย่างหัวข้อที่คุณครูบอกไว้มาให้แล้วนะครับ ลองเปิดดูได้เลย ไม่ต้องรีบตอบผมครับ 🙏”</td>
+              </tr>
+              <tr>
+                <td class="n">+8 ชม.</td>
+                <td>สร้างหลักฐานทางสังคม</td>
+                <td>“วันนี้มีคุณครูอีกท่านที่สอน ป.2 เหมือนกันเพิ่งเข้ากลุ่มไป แล้วส่งรูปเด็กทำใบงานมาให้ดู ผมขออนุญาตเขาแล้วเลยส่งมาให้ดูด้วยครับ” <span class="pill g">แนบรูปจริง</span></td>
+              </tr>
+              <tr>
+                <td class="n">+22 ชม.</td>
+                <td>เปิดทางให้ตอบง่ายที่สุด</td>
+                <td>“รบกวนถามข้อเดียวครับ ตอนนี้ติดตรงไหนอยู่ครับ ตอบเป็นเลขก็ได้ครับ 1) ราคา 2) ยังไม่แน่ใจว่าตรงกับที่สอน 3) ยังไม่มีเวลาดู ผมจะได้ช่วยให้ตรงจุดครับ”</td>
+              </tr>
+              <tr>
+                <td class="n">+3 วัน</td>
+                <td>ปิดรอบอย่างสุภาพ</td>
+                <td>“รอบผู้ก่อตั้งจะปิดคืนนี้เที่ยงคืนนะครับ หลังจากนี้ราคาจะเป็น 890 ถาวร ถ้ายังไม่พร้อมรอบนี้ไม่เป็นไรเลยครับ ผมยังส่งใบงานฟรีให้ใช้ได้เรื่อย ๆ ครับ 🙏” <span class="pill">ส่งครั้งเดียว แล้วหยุด</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="body">
+          <p><strong>กฎการติดตาม:</strong> ทุกข้อความต้องให้ของหรือให้ข้อมูลใหม่ ห้ามส่งข้อความที่มีแต่คำว่า “สนใจไหมคะ” · ตามได้สูงสุด 4 ครั้งแล้วหยุดถาวร · คนที่ไม่ตอบวันนี้ไม่ได้แปลว่าไม่ซื้อตลอดไป ให้ย้ายเข้ารายชื่อ “ตามรอบหน้า” แล้วทักใหม่ตอนเปิดรอบถัดไปพร้อมของฟรีชิ้นใหม่</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PART 5 ============ -->
+    <section id="p5">
+      <div class="part-head">
+        <p class="eyebrow">Part 05</p>
+        <h2>แผนปฏิบัติการ 30 วันแรก</h2>
+        <p class="part-dek">ออกแบบให้ทำได้วันละ 2–3 ชั่วโมงหลังเลิกงาน ไม่ใช่แผนสำหรับคนที่ว่างทั้งวัน วันเปิดตัวคือวันที่ 25 เพื่อให้เหลือเวลาแก้ปัญหาก่อนจบเดือน</p>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th class="n">วัน</th><th>งานหลัก</th><th>ผลลัพธ์ที่ต้องได้</th></tr></thead>
+          <tbody>
+            <tr class="wk"><td colspan="3">สัปดาห์ที่ 1 · วางราก (D1–D7) — ห้ามทำการตลาดในสัปดาห์นี้เด็ดขาด</td></tr>
+            <tr><td class="n">1</td><td>ส่องคู่แข่ง 10 กลุ่ม จดราคา จำนวนสมาชิก และสิ่งที่เขาไม่มี</td><td>ตารางเปรียบเทียบ 1 หน้า และรายการช่องว่าง 3 ข้อที่เราจะชนะ</td></tr>
+            <tr><td class="n">2</td><td>ตั้งชื่อแบรนด์ จดเพจ Facebook ทำโลโก้และภาพปก</td><td>เพจพร้อมใช้ มีภาพปกบอกชัดว่าขายอะไรให้ใคร</td></tr>
+            <tr><td class="n">3</td><td>สร้างโครงโฟลเดอร์ Drive ทั้งหมด + Master Index Sheet เปล่า</td><td>โครงสร้างครบตาม Part 1 ตั้งค่าแชร์แบบผู้อ่านเรียบร้อย</td></tr>
+            <tr><td class="n">4</td><td>ออกแบบเทมเพลตใบงานแม่แบบใน Canva (หัวกระดาษ ฟอนต์ ระยะขอบ ลายน้ำ)</td><td>เทมเพลต 1 ไฟล์ที่ใช้ซ้ำได้ทุกใบงาน ประหยัดเวลาที่สุดในทั้งโครงการ</td></tr>
+            <tr><td class="n">5</td><td>ผลิตหน่วย Animals ระดับ L1–L2 (6 ใบ + เฉลย)</td><td>ไฟล์ 12 ไฟล์ ตั้งชื่อตามกฎ บันทึกลง Master Index</td></tr>
+            <tr><td class="n">6</td><td>ผลิตหน่วย Animals ระดับ L3–L5 (9 ใบ + เฉลย) + แบบทดสอบ</td><td>หน่วย Animals เสร็จสมบูรณ์ 1 หน่วย ใช้เป็นมาตรฐานของหน่วยอื่น</td></tr>
+            <tr><td class="n">7</td><td>สร้างภาพประกอบชุดสัตว์ 10 ตัว ด้วย AI ทั้งขาวดำและสี</td><td>คลังภาพ 20 ไฟล์ที่สไตล์เหมือนกันทั้งชุด ใช้ได้กับทุกหน่วยถัดไป</td></tr>
+
+            <tr class="wk"><td colspan="3">สัปดาห์ที่ 2 · ผลิตให้หนัก (D8–D14)</td></tr>
+            <tr><td class="n">8</td><td>ผลิตหน่วย Greetings ครบ 5 ระดับ</td><td>หน่วยที่ 2 เสร็จ</td></tr>
+            <tr><td class="n">9</td><td>ผลิตหน่วย Numbers ครบ 5 ระดับ</td><td>หน่วยที่ 3 เสร็จ</td></tr>
+            <tr><td class="n">10</td><td>ผลิตหน่วย Colors & Shapes ครบ 5 ระดับ</td><td>หน่วยที่ 4 เสร็จ · คลังแตะ 60 ใบงาน</td></tr>
+            <tr><td class="n">11</td><td>สร้างเกม Interactive ตัวแรก (จับคู่ภาพกับคำ หัวข้อ Animals)</td><td>ลิงก์เดียวที่เปิดได้ทั้งมือถือและโปรเจกเตอร์ มีเสียงอ่านคำ</td></tr>
+            <tr><td class="n">12</td><td>ทดสอบเกมกับเด็กจริง 1 ห้อง แล้วแก้จุดที่ติดขัด</td><td>บันทึกปัญหาที่เจอ + เกมเวอร์ชันแก้แล้ว + คลิปเด็กเล่นจริง</td></tr>
+            <tr><td class="n">13</td><td>ทำ Lead Magnet ทั้ง 3 ตัวให้พร้อมส่ง</td><td>ไฟล์ PDF รวมเล่ม + ลิงก์เกม + การ์ด Prompt 7 ใบ</td></tr>
+            <tr><td class="n">14</td><td>ถ่ายคลิปสั้นทั้ง 5 ตัวรวดเดียว</td><td>คลิปดิบครบ 5 ตัว เตรียมตัดทยอยลง</td></tr>
+
+            <tr class="wk"><td colspan="3">สัปดาห์ที่ 3 · สร้างคนดูและหาหลักฐาน (D15–D21)</td></tr>
+            <tr><td class="n">15</td><td>ลงคลิปตัวที่ 1 + โพสต์ Storytelling บนเพจ</td><td>เริ่มมีคนคอมเมนต์ขอของฟรี เก็บรายชื่อลงชีต</td></tr>
+            <tr><td class="n">16</td><td>ส่งของฟรีให้ทุกคนที่ทัก พร้อมถามว่าสอนชั้นไหน</td><td>รายชื่อผู้สนใจพร้อมข้อมูลชั้นที่สอน 30 คนขึ้นไป</td></tr>
+            <tr><td class="n">17</td><td>คัด 10 คนให้ใช้คลังฟรี 7 วัน แลกกับคำติชม</td><td>ผู้ทดลองใช้ 10 คน = แหล่งรีวิวจริงก่อนเปิดขาย</td></tr>
+            <tr><td class="n">18</td><td>ลงคลิปตัวที่ 2 (เกมฉายหน้าห้อง) + โพสต์ Value Driven</td><td>คลิปตัวนี้มักเป็นตัวที่ไปได้ไกลที่สุด เตรียมตอบแชตให้ทัน</td></tr>
+            <tr><td class="n">19</td><td>ผลิตหน่วย Body Parts + เติมของเข้าคลัง</td><td>หน่วยที่ 5 เสร็จ</td></tr>
+            <tr><td class="n">20</td><td>เขียนสคริปต์ขายและข้อความตอบสำเร็จรูปทั้งหมด</td><td>ไฟล์รวมข้อความที่ก็อปวางได้ทันที ลดเวลาตอบแชตลงครึ่งหนึ่ง</td></tr>
+            <tr><td class="n">21</td><td>เก็บคำติชมจากผู้ทดลองใช้ ขออนุญาตใช้เป็นรีวิว</td><td>รีวิวพร้อมภาพประกอบ 5–8 ชิ้น</td></tr>
+
+            <tr class="wk"><td colspan="3">สัปดาห์ที่ 4 · เปิดตัวและส่งมอบ (D22–D30)</td></tr>
+            <tr><td class="n">22</td><td>ประกาศนับถอยหลัง “เปิดรอบผู้ก่อตั้ง 3 วันนี้” + ลงคลิปตัวที่ 3</td><td>เปิดให้จองคิว มีรายชื่อรอซื้อล่วงหน้า</td></tr>
+            <tr><td class="n">23</td><td>ทักหาผู้สนใจทุกคนแบบตัวต่อตัว เสนอราคาผู้ก่อตั้ง</td><td>ยอดจองล่วงหน้า 10–20 ที่นั่ง</td></tr>
+            <tr><td class="n">24</td><td>ซ้อมระบบส่งมอบทั้งหมดกับตัวเองและเพื่อน 1 คน</td><td>ยืนยันว่าลิงก์ทุกอันเปิดได้จริงจากบัญชีคนนอก</td></tr>
+            <tr><td class="n">25</td><td><strong>วันเปิดตัว</strong> — ลงคลิปตัวที่ 5 + โพสต์ Hard Sale + ตอบแชตทั้งวัน</td><td>ยอดขายวันแรก บันทึกทุกคำถามที่ถูกถามซ้ำ</td></tr>
+            <tr><td class="n">26</td><td>ส่งมอบและต้อนรับสมาชิกใหม่ทุกคนภายใน 15 นาทีหลังโอน</td><td>สมาชิกเข้ากลุ่มครบ ไม่มีใครตกหล่น</td></tr>
+            <tr><td class="n">27</td><td>โพสต์รีวิวจากสมาชิกจริง + ประกาศจำนวนที่นั่งที่เหลือ</td><td>เร่งการตัดสินใจของคนที่ยังลังเล</td></tr>
+            <tr><td class="n">28</td><td><strong>ปิดรอบผู้ก่อตั้ง</strong> ประกาศขึ้นราคาเป็น 890 และทำจริงตามที่ประกาศ</td><td>ยอดพุ่งช่วง 6 ชั่วโมงสุดท้าย ราคาใหม่มีผลทันที</td></tr>
+            <tr><td class="n">29</td><td>ตั้งระบบดูแลหลังการขาย: FAQ ปักหมุด · ข้อความสำเร็จรูป · กำหนดเวลาตอบแชตวันละ 2 ช่วง</td><td>งานประจำวันเหลือไม่เกิน 30 นาที</td></tr>
+            <tr><td class="n">30</td><td>สรุปตัวเลข ถามสมาชิกว่าอยากได้หัวข้ออะไรต่อ วางแผน Monthly Drop เดือนหน้า</td><td>รายงาน 1 หน้า + ปฏิทินผลิตของเดือนถัดไป</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">5.1</span> ระบบดูแลหลังการขายที่ไม่กินชีวิต</h3>
+        <ul class="list">
+          <li><strong>ตอบแชตวันละ 2 ช่วงเท่านั้น</strong> เช้า 07.30–08.00 และเย็น 20.00–20.30 แล้วตั้งข้อความตอบอัตโนมัติแจ้งเวลาตอบไว้ ไม่มีใครโกรธถ้ารู้ล่วงหน้า</li>
+          <li><strong>ผลิตของแบบยกล็อต</strong> เลือกวันเสาร์เดียวทำสื่อทั้งเดือน แล้วตั้งเวลาโพสต์ล่วงหน้า การสลับไปมาระหว่างงานผลิตกับงานตอบแชตคือสิ่งที่กินพลังมากที่สุด</li>
+          <li><strong>ให้สมาชิกช่วยตอบกันเอง</strong> ตั้งกระทู้ปักหมุด “ถามตรงนี้” แล้วชมคนที่เข้ามาช่วยตอบให้เห็นเด่น ๆ ชุมชนที่ตอบกันเองคือสิ่งเดียวที่ทำให้ธุรกิจนี้ไม่ผูกกับเวลาของคุณ</li>
+          <li><strong>FAQ ปักหมุด 10 ข้อ</strong> เขียนจากคำถามจริงในวันเปิดตัว จะตัดคำถามซ้ำออกไปได้ราวสองในสาม</li>
+          <li><strong>ห้ามรับงานสั่งทำรายบุคคล</strong> ถ้ามีคนขอ ให้ตอบว่าเอาไปลงใน Request Board แล้วถ้ามีคนโหวตถึงเกณฑ์จะผลิตให้ทุกคน วิธีนี้เปลี่ยนงานสั่งทำให้กลายเป็นของที่ขายซ้ำได้</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3><span class="num">5.2</span> ตัวเลขเป้าหมายที่ควรวัด</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>ตัวชี้วัด</th><th class="n">เป้าเดือนที่ 1</th><th class="n">เป้าเดือนที่ 3</th><th>ทำอย่างไรถ้าไม่ถึงเป้า</th></tr></thead>
+            <tbody>
+              <tr><td>คนทักขอของฟรี</td><td class="n">150</td><td class="n">600</td><td>เพิ่มความถี่คลิปเป็นวันละ 1 ตัว และเปลี่ยนประโยคเปิด 3 วินาทีแรก</td></tr>
+              <tr><td>อัตราปิดการขายจากคนทัก</td><td class="n">12%</td><td class="n">18%</td><td>ปัญหาอยู่ที่สคริปต์แชต ให้ส่งไฟล์ตัวอย่างจริงเร็วขึ้น อย่ารีบเสนอราคา</td></tr>
+              <tr><td>สมาชิกที่จ่ายเงิน</td><td class="n">100</td><td class="n">300</td><td>ถ้ายอดนิ่ง ให้เปิดรอบใหม่พร้อมของแถมใหม่ ห้ามลดราคา</td></tr>
+              <tr><td>รายได้สะสม (บาท)</td><td class="n">59,000</td><td class="n">237,000</td><td>คำนวณจาก 100 × 590 และ 200 × 890 เพิ่ม</td></tr>
+              <tr><td>สมาชิกที่เข้าคลังใน 7 วันแรก</td><td class="n">80%</td><td class="n">80%</td><td>ตัวเลขนี้สำคัญที่สุด ถ้าต่ำแปลว่าคลังหาของยาก ให้แก้ Master Index ทันที</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RISK ============ -->
+    <section id="risk">
+      <div class="part-head">
+        <p class="eyebrow">ก่อนเริ่ม</p>
+        <h2>ข้อควรระวังที่ต้องจัดการตั้งแต่วันแรก</h2>
+        <p class="part-dek">เรื่องพวกนี้แก้ทีหลังแพงกว่าทำให้ถูกตั้งแต่ต้นมาก โดยเฉพาะเมื่อคลังโตถึงหลักร้อยไฟล์แล้ว</p>
+      </div>
+      <div class="callout warn">
+        <ul class="list">
+          <li><strong>ลิขสิทธิ์ฟอนต์และภาพ</strong> — ฟอนต์ที่โหลดฟรีจำนวนมากห้ามใช้เชิงพาณิชย์ ให้ใช้ฟอนต์ที่ระบุสิทธิ์เชิงพาณิชย์ชัดเจนเท่านั้น และเก็บหลักฐานสิทธิ์การใช้งานไว้เป็นไฟล์</li>
+          <li><strong>ห้ามใช้ตัวการ์ตูนหรือโลโก้ที่มีลิขสิทธิ์</strong> ในใบงานที่ขาย แม้จะวาดใหม่เองก็ตาม เพราะเป็นจุดที่ถูกร้องเรียนบ่อยที่สุดในตลาดนี้</li>
+          <li><strong>เขียนเงื่อนไขการใช้งานลงในทุกไฟล์</strong> ว่าใช้ได้ในห้องเรียนของผู้ซื้อเท่านั้น ห้ามแชร์ต่อ ห้ามขายซ้ำ ห้ามอัปโหลดขึ้นเว็บสาธารณะ ใส่ไว้ที่ท้ายหน้าแรกของทุก PDF</li>
+          <li><strong>ระบุนโยบายคืนเงินก่อนการซื้อ</strong> สินค้าดิจิทัลโดยทั่วไปไม่คืนเงินหลังส่งมอบลิงก์ แต่ต้องแจ้งให้ลูกค้าทราบชัดเจนก่อนโอน ไม่ใช่แจ้งตอนเขาขอคืน</li>
+          <li><strong>PDPA</strong> — ถ้าเก็บชื่อ อีเมล หรือเบอร์โทร ต้องแจ้งวัตถุประสงค์และขอความยินยอม เก็บเท่าที่จำเป็น และมีวิธีให้เขาขอลบข้อมูลได้</li>
+          <li><strong>ภาพถ่ายเด็กในคลิป</strong> ต้องขออนุญาตผู้ปกครองเป็นลายลักษณ์อักษรและเบลอใบหน้า แม้เป็นเด็กในห้องเรียนตัวเองก็ตาม</li>
+          <li><strong>ภาษี</strong> — เก็บหลักฐานการโอนและรายรับทุกรายการตั้งแต่บาทแรก เพราะรายได้ส่วนนี้ต้องนำไปรวมยื่นภาษีเงินได้ ควรปรึกษาผู้เชี่ยวชาญเมื่อรายได้เริ่มเข้าหลักแสน</li>
+        </ul>
+      </div>
+
+      <footer>
+        เอกสารนี้เป็นแผนตั้งต้นสำหรับลงมือทำ ตัวเลขราคาและเป้าหมายเป็นค่าเริ่มต้นที่ควรปรับตามผลจริงหลังเปิดตัว 30 วัน โดยเฉพาะอัตราปิดการขายซึ่งจะบอกได้ชัดที่สุดว่าปัญหาอยู่ที่ตัวสินค้าหรือที่สคริปต์การขาย
+      </footer>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var map = {};
+  links.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) map[id] = a;
+  });
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var a = map[e.target.id];
+      if (!a) return;
+      if (e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('on'); });
+        a.classList.add('on');
+      }
+    });
+  }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+  Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+})();
+</script>
