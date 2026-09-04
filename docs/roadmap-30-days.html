@@ -1,0 +1,435 @@
+<title>แผน 30 วันเปิดกลุ่ม VIP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F3F1FA;
+  --surface:#FFFFFF;
+  --surface-2:#EDEAF8;
+  --ink:#2A2340;
+  --ink-2:#5F5878;
+  --ink-3:#8B84A3;
+  --line:#DFDAF2;
+  --line-dk:#C9C1E8;
+  --grape:#6B4EE6;
+  --grape-dk:#5136C9;
+  --mint:#0E9A80;
+  --mint-bg:#E4F7F2;
+  --coral:#D8483F;
+  --sun:#FFC93C;
+  --sun-dk:#8A6A05;
+  --sun-bg:#FFF6DF;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#141221;
+    --surface:#1C1930;
+    --surface-2:#242038;
+    --ink:#EAE7F5;
+    --ink-2:#ADA5C6;
+    --ink-3:#867EA1;
+    --line:#2E2947;
+    --line-dk:#413A63;
+    --grape:#A995FF;
+    --grape-dk:#C4B6FF;
+    --mint:#4FD8BC;
+    --mint-bg:#12312C;
+    --coral:#FF8B80;
+    --sun:#FFC93C;
+    --sun-dk:#FFD873;
+    --sun-bg:#33290D;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141221;
+  --surface:#1C1930;
+  --surface-2:#242038;
+  --ink:#EAE7F5;
+  --ink-2:#ADA5C6;
+  --ink-3:#867EA1;
+  --line:#2E2947;
+  --line-dk:#413A63;
+  --grape:#A995FF;
+  --grape-dk:#C4B6FF;
+  --mint:#4FD8BC;
+  --mint-bg:#12312C;
+  --coral:#FF8B80;
+  --sun:#FFC93C;
+  --sun-dk:#FFD873;
+  --sun-bg:#33290D;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:'IBM Plex Sans Thai','Noto Sans Thai',system-ui,sans-serif;
+  font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Bai Jamjuree','IBM Plex Sans Thai',sans-serif;margin:0;text-wrap:balance;line-height:1.3}
+p{margin:0}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--grape);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:940px;margin:0 auto;padding:clamp(1.1rem,4vw,2.4rem) clamp(1rem,4vw,2rem) 4rem}
+
+/* ---------- head ---------- */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grape);font-weight:500}
+h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;letter-spacing:-.01em;margin:.5rem 0 .7rem;max-width:22ch}
+.dek{color:var(--ink-2);max-width:64ch;font-size:1.01rem}
+
+.done-strip{
+  display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;
+}
+.done-chip{
+  display:flex;gap:.5rem;align-items:center;background:var(--mint-bg);color:var(--mint);
+  border-radius:100px;padding:.32rem .9rem .32rem .7rem;font-size:.88rem;font-weight:500;
+}
+.done-chip svg{width:15px;height:15px;flex:none}
+
+/* ---------- progress ---------- */
+.tracker{
+  position:sticky;top:0;z-index:5;margin:1.6rem 0 2rem;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.7rem;
+  box-shadow:0 2px 10px rgba(42,35,64,.06);
+}
+.tracker .top{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.tracker .n{font-family:'Bai Jamjuree',sans-serif;font-weight:700;font-size:1.5rem;color:var(--grape);font-variant-numeric:tabular-nums}
+.tracker .lab{color:var(--ink-2);font-size:.93rem}
+.tracker .spacer{flex:1}
+.bar{height:9px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--grape);border-radius:100px;transition:width .35s ease}
+.next{font-size:.9rem;color:var(--ink-2);display:flex;gap:.45rem;align-items:baseline}
+.next b{color:var(--ink);font-weight:600}
+.sync{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--ink-3);letter-spacing:.04em}
+
+/* ---------- order block ---------- */
+.first{
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--grape);
+  border-radius:0 12px 12px 0;padding:1.2rem 1.3rem;margin-bottom:2.2rem;
+  display:flex;flex-direction:column;gap:.8rem;
+}
+.first h2{font-size:1.15rem;font-weight:600}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.steps li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.85rem;align-items:start}
+.steps .ord{
+  font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:500;
+  background:var(--grape);color:#fff;border-radius:6px;padding:.15rem .45rem;margin-top:.25rem;
+}
+:root[data-theme="dark"] .steps .ord{color:#141221}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .steps .ord{color:#141221}}
+.steps li > span:last-child{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.steps .t{font-weight:600}
+.steps .d{color:var(--ink-2);font-size:.94rem}
+
+/* ---------- phases ---------- */
+.phase{margin-bottom:2.4rem}
+.phase-head{
+  display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;
+  padding-bottom:.7rem;margin-bottom:.2rem;border-bottom:2px solid var(--ink);
+}
+.phase-head .ph{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grape)}
+.phase-head h2{font-size:1.2rem;font-weight:700}
+.phase-head .days{font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--ink-3)}
+.phase-head .cnt{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--ink-2)}
+.why{color:var(--ink-2);font-size:.93rem;padding:.7rem 0 .9rem;max-width:66ch}
+.why b{color:var(--ink);font-weight:600}
+
+.rows{display:flex;flex-direction:column;gap:.4rem}
+.row{
+  display:grid;grid-template-columns:auto 44px minmax(0,1fr);gap:.7rem;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:.75rem .9rem;
+  transition:border-color .15s,background .15s;
+}
+.row.on{background:var(--surface-2);border-color:var(--line-dk)}
+.row.on .t{text-decoration:line-through;color:var(--ink-3)}
+.row.on .out,.row.on .meta{opacity:.55}
+.row.up{border-color:var(--grape);box-shadow:0 0 0 3px color-mix(in srgb,var(--grape) 14%,transparent)}
+.box{
+  width:26px;height:26px;border:2px solid var(--line-dk);border-radius:8px;background:var(--surface);
+  display:grid;place-items:center;margin-top:.15rem;flex:none;transition:background .15s,border-color .15s;
+}
+.box svg{width:15px;height:15px;opacity:0;transition:opacity .12s;color:#fff}
+.row.on .box{background:var(--grape);border-color:var(--grape)}
+.row.on .box svg{opacity:1}
+:root[data-theme="dark"] .box svg{color:#141221}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .box svg{color:#141221}}
+.day{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--ink-3);text-align:center;
+  border:1px solid var(--line);border-radius:7px;padding:.2rem 0;margin-top:.15rem;line-height:1.35;
+}
+.day b{display:block;font-size:.95rem;color:var(--ink);font-weight:600}
+.cell{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.t{font-weight:600;line-height:1.5}
+.out{font-size:.9rem;color:var(--ink-2)}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.15rem}
+.tag{
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.02em;
+  border:1px solid var(--line-dk);border-radius:100px;padding:.1rem .55rem;color:var(--ink-2);
+}
+.tag.you{background:var(--sun-bg);border-color:var(--sun);color:var(--sun-dk)}
+.tag.hr{border-style:dashed}
+.tag.gate{background:var(--surface-2);border-color:var(--coral);color:var(--coral)}
+
+/* ---------- rules ---------- */
+.rules{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.4rem;
+  display:flex;flex-direction:column;gap:.9rem;margin-top:2.6rem;
+}
+.rules h2{font-size:1.15rem;font-weight:700}
+.rules ul{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.5rem;color:var(--ink-2);max-width:66ch}
+.rules li::marker{color:var(--coral)}
+.rules b{color:var(--ink);font-weight:600}
+
+.foot{margin-top:2rem;color:var(--ink-3);font-size:.85rem;max-width:66ch;display:flex;flex-direction:column;gap:.6rem}
+.reset{align-self:flex-start;font-size:.8rem;color:var(--ink-3);text-decoration:underline;padding:.2rem 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="ic-check" viewBox="0 0 24 24"><path d="M4 12.5 L9.5 18 L20 6" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Execution Plan · เริ่มนับจากวันนี้</p>
+    <h1>แผน 30 วันเปิดกลุ่ม VIP</h1>
+    <p class="dek">แผนนี้ไม่ได้เริ่มจากศูนย์ เพราะสามอย่างที่กินเวลามากที่สุดทำเสร็จไปแล้ว จึงเรียงลำดับใหม่ให้เวลาที่เหลือทั้งหมดไปลงที่สิ่งเดียวที่ยังไม่มี นั่นคือใบงานตัวจริงที่ลูกค้าจ่ายเงินซื้อ</p>
+    <div class="done-strip">
+      <span class="done-chip"><svg><use href="#ic-check"></use></svg> แผนธุรกิจครบ 5 มิติ</span>
+      <span class="done-chip"><svg><use href="#ic-check"></use></svg> ทีม AI 6 ตำแหน่ง</span>
+      <span class="done-chip"><svg><use href="#ic-check"></use></svg> ระบบภาพแบรนด์ + เกมตัวแรก</span>
+    </div>
+  </header>
+
+  <div class="tracker">
+    <div class="top">
+      <span class="n" id="pc">0%</span>
+      <span class="lab">เสร็จแล้ว <span class="mono" id="pn">0</span> จาก 30 วัน</span>
+      <span class="spacer"></span>
+      <span class="sync" id="sync">กำลังเชื่อมต่อ</span>
+    </div>
+    <div class="bar"><i id="pbar"></i></div>
+    <p class="next" id="next"></p>
+  </div>
+
+  <div class="first">
+    <h2>สามอย่างแรกที่ต้องทำ เรียงตามนี้ห้ามสลับ</h2>
+    <ol class="steps">
+      <li><span class="ord">01</span><span><span class="t">ล็อกการตัดสินใจ 5 ข้อ ก่อนแตะงานผลิตใด ๆ</span><span class="d">ชื่อแบรนด์ กลุ่มเป้าหมายหลักที่ต้องเลือกมาหนึ่งเดียว ชั้นที่ทำก่อน ราคา และวันเปิดตัว ถ้าห้าข้อนี้ยังไม่นิ่ง งานทุกวันหลังจากนี้จะถูกรื้อทำใหม่</span></span></li>
+      <li><span class="ord">02</span><span><span class="t">ทำเทมเพลตใบงานแม่แบบให้เสร็จก่อนทำใบงานใบแรก</span><span class="d">นี่คือชิ้นงานที่ให้ผลตอบแทนต่อเวลาสูงที่สุดในทั้งโครงการ ทำครั้งเดียวแล้วใบงานอีกสามร้อยใบใช้ไฟล์นี้ ประหยัดเวลาได้หลักสิบชั่วโมง</span></span></li>
+      <li><span class="ord">03</span><span><span class="t">ผลิตหน่วย Animals ให้เสร็จทั้งหน่วยเป็นหน่วยแรก</span><span class="d">เนื้อหาออกแบบไว้แล้วในแผนธุรกิจและมีเกมคู่กันแล้ว จึงเป็นหน่วยที่เสร็จเร็วที่สุด และใช้เป็นทั้งของแจกฟรีและตัวอย่างส่งให้ลูกค้าดูก่อนซื้อ</span></span></li>
+    </ol>
+  </div>
+
+  <div id="phases"></div>
+
+  <div class="rules">
+    <h2>กติกา 4 ข้อที่ทำให้แผนนี้ไม่พัง</h2>
+    <ul>
+      <li><b>ห้ามเปิดขายก่อนมีใบงานครบ 5 หน่วย</b> ประมาณ 75 ใบ เพราะคนที่จ่ายเงินวันแรกแล้วเปิดคลังมาเจอของบางคือคนที่จะไม่บอกต่อและจะขอเงินคืน</li>
+      <li><b>ห้ามข้ามเฟส</b> ทุกเฟสมีของที่เฟสถัดไปต้องใช้ ถ้าไปทำการตลาดตั้งแต่ยังไม่มีของ คนที่สนใจจะหายไปก่อนที่คุณจะมีอะไรขาย</li>
+      <li><b>วันไหนทำไม่ทันให้เลื่อนทั้งแถว</b> อย่าอัดสองวันรวมเป็นวันเดียว คุณภาพใบงานจะตกทันทีและคุณจะหมดแรงกลางทาง</li>
+      <li><b>จับเวลาจริงตอนทำหน่วยที่สอง</b> ตัวเลขนั้นคือความจริงว่าคุณผลิตได้กี่หน่วยต่อเดือน ใช้ตัวเลขนั้นวางแผนเดือนถัดไป ไม่ใช่ใช้ความรู้สึก</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    <p>รวมเวลาทั้งแผนประมาณ 70 ชั่วโมง เฉลี่ยวันละ 2 ชั่วโมงครึ่ง ถ้าว่างได้จริงวันละ 1 ชั่วโมง ให้ยืดเป็น 45 วันโดยคงลำดับเดิมไว้ทุกอย่าง แล้วตัดหน่วยที่ 6 กับเกมตัวที่ 2 ออกไปเดือนถัดไป ห้ามตัดวันซ้อมส่งมอบและวันเก็บคำติชมจากครูที่ทดลองใช้</p>
+    <button class="reset" id="reset" type="button">ล้างเครื่องหมายทั้งหมด</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var PHASES = [
+    { id:"p1", ph:"Phase 01", name:"ของต้องมีก่อน", days:"วันที่ 1–7", hrs:18,
+      why:"เฟสนี้ห้ามแตะงานการตลาดแม้แต่นาทีเดียว เป้าหมายเดียวคือเปลี่ยนแผนบนกระดาษให้เป็นไฟล์จริงที่เปิดได้ <b>ถ้าจบเฟสนี้แล้วยังไม่มีใบงานที่ปริ้นต์ได้ 2 หน่วย แปลว่าแผนช้าไปแล้ว</b>" },
+    { id:"p2", ph:"Phase 02", name:"ทำให้ครบพอขาย", days:"วันที่ 8–14", hrs:19,
+      why:"เติมของให้ถึงจุดที่ขายได้โดยไม่ต้องขอโทษลูกค้า และวางสิ่งที่ทำให้คลังใช้งานได้จริงคือ Master Index <b>คลังที่ค้นของไม่เจอ เท่ากับคลังที่ว่างเปล่าในสายตาสมาชิก</b>" },
+    { id:"p3", ph:"Phase 03", name:"หาหลักฐานและหาคน", days:"วันที่ 15–22", hrs:17,
+      why:"ตอนนี้ถึงเวลาปล่อยคอนเทนต์ เพราะมีของให้ดูจริงแล้ว <b>งานสำคัญที่สุดของเฟสนี้คือหาครู 10 คนมาใช้ฟรีแลกคำติชม</b> เพราะคำพูดของครูจริงขายของได้มากกว่าคำโฆษณาของคุณหลายเท่า" },
+    { id:"p4", ph:"Phase 04", name:"เปิดขายและส่งมอบ", days:"วันที่ 23–30", hrs:16,
+      why:"สคริปต์ขายและโพสต์ทุกชิ้นเขียนไว้ให้แล้วในแผนธุรกิจ เฟสนี้คือการลงมือใช้ <b>งานหนักจริงไม่ใช่วันเปิดตัว แต่คือการส่งมอบให้ทุกคนภายใน 15 นาทีโดยไม่มีใครตกหล่น</b>" }
+  ];
+
+  var TASKS = [
+    // ---- Phase 1 ----
+    { d:1,  p:"p1", t:"ล็อกการตัดสินใจ 5 ข้อ", o:"ชื่อแบรนด์ · เลือกกลุ่มหลักครูหรือผู้ปกครองมาหนึ่งเดียว · ชั้นที่ทำก่อน · ราคา · วันเปิดตัว เขียนลงกระดาษแผ่นเดียวแล้วห้ามแก้อีก", h:2, w:["คุณตัดสินใจเอง"] },
+    { d:2,  p:"p1", t:"ทำเทมเพลตใบงานแม่แบบ", o:"ไฟล์ Canva 1 ไฟล์ มีหัวกระดาษ ช่องชื่อ ฟอนต์ ระยะขอบ ลายน้ำ และเวอร์ชันขาวดำกับสี ใบงานทุกใบหลังจากนี้ใช้ไฟล์นี้", h:3, w:["คุณ","visual-animation-artist"] },
+    { d:3,  p:"p1", t:"ผลิตหน่วย Animals ระดับ L1–L2", o:"ใบงาน 6 ใบพร้อมเฉลย ใช้เนื้อหาที่ออกแบบไว้แล้วในแผนธุรกิจหัวข้อ 2.2", h:3, w:["chief-education-officer","คุณจัดหน้า"] },
+    { d:4,  p:"p1", t:"ผลิตหน่วย Animals ระดับ L3–L5", o:"ใบงาน 9 ใบพร้อมเฉลย และแบบทดสอบหลังเรียน 15 ข้อ จบหน่วยแรกครบทั้งหน่วย", h:3, w:["chief-education-officer","คุณจัดหน้า"] },
+    { d:5,  p:"p1", t:"สร้างโครงโฟลเดอร์ Drive และตั้งค่าแชร์", o:"โครงตามแผนธุรกิจหัวข้อ 1.2 ตั้งสิทธิ์เป็นผู้อ่านอย่างเดียว แล้วอัปหน่วยแรกเข้าไป", h:2, w:["คุณ"] },
+    { d:6,  p:"p1", t:"ผลิตหน่วยที่ 2 Greetings ครบ 15 ใบ", o:"ใบงานครบ 5 ระดับพร้อมเฉลย และจับเวลาจริงว่าใช้กี่ชั่วโมง ตัวเลขนี้จะใช้วางแผนทั้งเดือนถัดไป", h:3, w:["chief-education-officer","คุณจัดหน้า"] },
+    { d:7,  p:"p1", t:"ตั้งเพจ Facebook ให้เสร็จ", o:"ภาพปก ภาพโปรไฟล์ คำอธิบายเพจที่บอกชัดว่าขายอะไรให้ใคร ใช้จานสีแบรนด์เดียวกับเกม", h:2, w:["visual-animation-artist","คุณ"] },
+    // ---- Phase 2 ----
+    { d:8,  p:"p2", t:"ผลิตหน่วยที่ 3 Numbers", o:"ครบ 5 ระดับพร้อมเฉลย", h:3, w:["chief-education-officer","คุณจัดหน้า"] },
+    { d:9,  p:"p2", t:"ผลิตหน่วยที่ 4 Colors & Shapes", o:"ครบ 5 ระดับพร้อมเฉลย หน่วยนี้ทำภาพสีสวยได้ง่ายที่สุด เก็บไว้ใช้ถ่ายคลิป", h:3, w:["chief-education-officer","คุณจัดหน้า"] },
+    { d:10, p:"p2", t:"ผลิตหน่วยที่ 5 Body Parts", o:"ครบ 5 ระดับพร้อมเฉลย ครบ 5 หน่วยแล้ว ประมาณ 75 ใบงาน", h:3, w:["chief-education-officer","คุณจัดหน้า"], gate:"ผ่านเกณฑ์ขั้นต่ำที่จะเปิดขายได้" },
+    { d:11, p:"p2", t:"ทำ Master Index Sheet", o:"ตารางเดียวที่มีทุกไฟล์ คอลัมน์ชั้นปี หน่วย หัวข้อ ประเภทสื่อ ระดับ ตัวชี้วัด ลิงก์ ค้นด้วยคำเดียวต้องเจอ", h:2, w:["คุณ"] },
+    { d:12, p:"p2", t:"ทำเกม Interactive ตัวที่ 2", o:"หยิบหน่วยที่ผลิตไว้มาทำเป็นเกม ใช้ sprite และ motion kit เดิม ไม่ต้องออกแบบใหม่", h:2, w:["edtech-developer","visual-animation-artist"] },
+    { d:13, p:"p2", t:"ทำ Lead Magnet 3 ตัว และไฟล์ START-HERE", o:"ชุดใบงานแจกฟรี ลิงก์เกมพร้อม QR การ์ด AI Prompt และไฟล์แนะนำวิธีใช้คลังใน 3 นาที", h:3, w:["คุณ","growth-marketer"] },
+    { d:14, p:"p2", t:"ซ้อมส่งมอบจากบัญชีคนนอก", o:"ให้เพื่อน 1 คนลองเปิดทุกลิงก์จากบัญชีที่ไม่ใช่ของคุณ ต้องเจอปัญหาสิทธิ์การเข้าถึงในวันนี้ ไม่ใช่ตอนมีลูกค้าจ่ายเงินแล้ว", h:3, w:["คุณ"], gate:"ห้ามข้าม" },
+    // ---- Phase 3 ----
+    { d:15, p:"p3", t:"ถ่ายคลิปสั้น 5 ตัวรวดเดียว", o:"บทเขียนไว้แล้วในแผนธุรกิจ Part 3 ถ่ายวันเดียวจบแล้วทยอยลง อย่าถ่ายวันต่อวัน", h:3, w:["คุณ"] },
+    { d:16, p:"p3", t:"ลงคลิปตัวแรกและโพสต์สาย Storytelling", o:"เริ่มแจกของฟรีให้คนที่คอมเมนต์ และเก็บรายชื่อผู้สนใจลงชีตทันที", h:1.5, w:["คุณ","growth-marketer"] },
+    { d:17, p:"p3", t:"หาครู 10 คนมาใช้คลังฟรี 7 วัน", o:"แลกกับคำติชมและสิทธิ์ใช้เป็นรีวิว นี่คืองานที่สำคัญที่สุดของเฟสนี้ ถ้าหาไม่ครบให้ทำต่อจนครบก่อนไปวันถัดไป", h:1.5, w:["คุณ"], gate:"หัวใจของเฟส" },
+    { d:18, p:"p3", t:"ลงคลิปเกมและโพสต์สาย Value Driven", o:"คลิปเกมฉายหน้าห้องมักไปได้ไกลที่สุด เตรียมเวลาตอบแชตไว้เผื่อ", h:1.5, w:["คุณ","growth-marketer"] },
+    { d:19, p:"p3", t:"ผลิตหน่วยที่ 6 และตอบแชตที่ค้าง", o:"เติมของระหว่างที่คอนเทนต์กำลังทำงาน อย่าปล่อยให้คลังหยุดโต", h:3, w:["chief-education-officer","คุณ"] },
+    { d:20, p:"p3", t:"เตรียมสคริปต์ขายให้เป็นไฟล์ก็อปวางได้", o:"ยกสคริปต์จากแผนธุรกิจ Part 4 มาใส่ไฟล์เดียว แยกเป็นข้อความสำเร็จรูปทีละอัน จะลดเวลาตอบแชตลงครึ่งหนึ่ง", h:2, w:["chat-sales-admin"] },
+    { d:21, p:"p3", t:"เก็บคำติชมและแก้จุดที่ครูบอกว่าใช้ยาก", o:"รีวิวพร้อมภาพประกอบ 5 ถึง 8 ชิ้น และรายการที่ต้องแก้ก่อนเปิดขาย", h:2.5, w:["คุณ"] },
+    { d:22, p:"p3", t:"เปิด waitlist และประกาศวันเปิดตัว", o:"ประกาศราคา จำนวนที่นั่งจริง และกติกาการขึ้นราคา ตัวเลขที่ประกาศต้องเป็นตัวเลขจริงเท่านั้น", h:2, w:["คุณ","growth-marketer"] },
+    // ---- Phase 4 ----
+    { d:23, p:"p4", t:"นับถอยหลัง 3 วัน และทักผู้สนใจตัวต่อตัว", o:"ทักทุกคนที่เคยขอของฟรี เสนอราคารอบผู้ก่อตั้ง เป้าคือมียอดจองล่วงหน้าก่อนวันเปิดจริง", h:2, w:["คุณ","chat-sales-admin"] },
+    { d:24, p:"p4", t:"ตรวจระบบส่งมอบทั้งหมดอีกรอบ", o:"ลิงก์ทุกอัน ข้อความต้อนรับ ไฟล์ START-HERE และวิธีบันทึกลูกค้าลงชีต", h:2, w:["คุณ"] },
+    { d:25, p:"p4", t:"วันเปิดตัว ตอบแชตทั้งวัน", o:"ลงคลิปตัวสุดท้าย โพสต์สาย Hard Sale และจดทุกคำถามที่ถูกถามซ้ำ", h:4, w:["คุณ","chat-sales-admin"] },
+    { d:26, p:"p4", t:"ส่งมอบและต้อนรับสมาชิกใหม่ทุกคน", o:"ภายใน 15 นาทีหลังได้รับสลิป และชี้ให้เขาเริ่มจากหัวข้อที่จะสอนสัปดาห์หน้า", h:2, w:["คุณ"] },
+    { d:27, p:"p4", t:"โพสต์รีวิวจริงและประกาศที่นั่งที่เหลือ", o:"ใช้รีวิวจากครูที่ทดลองใช้ในเฟส 3 พร้อมตัวเลขที่นั่งจริง", h:1.5, w:["คุณ","growth-marketer"] },
+    { d:28, p:"p4", t:"ปิดรอบผู้ก่อตั้งและขึ้นราคาจริง", o:"ทำตามที่ประกาศไว้ทุกตัวอักษร ความน่าเชื่อถือของรอบขึ้นราคาครั้งหน้าขึ้นอยู่กับวันนี้", h:1.5, w:["คุณ"], gate:"ต้องทำจริงตามที่ประกาศ" },
+    { d:29, p:"p4", t:"ตั้งระบบดูแลหลังการขาย", o:"FAQ ปักหมุด 10 ข้อจากคำถามจริง ข้อความสำเร็จรูป และกำหนดเวลาตอบแชตวันละ 2 ช่วง", h:1.5, w:["คุณ","chat-sales-admin"] },
+    { d:30, p:"p4", t:"สรุปตัวเลขและวางแผนเดือนถัดไป", o:"คนทักกี่คน ปิดได้กี่คน สมาชิกเข้าคลังกี่เปอร์เซ็นต์ ถามสมาชิกว่าอยากได้หัวข้ออะไรต่อ แล้ววางปฏิทินผลิต", h:1.5, w:["คุณ"] }
+  ];
+
+  var DOC_PATH = "progress/roadmap-v1";
+  var LS_KEY = "vip-roadmap-v1";
+  var done = {};
+  var dbRef = null;
+  var saveTimer = null;
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function build(){
+    var html = "";
+    PHASES.forEach(function(ph){
+      var rows = TASKS.filter(function(t){ return t.p === ph.id; });
+      html += '<section class="phase" id="sec-' + ph.id + '">' +
+        '<div class="phase-head"><span class="ph">' + ph.ph + '</span><h2>' + ph.name + '</h2>' +
+        '<span class="days">' + ph.days + ' · ราว ' + ph.hrs + ' ชม.</span>' +
+        '<span class="cnt" data-cnt="' + ph.id + '"></span></div>' +
+        '<p class="why">' + ph.why + '</p><div class="rows">';
+      rows.forEach(function(t){
+        var tags = t.w.map(function(w){
+          var you = (w.indexOf("คุณ") === 0);
+          return '<span class="tag' + (you ? " you" : "") + '">' + esc(w) + '</span>';
+        }).join("");
+        tags += '<span class="tag hr">' + t.h + ' ชม.</span>';
+        if (t.gate) tags += '<span class="tag gate">' + esc(t.gate) + '</span>';
+        html += '<label class="row" data-d="' + t.d + '">' +
+          '<input type="checkbox" class="vh" hidden data-d="' + t.d + '">' +
+          '<span class="box" aria-hidden="true"><svg><use href="#ic-check"></use></svg></span>' +
+          '<span class="day">วัน<b>' + t.d + '</b></span>' +
+          '<span class="cell"><span class="t">' + esc(t.t) + '</span>' +
+          '<span class="out">' + esc(t.o) + '</span>' +
+          '<span class="meta">' + tags + '</span></span></label>';
+      });
+      html += '</div></section>';
+    });
+    $("phases").innerHTML = html;
+
+    Array.prototype.forEach.call(document.querySelectorAll('input[type="checkbox"][data-d]'), function(cb){
+      cb.addEventListener("change", function(){
+        var d = cb.dataset.d;
+        if (cb.checked) done[d] = true; else delete done[d];
+        paint();
+        save();
+      });
+    });
+  }
+
+  function paint(){
+    var n = 0;
+    Array.prototype.forEach.call(document.querySelectorAll(".row"), function(row){
+      var d = row.dataset.d;
+      var on = !!done[d];
+      var cb = row.querySelector("input");
+      cb.checked = on;
+      row.classList.toggle("on", on);
+      row.classList.remove("up");
+      if (on) n++;
+    });
+
+    var firstOpen = TASKS.filter(function(t){ return !done[t.d]; })[0];
+    if (firstOpen){
+      var el = document.querySelector('.row[data-d="' + firstOpen.d + '"]');
+      if (el) el.classList.add("up");
+      $("next").innerHTML = 'ถัดไป · <b>วันที่ ' + firstOpen.d + " " + esc(firstOpen.t) + "</b>";
+    } else {
+      $("next").innerHTML = "<b>ครบทั้ง 30 วันแล้ว รอบถัดไปเริ่มจากปฏิทินผลิตประจำเดือน</b>";
+    }
+
+    PHASES.forEach(function(ph){
+      var rows = TASKS.filter(function(t){ return t.p === ph.id; });
+      var c = rows.filter(function(t){ return done[t.d]; }).length;
+      var el = document.querySelector('[data-cnt="' + ph.id + '"]');
+      if (el) el.textContent = c + "/" + rows.length;
+    });
+
+    $("pn").textContent = n;
+    $("pc").textContent = Math.round((n / TASKS.length) * 100) + "%";
+    $("pbar").style.width = ((n / TASKS.length) * 100) + "%";
+  }
+
+  function localLoad(){
+    try{
+      var raw = localStorage.getItem(LS_KEY);
+      if (raw) done = JSON.parse(raw) || {};
+    }catch(e){}
+  }
+  function localSave(){
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(done)); }catch(e){}
+  }
+
+  function save(){
+    localSave();
+    if (!dbRef) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      dbRef.set({ done: done, updatedAt: Date.now() }).then(function(){
+        setStatus("บันทึกแล้ว");
+      }, function(err){
+        setStatus(err && err.code === "revoked" ? "บันทึกในเครื่องนี้เท่านั้น" : "บันทึกไม่สำเร็จ ลองใหม่อีกครั้ง");
+      });
+    }, 400);
+  }
+  function setStatus(s){ $("sync").textContent = s; }
+
+  $("reset").addEventListener("click", function(){
+    done = {};
+    paint();
+    save();
+  });
+
+  // render immediately from local state so the page is complete at rest
+  localLoad();
+  build();
+  paint();
+  setStatus("บันทึกในเครื่องนี้");
+
+  // then light up shared storage when the viewer grants it
+  if (window.claude && typeof window.claude.use === "function"){
+    window.claude.use("db").then(function(db){
+      if (!db) return;
+      dbRef = db.doc(DOC_PATH);
+      dbRef.onSnapshot(function(snap){
+        if (!snap.exists) return;
+        var data = snap.data() || {};
+        if (data.done && typeof data.done === "object"){
+          done = {};
+          Object.keys(data.done).forEach(function(k){ if (data.done[k]) done[k] = true; });
+          localSave();
+          paint();
+        }
+        setStatus("บันทึกอัตโนมัติ");
+      }, function(){
+        dbRef = null;
+        setStatus("บันทึกในเครื่องนี้เท่านั้น");
+      });
+      setStatus("บันทึกอัตโนมัติ");
+    }, function(){});
+  }
+})();
+</script>
