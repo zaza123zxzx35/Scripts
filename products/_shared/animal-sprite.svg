@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true" data-kit="vip-english-hub-sprite-v1">
+<!--
+  ชุดตัวละคร Animals — VIP English Hub
+  ระบบเดียวกันทั้งชุด: viewBox 0 0 100 100 / เส้นขอบ #2A2340 หนา 3.2 / ตาอยู่ตำแหน่งเดียวกันทุกตัว
+  วิธีใช้: <svg class="ch"><use href="#a-cat"></use></svg>
+-->
+
+<symbol id="a-cat" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M24 44 L27 15 L48 30 Z" fill="#F5A65B"/>
+    <path d="M76 44 L73 15 L52 30 Z" fill="#F5A65B"/>
+    <path d="M31 36 L33 24 L42 31 Z" fill="#F5B8C6" stroke-width="2"/>
+    <path d="M69 36 L67 24 L58 31 Z" fill="#F5B8C6" stroke-width="2"/>
+    <ellipse cx="50" cy="57" rx="30" ry="27" fill="#F5A65B"/>
+    <path d="M14 55 h13 M14 62 h13 M86 55 h-13 M86 62 h-13" stroke-width="2"/>
+    <g class="eyes">
+      <circle cx="40" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="60" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="41.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="61.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M46 63 h8 l-4 4.2 Z" fill="#F5B8C6" stroke-width="2"/>
+    <path d="M50 67.5 q-4 5 -9 1.5" stroke-width="2.6"/>
+    <path d="M50 67.5 q4 5 9 1.5" stroke-width="2.6"/>
+  </g>
+</symbol>
+
+<symbol id="a-dog" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <ellipse cx="19" cy="62" rx="9.5" ry="21" fill="#B87B48" transform="rotate(-20 19 62)"/>
+    <ellipse cx="81" cy="62" rx="9.5" ry="21" fill="#B87B48" transform="rotate(20 81 62)"/>
+    <ellipse cx="50" cy="54" rx="29" ry="26" fill="#D89A63"/>
+    <ellipse cx="50" cy="66" rx="17" ry="12" fill="#F5E4D2"/>
+    <g class="eyes">
+      <circle cx="39" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="61" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="40.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="62.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="50" cy="60" rx="5.4" ry="4.2" fill="var(--ink,#2A2340)" stroke="none"/>
+    <path d="M50 64.5 v3.5" stroke-width="2.4"/>
+    <path d="M50 68 q-5 4.5 -8.5 0.5" stroke-width="2.4"/>
+    <path d="M50 68 q5 4.5 8.5 0.5" stroke-width="2.4"/>
+  </g>
+</symbol>
+
+<symbol id="a-bird" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M50 31 q-4 -13 6 -15 q-3 8 2 13 Z" fill="#3FA3D8"/>
+    <ellipse cx="50" cy="57" rx="27" ry="26" fill="#5CB8E8"/>
+    <path d="M31 55 q-6 10 2 15 q8 1 10 -6" fill="#3FA3D8" stroke-width="2.6"/>
+    <g class="eyes">
+      <circle cx="41" cy="51" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="59" cy="51" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="42.7" cy="49.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="60.7" cy="49.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M43 61 h14 l-7 10 Z" fill="#FFC93C"/>
+  </g>
+</symbol>
+
+<symbol id="a-fish" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M70 55 L92 40 L92 70 Z" fill="#1FA595"/>
+    <path d="M40 36 q8 -11 17 2" fill="#1FA595"/>
+    <ellipse cx="46" cy="56" rx="28" ry="21" fill="#2FC4B2"/>
+    <path d="M56 41 q-7 14 0 28" stroke-width="2.4"/>
+    <g class="eyes">
+      <circle cx="33" cy="51" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="34.7" cy="49.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M25 60 q5 5 10 0.5" stroke-width="2.4"/>
+  </g>
+</symbol>
+
+<symbol id="a-cow" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M31 27 q-9 -7 -12 1 q7 2 9 7 Z" fill="#F0D9A8"/>
+    <path d="M69 27 q9 -7 12 1 q-7 2 -9 7 Z" fill="#F0D9A8"/>
+    <ellipse cx="16" cy="50" rx="11" ry="7" fill="#FBF8F3"/>
+    <ellipse cx="84" cy="50" rx="11" ry="7" fill="#FBF8F3"/>
+    <ellipse cx="50" cy="54" rx="29" ry="26" fill="#FBF8F3"/>
+    <path d="M29 41 q10 -7 14 4 q-6 9 -15 3 Z" fill="#4A4038" stroke="none"/>
+    <path d="M66 56 q10 -3 9 6 q-7 6 -11 -1 Z" fill="#4A4038" stroke="none"/>
+    <g class="eyes">
+      <circle cx="39" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="61" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="40.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="62.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="50" cy="68" rx="16" ry="11" fill="#F5B8C6"/>
+    <ellipse cx="44" cy="66" rx="2.6" ry="3.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    <ellipse cx="56" cy="66" rx="2.6" ry="3.4" fill="var(--ink,#2A2340)" stroke="none"/>
+  </g>
+</symbol>
+
+<symbol id="a-pig" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M26 42 L24 18 L45 31 Z" fill="#E88AA4"/>
+    <path d="M74 42 L76 18 L55 31 Z" fill="#E88AA4"/>
+    <ellipse cx="50" cy="56" rx="30" ry="26" fill="#F2A0B5"/>
+    <g class="eyes">
+      <circle cx="39" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="61" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="40.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="62.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="50" cy="65" rx="14" ry="10" fill="#E88AA4"/>
+    <ellipse cx="45" cy="65" rx="2.6" ry="3.6" fill="var(--ink,#2A2340)" stroke="none"/>
+    <ellipse cx="55" cy="65" rx="2.6" ry="3.6" fill="var(--ink,#2A2340)" stroke="none"/>
+  </g>
+</symbol>
+
+<symbol id="a-duck" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M41 32 q3 -13 12 -9" stroke-width="3"/>
+    <ellipse cx="49" cy="56" rx="28" ry="26" fill="#FFD23F"/>
+    <path d="M27 57 q-5 11 4 15 q8 1 10 -6" fill="#F2BC2E" stroke-width="2.6"/>
+    <g class="eyes">
+      <circle cx="41" cy="50" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="59" cy="50" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="42.7" cy="48.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="60.7" cy="48.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M35 63 q15 -5 30 0 q-2 11 -15 11 q-13 0 -15 -11 Z" fill="#FF9A3C"/>
+    <path d="M37 67 q13 3 26 0" stroke-width="2"/>
+  </g>
+</symbol>
+
+<symbol id="a-rabbit" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <ellipse cx="38" cy="24" rx="7.5" ry="21" fill="#F7F4EE" transform="rotate(-8 38 24)"/>
+    <ellipse cx="62" cy="24" rx="7.5" ry="21" fill="#F7F4EE" transform="rotate(8 62 24)"/>
+    <ellipse cx="38" cy="26" rx="3.4" ry="13" fill="#F5B8C6" stroke-width="2" transform="rotate(-8 38 26)"/>
+    <ellipse cx="62" cy="26" rx="3.4" ry="13" fill="#F5B8C6" stroke-width="2" transform="rotate(8 62 26)"/>
+    <ellipse cx="50" cy="59" rx="28" ry="25" fill="#F7F4EE"/>
+    <path d="M16 58 h12 M16 65 h12 M84 58 h-12 M84 65 h-12" stroke-width="2"/>
+    <g class="eyes">
+      <circle cx="40" cy="55" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="60" cy="55" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="41.7" cy="53.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="61.7" cy="53.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M46 63 h8 l-4 4.2 Z" fill="#F5B8C6" stroke-width="2"/>
+    <path d="M50 67.5 q-5 4.5 -8.5 0.5" stroke-width="2.2"/>
+    <path d="M50 67.5 q5 4.5 8.5 0.5" stroke-width="2.2"/>
+    <rect x="46.5" y="70" width="7" height="8" rx="2" fill="#fff" stroke-width="2.2"/>
+  </g>
+</symbol>
+
+<symbol id="a-elephant" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="19" cy="52" r="18" fill="#8FA1BC"/>
+    <circle cx="81" cy="52" r="18" fill="#8FA1BC"/>
+    <path d="M50 66 C50 82 42 84 45 93" stroke="var(--ink,#2A2340)" stroke-width="16"/>
+    <ellipse cx="50" cy="52" rx="28" ry="26" fill="#9FB0C9"/>
+    <path d="M50 66 C50 82 42 84 45 93" stroke="#9FB0C9" stroke-width="11"/>
+    <path d="M43 78 h9 M41 86 h8" stroke-width="2" stroke="#7E90AC"/>
+    <g class="eyes">
+      <circle cx="38" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="62" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="39.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="63.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+  </g>
+</symbol>
+
+<symbol id="a-monkey" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="18" cy="54" r="12" fill="#A9713F"/>
+    <circle cx="82" cy="54" r="12" fill="#A9713F"/>
+    <circle cx="18" cy="54" r="6" fill="#E8C49A" stroke-width="2"/>
+    <circle cx="82" cy="54" r="6" fill="#E8C49A" stroke-width="2"/>
+    <ellipse cx="50" cy="54" rx="28" ry="26" fill="#A9713F"/>
+    <ellipse cx="50" cy="60" rx="21" ry="18" fill="#E8C49A"/>
+    <g class="eyes">
+      <circle cx="42" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="58" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="43.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="59.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="46.5" cy="62" rx="1.8" ry="2.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    <ellipse cx="53.5" cy="62" rx="1.8" ry="2.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    <path d="M42 68 q8 7 16 0" stroke-width="2.6"/>
+  </g>
+</symbol>
+
+<!-- ไอคอนระบบ ใช้ currentColor เพื่อให้เปลี่ยนสีตามข้อความรอบข้าง -->
+<symbol id="i-star" viewBox="0 0 100 100">
+  <path d="M50 8 L62 38 L94 41 L69 62 L77 94 L50 76 L23 94 L31 62 L6 41 L38 38 Z"
+        fill="currentColor" stroke="var(--ink,#2A2340)" stroke-width="4" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-sprout" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 92 V50"/>
+    <path d="M50 58 C30 58 22 46 22 34 C40 34 50 44 50 58 Z" fill="currentColor"/>
+    <path d="M50 50 C68 50 78 40 78 28 C60 28 50 38 50 50 Z" fill="currentColor"/>
+  </g>
+</symbol>
+<symbol id="i-sound-on" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 22 L28 40 H14 V60 H28 L46 78 Z" fill="currentColor"/>
+    <path d="M62 36 q10 14 0 28"/>
+    <path d="M76 26 q18 24 0 48"/>
+  </g>
+</symbol>
+<symbol id="i-sound-off" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 22 L28 40 H14 V60 H28 L46 78 Z" fill="currentColor"/>
+    <path d="M64 40 L88 60 M88 40 L64 60"/>
+  </g>
+</symbol>
+<symbol id="i-close" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round">
+    <path d="M26 26 L74 74 M74 26 L26 74"/>
+  </g>
+</symbol>
+<symbol id="i-speaker-small" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 20 L28 40 H12 V60 H28 L48 80 Z" fill="currentColor"/>
+    <path d="M66 34 q13 16 0 32"/>
+  </g>
+</symbol>
+</svg>

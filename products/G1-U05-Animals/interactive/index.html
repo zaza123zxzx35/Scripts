@@ -1,173 +1,501 @@
 <title>Animals Match — เกมคำศัพท์สัตว์</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Itim&display=swap">
 <style>
+/* ===== MOTION KIT (products/_shared/motion-kit.css) ===== */
+/* ============================================================
+   MOTION KIT — VIP English Hub  v1
+   ชุดอนิเมชันมาตรฐานสำหรับสื่อ Interactive ทุกตัวในคลัง
+   คัดลอกทั้งไฟล์ไปแปะใน <style> ของเกมได้เลย
+
+   หลักการ: อนิเมชันต้องสื่อสารบางอย่างเสมอ ห้ามใส่เพราะสวย
+   ใช้เฉพาะ transform และ opacity เพื่อไม่ให้คอมพิวเตอร์ห้องเรียนเก่ากระตุก
+   ============================================================ */
+
+/* ---------- จานสีมาตรฐานของแบรนด์ ---------- */
 :root{
-  --mint:#E7F1EA;
-  --mint-2:#D5E8DC;
+  --ink:#2A2340;      /* เส้นขอบและตัวอักษร ดำอมม่วง ไม่ใช่ดำสนิท */
+  --ground:#F0EEF9;   /* พื้นหลัง ม่วงอ่อนมาก สบายตาบนโปรเจกเตอร์ */
+  --grape:#6B4EE6;    /* สีแบรนด์หลัก ใช้ได้เยอะ */
+  --mint:#17C3A2;     /* สถานะถูกต้อง ใช้เฉพาะตอนสื่อสารสถานะ */
+  --coral:#F4665F;    /* สถานะผิด ใช้เฉพาะตอนสื่อสารสถานะ */
+  --sun:#FFC93C;      /* รางวัลและดาว ใช้เฉพาะตอนให้รางวัล */
+}
+
+/* ---------- ตัวละคร ---------- */
+/* .ch = character svg ใช้กับทุก <svg> ที่ <use> ตัวละครจาก sprite */
+.ch{display:block;width:100%;height:auto;overflow:visible}
+.ch .eyes{transform-box:fill-box;transform-origin:center;animation:blink 6.5s infinite}
+
+/* ---------- 1. ลอยเบา ๆ ตอนรอการกด ---------- */
+/* ใช้บอกว่า "ของชิ้นนี้กดได้" โดยไม่ต้องเขียนคำอธิบาย */
+.idle{animation:bob 3.2s ease-in-out infinite}
+.idle:nth-child(2){animation-delay:.35s}
+.idle:nth-child(3){animation-delay:.7s}
+.idle:nth-child(4){animation-delay:1.05s}
+
+/* ---------- 2. Squish and Stretch ตอนชี้และตอนกด ---------- */
+/* ความรู้สึกว่าของมีน้ำหนักมาจากการย่อแนวตั้งพร้อมขยายแนวนอน */
+.tap{transition:transform .16s cubic-bezier(.34,1.56,.64,1)}
+.tap:hover:not(:disabled){transform:translateY(-5px) scale(1.03)}
+.tap:active:not(:disabled){transform:translateY(1px) scale(.97)}
+.tap:hover:not(:disabled) .ch{animation:squish .45s ease-out}
+
+/* ---------- 3. ตอบถูก: เด้งดีใจ + ดาวกระจาย ---------- */
+.is-right .ch{animation:successBounce .62s cubic-bezier(.34,1.56,.64,1)}
+.ring{position:absolute;inset:-6px;border-radius:inherit;pointer-events:none;
+      border:4px solid var(--mint);opacity:0;animation:ring .62s ease-out}
+
+/* ดาวกระจาย: JS สร้าง span แล้วใส่ตัวแปร --tx --ty --rot --d ให้แต่ละชิ้น */
+.burst{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.burst span{
+  position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;
+  background:var(--sun);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  animation:burst .72s ease-out forwards;animation-delay:var(--d,0s);opacity:0;
+}
+.burst span:nth-child(3n){background:var(--grape)}
+.burst span:nth-child(3n+1){background:var(--mint)}
+.burst span:nth-child(4n){width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;clip-path:none}
+
+/* ---------- 4. ตอบผิด: สั่นหัวเบา ๆ ---------- */
+.is-wrong .ch{animation:shake .42s ease-in-out}
+
+/* ---------- 5. การ์ดโผล่เข้ามาแบบไล่ทีละใบ ---------- */
+.pop-in{animation:popIn .34s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:calc(var(--i,0) * .06s)}
+
+/* ---------- keyframes ---------- */
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%,98%{transform:scaleY(.12)}}
+@keyframes squish{
+  0%{transform:scale(1,1)}
+  35%{transform:scale(1.1,.9)}
+  65%{transform:scale(.95,1.06)}
+  100%{transform:scale(1,1)}
+}
+@keyframes press{0%{transform:scale(1,1)}50%{transform:scale(1.12,.86)}100%{transform:scale(1,1)}}
+@keyframes successBounce{
+  0%{transform:translateY(0) scale(1,1)}
+  25%{transform:translateY(-16px) scale(.94,1.1)}
+  55%{transform:translateY(0) scale(1.12,.9)}
+  75%{transform:translateY(-6px) scale(.98,1.02)}
+  100%{transform:translateY(0) scale(1,1)}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0) rotate(0)}
+  20%{transform:translateX(-7px) rotate(-4deg)}
+  45%{transform:translateX(6px) rotate(3deg)}
+  70%{transform:translateX(-4px) rotate(-2deg)}
+}
+@keyframes ring{0%{opacity:1;transform:scale(.9)}100%{opacity:0;transform:scale(1.18)}}
+@keyframes burst{
+  0%{opacity:1;transform:translate(0,0) rotate(0) scale(.4)}
+  70%{opacity:1}
+  100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(1)}
+}
+@keyframes popIn{0%{opacity:0;transform:translateY(14px) scale(.9)}100%{opacity:1;transform:none}}
+
+/* ---------- เข้าถึงได้: ตัดการเคลื่อนไหว แต่สถานะต้องยังอ่านออกจากสีและกรอบ ---------- */
+@media (prefers-reduced-motion:reduce){
+  .idle,.ch .eyes,.pop-in,.is-right .ch,.is-wrong .ch,.ring,.burst span{animation:none!important}
+  .tap,.tap:hover,.tap:active{transition:none;transform:none}
+  .burst{display:none}
+}
+/* ===== GAME STYLES ===== */
+:root{
   --card:#FFFFFF;
-  --ink:#1B2B26;
-  --ink-2:#4E6660;
-  --teal:#0B7A6A;
-  --teal-dk:#075B4F;
-  --sun:#F5B72A;
-  --coral:#E8664F;
-  --good:#1B9E5F;
-  --line:#C7DCD0;
-  --shadow:0 4px 0 var(--line);
+  --line:#E2DDF6;
+  --line-dk:#CFC7EE;
+  --ink-2:#6B6486;
+  --grape-dk:#4A32C0;
+  --sun-dk:#D9A21A;
 }
 *{box-sizing:border-box}
 body{
-  margin:0;background:var(--mint);color:var(--ink);
-  font-family:'Itim','Noto Sans Thai',system-ui,sans-serif;
-  min-height:100vh;
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:'Itim','Noto Sans Thai',system-ui,sans-serif;min-height:100vh;
 }
-.wrap{max-width:1000px;margin:0 auto;padding:clamp(1rem,3vw,2rem);min-height:100vh;display:flex;flex-direction:column;gap:1.1rem}
+.wrap{max-width:1040px;margin:0 auto;padding:clamp(.9rem,3vw,2rem);min-height:100vh;display:flex;flex-direction:column;gap:1rem}
 .en{font-family:'Fredoka','Itim',sans-serif}
-button{font-family:inherit;cursor:pointer;border:none}
-button:focus-visible,[tabindex]:focus-visible{outline:4px solid var(--sun);outline-offset:3px}
-
-/* ---------- screens ---------- */
-.screen{display:flex;flex-direction:column;gap:1.1rem;flex:1}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+button:focus-visible{outline:4px solid var(--grape);outline-offset:3px}
 [hidden]{display:none!important}
+.screen{display:flex;flex-direction:column;gap:1rem;flex:1}
 
 /* ---------- start ---------- */
 .hero{
-  background:var(--card);border-radius:22px;padding:clamp(1.4rem,4vw,2.4rem);
-  border:2px solid var(--line);box-shadow:var(--shadow);
-  display:flex;flex-direction:column;gap:1rem;align-items:center;text-align:center;
+  background:var(--card);border:3px solid var(--line);border-radius:26px;
+  box-shadow:0 6px 0 var(--line-dk);
+  padding:clamp(1.3rem,4vw,2.3rem);display:flex;flex-direction:column;gap:1.1rem;align-items:center;text-align:center;
 }
-.hero .zoo{font-size:clamp(2rem,7vw,3.2rem);letter-spacing:.1em;line-height:1.2}
+.parade{display:flex;gap:clamp(.4rem,2vw,1.1rem);width:100%;max-width:520px;justify-content:center}
+.parade .art{width:clamp(52px,13vw,86px)}
+.parade .art:nth-child(1){animation-delay:0s}
+.parade .art:nth-child(2){animation-delay:.28s}
+.parade .art:nth-child(3){animation-delay:.56s}
+.parade .art:nth-child(4){animation-delay:.84s}
+.parade .art:nth-child(5){animation-delay:1.12s}
 h1{
-  font-family:'Fredoka',sans-serif;font-weight:700;margin:0;
-  font-size:clamp(2rem,6vw,3.4rem);color:var(--teal-dk);line-height:1.1;
+  font-family:'Fredoka',sans-serif;font-weight:700;margin:0;line-height:1.05;
+  font-size:clamp(2.1rem,6.5vw,3.6rem);color:var(--grape);letter-spacing:-.01em;
 }
-.sub{font-size:clamp(1rem,2.6vw,1.25rem);color:var(--ink-2);margin:0;max-width:34ch}
+.sub{font-size:clamp(1rem,2.6vw,1.22rem);color:var(--ink-2);margin:0;max-width:36ch}
 .badge{
-  display:inline-flex;gap:.4rem;align-items:center;background:var(--mint-2);color:var(--teal-dk);
-  padding:.3rem .8rem;border-radius:100px;font-size:.95rem;
+  display:inline-flex;gap:.4rem;align-items:center;background:#EFEBFD;color:var(--grape-dk);
+  padding:.32rem .9rem;border-radius:100px;font-size:.95rem;
 }
-
-.opts{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;width:100%}
-.optgrp{display:flex;flex-direction:column;gap:.45rem;align-items:center}
-.optgrp .lb{font-size:.95rem;color:var(--ink-2)}
-.seg{display:flex;background:var(--mint-2);border-radius:14px;padding:4px;gap:4px}
-.seg button{
-  background:transparent;color:var(--teal-dk);font-size:1.05rem;
-  padding:.5rem 1.05rem;border-radius:10px;min-height:44px;
-}
-.seg button[aria-pressed="true"]{background:var(--card);box-shadow:0 2px 0 var(--line);font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:1.3rem;justify-content:center}
+.optgrp{display:flex;flex-direction:column;gap:.4rem;align-items:center}
+.optgrp .lb{font-size:.94rem;color:var(--ink-2)}
+.seg{display:flex;background:#F1EEFC;border-radius:15px;padding:5px;gap:5px}
+.seg button{color:var(--grape-dk);font-size:1.05rem;padding:.5rem 1.05rem;border-radius:11px;min-height:46px;transition:background .15s}
+.seg button[aria-pressed="true"]{background:var(--card);box-shadow:0 2px 0 var(--line-dk);font-weight:600}
 
 .big{
-  background:var(--teal);color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;
-  font-size:clamp(1.3rem,3.6vw,1.7rem);padding:1rem 2.6rem;border-radius:18px;
-  box-shadow:0 5px 0 var(--teal-dk);min-height:68px;
+  background:var(--grape);color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;
+  font-size:clamp(1.25rem,3.4vw,1.65rem);padding:1rem 2.7rem;border-radius:20px;
+  box-shadow:0 6px 0 var(--grape-dk);min-height:68px;
 }
-.big:active{transform:translateY(3px);box-shadow:0 2px 0 var(--teal-dk)}
-.big.alt{background:var(--sun);color:#4A3505;box-shadow:0 5px 0 #C98F13}
-.big.alt:active{box-shadow:0 2px 0 #C98F13}
-.big.ghost{background:var(--card);color:var(--teal-dk);box-shadow:0 4px 0 var(--line);border:2px solid var(--line)}
+.big.alt{background:var(--sun);color:#4A3505;box-shadow:0 6px 0 var(--sun-dk)}
+.big.ghost{background:var(--card);color:var(--grape-dk);box-shadow:0 5px 0 var(--line-dk);border:3px solid var(--line)}
+.big:active:not(:disabled){transform:translateY(4px);box-shadow:0 2px 0 var(--grape-dk)}
+.big.alt:active{box-shadow:0 2px 0 var(--sun-dk)}
+.big.ghost:active{box-shadow:0 2px 0 var(--line-dk)}
 
 .note{
-  background:var(--card);border:2px dashed var(--line);border-radius:16px;
-  padding:1rem 1.2rem;color:var(--ink-2);font-size:.98rem;line-height:1.75;
+  background:var(--card);border:3px dashed var(--line);border-radius:20px;
+  padding:1rem 1.3rem;color:var(--ink-2);font-size:.98rem;line-height:1.8;
 }
 .note b{color:var(--ink)}
 .note ul{margin:.4rem 0 0;padding-left:1.2rem}
-.note li{margin-bottom:.2rem}
 
 /* ---------- hud ---------- */
-.hud{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.hud{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
 .chip{
-  background:var(--card);border:2px solid var(--line);border-radius:14px;
-  padding:.45rem .9rem;font-size:1.05rem;display:flex;gap:.4rem;align-items:center;
+  background:var(--card);border:3px solid var(--line);border-radius:15px;
+  padding:.4rem .9rem;font-size:1.05rem;display:flex;gap:.4rem;align-items:center;
 }
-.chip .v{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--teal-dk);font-variant-numeric:tabular-nums}
-.chip.streak{background:var(--sun);border-color:#D9A11F;color:#4A3505}
+.chip .v{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--grape-dk);font-variant-numeric:tabular-nums}
+.chip.streak{background:var(--sun);border-color:var(--sun-dk);color:#4A3505}
+.chip.streak .v{color:#4A3505}
+.chip.streak .mini{width:20px;color:#fff}
 .spacer{flex:1}
 .icon{
-  background:var(--card);border:2px solid var(--line);border-radius:14px;
-  width:52px;height:52px;font-size:1.3rem;display:grid;place-items:center;
+  background:var(--card);border:3px solid var(--line);border-radius:15px;
+  width:54px;height:54px;display:grid;place-items:center;color:var(--grape-dk);
+  transition:transform .14s;
 }
-.bar{height:14px;background:var(--mint-2);border-radius:100px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--teal);border-radius:100px;transition:width .35s ease}
+.icon:active{transform:scale(.92)}
+.icon svg{width:24px;height:24px}
+.bar{height:16px;background:#E2DDF6;border-radius:100px;overflow:hidden;border:2px solid var(--line-dk)}
+.bar i{display:block;height:100%;background:var(--grape);border-radius:100px;transition:width .4s cubic-bezier(.34,1.4,.64,1)}
 .mid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1rem;min-height:0}
 
-/* ---------- prompt ---------- */
+/* ---------- stage ---------- */
 .stage{
-  background:var(--card);border:2px solid var(--line);border-radius:22px;box-shadow:var(--shadow);
-  padding:clamp(1rem,3vw,1.8rem);display:flex;flex-direction:column;align-items:center;gap:.7rem;
+  background:var(--card);border:3px solid var(--line);border-radius:26px;box-shadow:0 6px 0 var(--line-dk);
+  padding:clamp(.9rem,2.6vw,1.6rem);display:flex;flex-direction:column;align-items:center;gap:.6rem;
 }
-.ask{font-size:clamp(1rem,2.4vw,1.2rem);color:var(--ink-2)}
+.ask{font-size:clamp(1rem,2.4vw,1.2rem);color:var(--ink-2);margin:0}
 .word{
-  font-family:'Fredoka',sans-serif;font-weight:700;color:var(--teal-dk);
-  font-size:clamp(2.6rem,9vw,4.6rem);line-height:1.1;letter-spacing:.01em;
+  font-family:'Fredoka',sans-serif;font-weight:700;color:var(--grape);
+  font-size:clamp(2.7rem,9vw,4.8rem);line-height:1.05;
 }
-.emoji{font-size:clamp(4rem,16vw,8rem);line-height:1.1}
+.stage .art{width:clamp(120px,24vw,190px)}
 .say{
-  background:var(--mint-2);color:var(--teal-dk);border-radius:100px;
-  padding:.55rem 1.3rem;font-size:1.05rem;min-height:48px;display:inline-flex;gap:.5rem;align-items:center;
+  background:#EFEBFD;color:var(--grape-dk);border-radius:100px;
+  padding:.55rem 1.3rem;font-size:1.05rem;min-height:48px;display:inline-flex;gap:.55rem;align-items:center;
 }
+.say svg{width:20px;height:20px}
+.say:active{transform:scale(.95)}
 
 /* ---------- choices ---------- */
 .choices{display:grid;gap:.9rem;grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (min-width:720px){.choices.four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:760px){
+  .choices.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
 .choice{
-  background:var(--card);border:3px solid var(--line);border-radius:20px;
-  min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;
-  padding:.9rem .6rem;box-shadow:var(--shadow);transition:transform .12s ease,border-color .12s ease;
+  position:relative;background:var(--card);border:3px solid var(--line);border-radius:22px;
+  min-height:148px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;
+  padding:.8rem .6rem;box-shadow:0 5px 0 var(--line-dk);
 }
-.choice:hover{border-color:var(--teal);transform:translateY(-3px)}
-.choice .pic{font-size:clamp(2.6rem,9vw,3.8rem);line-height:1.15}
-.choice .txt{font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(1.2rem,3.4vw,1.7rem);color:var(--ink)}
+.choice .art{width:clamp(80px,17vw,132px)}
+.choice .txt{font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(1.25rem,3.6vw,1.8rem);color:var(--ink)}
 .choice .key{
-  font-family:'Fredoka',sans-serif;font-size:.85rem;color:var(--ink-2);
-  background:var(--mint-2);border-radius:8px;padding:.05rem .45rem;
+  font-family:'Fredoka',sans-serif;font-size:.8rem;color:var(--ink-2);
+  background:#F1EEFC;border-radius:8px;padding:.05rem .5rem;
 }
-.choice.right{border-color:var(--good);background:#E6F6ED}
-.choice.wrong{border-color:var(--coral);background:#FCEBE7}
-.choice.dim{opacity:.45}
+.choice.is-right{border-color:var(--mint);background:#E9FBF6}
+.choice.is-wrong{border-color:var(--coral);background:#FDEDEC}
+.choice.dim{opacity:.4}
 .choice:disabled{cursor:default}
-.choice.right{animation:pop .45s ease}
-.choice.wrong{animation:shake .4s ease}
-@keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.07)}100%{transform:scale(1)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 
 .flash{
-  text-align:center;font-size:clamp(1.2rem,3.4vw,1.6rem);min-height:2.2em;
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  text-align:center;font-size:clamp(1.15rem,3.2vw,1.55rem);min-height:2.1em;margin:0;
+  display:flex;align-items:center;justify-content:center;
 }
-.flash.ok{color:var(--good)}
-.flash.no{color:var(--coral)}
+.flash.ok{color:#0E9A80}
+.flash.no{color:#D8483F}
 
 /* ---------- end ---------- */
 .result{
-  background:var(--card);border:2px solid var(--line);border-radius:22px;box-shadow:var(--shadow);
-  padding:clamp(1.4rem,4vw,2.2rem);display:flex;flex-direction:column;align-items:center;gap:.8rem;text-align:center;
+  background:var(--card);border:3px solid var(--line);border-radius:26px;box-shadow:0 6px 0 var(--line-dk);
+  padding:clamp(1.3rem,4vw,2.2rem);display:flex;flex-direction:column;align-items:center;gap:.75rem;text-align:center;
 }
-.stars{font-size:clamp(2.2rem,8vw,3.4rem);letter-spacing:.1em}
-.score{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2.6rem,9vw,4rem);color:var(--teal-dk);line-height:1}
-.miss{width:100%;max-width:560px;text-align:left;background:var(--mint);border-radius:16px;padding:1rem 1.2rem}
-.miss h3{margin:0 0 .5rem;font-family:'Itim',sans-serif;font-weight:400;font-size:1.05rem;color:var(--ink-2)}
-.misslist{display:flex;flex-wrap:wrap;gap:.5rem}
-.misslist span{
-  background:var(--card);border:2px solid var(--coral);color:var(--ink);
-  border-radius:100px;padding:.3rem .85rem;font-family:'Fredoka',sans-serif;font-weight:600;
+.stars{display:flex;gap:.5rem}
+.stars svg{width:clamp(44px,9vw,64px);height:auto}
+.stars .on{color:var(--sun)}
+.stars .off{color:#E2DDF6}
+.score{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2.7rem,9vw,4rem);color:var(--grape);line-height:1}
+.miss{width:100%;max-width:600px;text-align:left;background:var(--ground);border-radius:20px;padding:1rem 1.2rem}
+.miss h3{margin:0 0 .6rem;font-family:'Itim',sans-serif;font-weight:400;font-size:1.02rem;color:var(--ink-2)}
+.misslist{display:flex;flex-wrap:wrap;gap:.55rem}
+.misslist .m{
+  display:flex;align-items:center;gap:.45rem;background:var(--card);
+  border:3px solid var(--coral);border-radius:100px;padding:.25rem .9rem .25rem .35rem;
 }
+.misslist .m .art{width:34px}
+.misslist .m span{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem}
 .endbtns{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
-footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5rem}
-
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-}
+footer{text-align:center;color:var(--ink-2);font-size:.87rem;padding-bottom:.4rem}
 </style>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true" data-kit="vip-english-hub-sprite-v1">
+<!--
+  ชุดตัวละคร Animals — VIP English Hub
+  ระบบเดียวกันทั้งชุด: viewBox 0 0 100 100 / เส้นขอบ #2A2340 หนา 3.2 / ตาอยู่ตำแหน่งเดียวกันทุกตัว
+  วิธีใช้: <svg class="ch"><use href="#a-cat"></use></svg>
+-->
+
+<symbol id="a-cat" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M24 44 L27 15 L48 30 Z" fill="#F5A65B"/>
+    <path d="M76 44 L73 15 L52 30 Z" fill="#F5A65B"/>
+    <path d="M31 36 L33 24 L42 31 Z" fill="#F5B8C6" stroke-width="2"/>
+    <path d="M69 36 L67 24 L58 31 Z" fill="#F5B8C6" stroke-width="2"/>
+    <ellipse cx="50" cy="57" rx="30" ry="27" fill="#F5A65B"/>
+    <path d="M14 55 h13 M14 62 h13 M86 55 h-13 M86 62 h-13" stroke-width="2"/>
+    <g class="eyes">
+      <circle cx="40" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="60" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="41.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="61.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M46 63 h8 l-4 4.2 Z" fill="#F5B8C6" stroke-width="2"/>
+    <path d="M50 67.5 q-4 5 -9 1.5" stroke-width="2.6"/>
+    <path d="M50 67.5 q4 5 9 1.5" stroke-width="2.6"/>
+  </g>
+</symbol>
+
+<symbol id="a-dog" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <ellipse cx="19" cy="62" rx="9.5" ry="21" fill="#B87B48" transform="rotate(-20 19 62)"/>
+    <ellipse cx="81" cy="62" rx="9.5" ry="21" fill="#B87B48" transform="rotate(20 81 62)"/>
+    <ellipse cx="50" cy="54" rx="29" ry="26" fill="#D89A63"/>
+    <ellipse cx="50" cy="66" rx="17" ry="12" fill="#F5E4D2"/>
+    <g class="eyes">
+      <circle cx="39" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="61" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="40.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="62.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="50" cy="60" rx="5.4" ry="4.2" fill="var(--ink,#2A2340)" stroke="none"/>
+    <path d="M50 64.5 v3.5" stroke-width="2.4"/>
+    <path d="M50 68 q-5 4.5 -8.5 0.5" stroke-width="2.4"/>
+    <path d="M50 68 q5 4.5 8.5 0.5" stroke-width="2.4"/>
+  </g>
+</symbol>
+
+<symbol id="a-bird" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M50 31 q-4 -13 6 -15 q-3 8 2 13 Z" fill="#3FA3D8"/>
+    <ellipse cx="50" cy="57" rx="27" ry="26" fill="#5CB8E8"/>
+    <path d="M31 55 q-6 10 2 15 q8 1 10 -6" fill="#3FA3D8" stroke-width="2.6"/>
+    <g class="eyes">
+      <circle cx="41" cy="51" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="59" cy="51" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="42.7" cy="49.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="60.7" cy="49.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M43 61 h14 l-7 10 Z" fill="#FFC93C"/>
+  </g>
+</symbol>
+
+<symbol id="a-fish" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M70 55 L92 40 L92 70 Z" fill="#1FA595"/>
+    <path d="M40 36 q8 -11 17 2" fill="#1FA595"/>
+    <ellipse cx="46" cy="56" rx="28" ry="21" fill="#2FC4B2"/>
+    <path d="M56 41 q-7 14 0 28" stroke-width="2.4"/>
+    <g class="eyes">
+      <circle cx="33" cy="51" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="34.7" cy="49.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M25 60 q5 5 10 0.5" stroke-width="2.4"/>
+  </g>
+</symbol>
+
+<symbol id="a-cow" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M31 27 q-9 -7 -12 1 q7 2 9 7 Z" fill="#F0D9A8"/>
+    <path d="M69 27 q9 -7 12 1 q-7 2 -9 7 Z" fill="#F0D9A8"/>
+    <ellipse cx="16" cy="50" rx="11" ry="7" fill="#FBF8F3"/>
+    <ellipse cx="84" cy="50" rx="11" ry="7" fill="#FBF8F3"/>
+    <ellipse cx="50" cy="54" rx="29" ry="26" fill="#FBF8F3"/>
+    <path d="M29 41 q10 -7 14 4 q-6 9 -15 3 Z" fill="#4A4038" stroke="none"/>
+    <path d="M66 56 q10 -3 9 6 q-7 6 -11 -1 Z" fill="#4A4038" stroke="none"/>
+    <g class="eyes">
+      <circle cx="39" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="61" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="40.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="62.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="50" cy="68" rx="16" ry="11" fill="#F5B8C6"/>
+    <ellipse cx="44" cy="66" rx="2.6" ry="3.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    <ellipse cx="56" cy="66" rx="2.6" ry="3.4" fill="var(--ink,#2A2340)" stroke="none"/>
+  </g>
+</symbol>
+
+<symbol id="a-pig" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M26 42 L24 18 L45 31 Z" fill="#E88AA4"/>
+    <path d="M74 42 L76 18 L55 31 Z" fill="#E88AA4"/>
+    <ellipse cx="50" cy="56" rx="30" ry="26" fill="#F2A0B5"/>
+    <g class="eyes">
+      <circle cx="39" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="61" cy="48" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="40.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="62.7" cy="46.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="50" cy="65" rx="14" ry="10" fill="#E88AA4"/>
+    <ellipse cx="45" cy="65" rx="2.6" ry="3.6" fill="var(--ink,#2A2340)" stroke="none"/>
+    <ellipse cx="55" cy="65" rx="2.6" ry="3.6" fill="var(--ink,#2A2340)" stroke="none"/>
+  </g>
+</symbol>
+
+<symbol id="a-duck" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M41 32 q3 -13 12 -9" stroke-width="3"/>
+    <ellipse cx="49" cy="56" rx="28" ry="26" fill="#FFD23F"/>
+    <path d="M27 57 q-5 11 4 15 q8 1 10 -6" fill="#F2BC2E" stroke-width="2.6"/>
+    <g class="eyes">
+      <circle cx="41" cy="50" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="59" cy="50" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="42.7" cy="48.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="60.7" cy="48.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M35 63 q15 -5 30 0 q-2 11 -15 11 q-13 0 -15 -11 Z" fill="#FF9A3C"/>
+    <path d="M37 67 q13 3 26 0" stroke-width="2"/>
+  </g>
+</symbol>
+
+<symbol id="a-rabbit" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <ellipse cx="38" cy="24" rx="7.5" ry="21" fill="#F7F4EE" transform="rotate(-8 38 24)"/>
+    <ellipse cx="62" cy="24" rx="7.5" ry="21" fill="#F7F4EE" transform="rotate(8 62 24)"/>
+    <ellipse cx="38" cy="26" rx="3.4" ry="13" fill="#F5B8C6" stroke-width="2" transform="rotate(-8 38 26)"/>
+    <ellipse cx="62" cy="26" rx="3.4" ry="13" fill="#F5B8C6" stroke-width="2" transform="rotate(8 62 26)"/>
+    <ellipse cx="50" cy="59" rx="28" ry="25" fill="#F7F4EE"/>
+    <path d="M16 58 h12 M16 65 h12 M84 58 h-12 M84 65 h-12" stroke-width="2"/>
+    <g class="eyes">
+      <circle cx="40" cy="55" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="60" cy="55" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="41.7" cy="53.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="61.7" cy="53.2" r="1.5" fill="#fff" stroke="none"/>
+    <path d="M46 63 h8 l-4 4.2 Z" fill="#F5B8C6" stroke-width="2"/>
+    <path d="M50 67.5 q-5 4.5 -8.5 0.5" stroke-width="2.2"/>
+    <path d="M50 67.5 q5 4.5 8.5 0.5" stroke-width="2.2"/>
+    <rect x="46.5" y="70" width="7" height="8" rx="2" fill="#fff" stroke-width="2.2"/>
+  </g>
+</symbol>
+
+<symbol id="a-elephant" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="19" cy="52" r="18" fill="#8FA1BC"/>
+    <circle cx="81" cy="52" r="18" fill="#8FA1BC"/>
+    <path d="M50 66 C50 82 42 84 45 93" stroke="var(--ink,#2A2340)" stroke-width="16"/>
+    <ellipse cx="50" cy="52" rx="28" ry="26" fill="#9FB0C9"/>
+    <path d="M50 66 C50 82 42 84 45 93" stroke="#9FB0C9" stroke-width="11"/>
+    <path d="M43 78 h9 M41 86 h8" stroke-width="2" stroke="#7E90AC"/>
+    <g class="eyes">
+      <circle cx="38" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="62" cy="47" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="39.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="63.7" cy="45.2" r="1.5" fill="#fff" stroke="none"/>
+  </g>
+</symbol>
+
+<symbol id="a-monkey" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="18" cy="54" r="12" fill="#A9713F"/>
+    <circle cx="82" cy="54" r="12" fill="#A9713F"/>
+    <circle cx="18" cy="54" r="6" fill="#E8C49A" stroke-width="2"/>
+    <circle cx="82" cy="54" r="6" fill="#E8C49A" stroke-width="2"/>
+    <ellipse cx="50" cy="54" rx="28" ry="26" fill="#A9713F"/>
+    <ellipse cx="50" cy="60" rx="21" ry="18" fill="#E8C49A"/>
+    <g class="eyes">
+      <circle cx="42" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+      <circle cx="58" cy="53" r="4.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    </g>
+    <circle cx="43.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <circle cx="59.7" cy="51.2" r="1.5" fill="#fff" stroke="none"/>
+    <ellipse cx="46.5" cy="62" rx="1.8" ry="2.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    <ellipse cx="53.5" cy="62" rx="1.8" ry="2.4" fill="var(--ink,#2A2340)" stroke="none"/>
+    <path d="M42 68 q8 7 16 0" stroke-width="2.6"/>
+  </g>
+</symbol>
+
+<!-- ไอคอนระบบ ใช้ currentColor เพื่อให้เปลี่ยนสีตามข้อความรอบข้าง -->
+<symbol id="i-star" viewBox="0 0 100 100">
+  <path d="M50 8 L62 38 L94 41 L69 62 L77 94 L50 76 L23 94 L31 62 L6 41 L38 38 Z"
+        fill="currentColor" stroke="var(--ink,#2A2340)" stroke-width="4" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-sprout" viewBox="0 0 100 100">
+  <g fill="none" stroke="var(--ink,#2A2340)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 92 V50"/>
+    <path d="M50 58 C30 58 22 46 22 34 C40 34 50 44 50 58 Z" fill="currentColor"/>
+    <path d="M50 50 C68 50 78 40 78 28 C60 28 50 38 50 50 Z" fill="currentColor"/>
+  </g>
+</symbol>
+<symbol id="i-sound-on" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 22 L28 40 H14 V60 H28 L46 78 Z" fill="currentColor"/>
+    <path d="M62 36 q10 14 0 28"/>
+    <path d="M76 26 q18 24 0 48"/>
+  </g>
+</symbol>
+<symbol id="i-sound-off" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 22 L28 40 H14 V60 H28 L46 78 Z" fill="currentColor"/>
+    <path d="M64 40 L88 60 M88 40 L64 60"/>
+  </g>
+</symbol>
+<symbol id="i-close" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round">
+    <path d="M26 26 L74 74 M74 26 L26 74"/>
+  </g>
+</symbol>
+<symbol id="i-speaker-small" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 20 L28 40 H12 V60 H28 L48 80 Z" fill="currentColor"/>
+    <path d="M66 34 q13 16 0 32"/>
+  </g>
+</symbol>
+</svg>
 
 <div class="wrap">
 
   <!-- ============ START ============ -->
   <section class="screen" id="s-start">
     <div class="hero">
-      <div class="zoo" aria-hidden="true">🐶 🐱 🐘 🐰 🐟</div>
+      <div class="parade" aria-hidden="true">
+        <span class="art idle"><svg class="ch" viewBox="0 0 100 100"><use href="#a-dog"></use></svg></span>
+        <span class="art idle"><svg class="ch" viewBox="0 0 100 100"><use href="#a-cat"></use></svg></span>
+        <span class="art idle"><svg class="ch" viewBox="0 0 100 100"><use href="#a-elephant"></use></svg></span>
+        <span class="art idle"><svg class="ch" viewBox="0 0 100 100"><use href="#a-rabbit"></use></svg></span>
+        <span class="art idle"><svg class="ch" viewBox="0 0 100 100"><use href="#a-fish"></use></svg></span>
+      </div>
       <h1>Animals Match</h1>
       <p class="sub">เกมจับคู่คำศัพท์สัตว์ 10 คำ สำหรับ ป.1–3 ฉายหน้าห้องแล้วเล่นได้ทั้งห้อง</p>
       <span class="badge">หน่วย G1-U05 Animals · ระดับ L1–L2</span>
@@ -215,32 +543,40 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
     <div class="hud">
       <span class="chip">ข้อ <span class="v" id="hud-round">1/10</span></span>
       <span class="chip">คะแนน <span class="v" id="hud-score">0</span></span>
-      <span class="chip streak" id="hud-streak" hidden>🔥 ตอบถูกติดกัน <span class="v" id="hud-streak-n">0</span></span>
+      <span class="chip streak" id="hud-streak" hidden>
+        <svg class="mini" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-star"></use></svg>
+        ถูกติดกัน <span class="v" id="hud-streak-n">0</span>
+      </span>
       <span class="spacer"></span>
-      <button class="icon" id="btn-mute" type="button" aria-label="ปิดเสียง" title="เปิด/ปิดเสียง">🔊</button>
-      <button class="icon" id="btn-quit" type="button" aria-label="ออกจากเกม" title="ออกจากเกม">✕</button>
+      <button class="icon" id="btn-mute" type="button" aria-label="เปิดหรือปิดเสียง" title="เปิด/ปิดเสียง">
+        <svg viewBox="0 0 100 100" id="ic-sound" aria-hidden="true"><use href="#i-sound-on"></use></svg>
+      </button>
+      <button class="icon" id="btn-quit" type="button" aria-label="ออกจากเกม" title="ออกจากเกม">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
     </div>
     <div class="bar"><i id="bar" style="width:0%"></i></div>
 
     <div class="mid">
-    <div class="stage">
-      <p class="ask" id="ask">คำนี้คือสัตว์ตัวไหน</p>
-      <div id="prompt-word" class="word">cat</div>
-      <div id="prompt-emoji" class="emoji" hidden>🐱</div>
-      <button class="say" id="btn-say" type="button">🔊 ฟังคำนี้</button>
-    </div>
-
-    <div class="choices four" id="choices"></div>
-    <p class="flash" id="flash" role="status" aria-live="polite"></p>
+      <div class="stage">
+        <p class="ask" id="ask">คำนี้คือสัตว์ตัวไหน</p>
+        <div id="prompt-word" class="word en">cat</div>
+        <div id="prompt-art" class="art idle" hidden></div>
+        <button class="say" id="btn-say" type="button">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#i-speaker-small"></use></svg> ฟังคำนี้
+        </button>
+      </div>
+      <div class="choices four" id="choices"></div>
+      <p class="flash" id="flash" role="status" aria-live="polite"></p>
     </div>
   </section>
 
   <!-- ============ END ============ -->
   <section class="screen" id="s-end" hidden>
     <div class="result">
-      <div class="stars" id="stars">⭐⭐⭐</div>
+      <div class="stars" id="stars"></div>
       <div class="score" id="final-score">0</div>
-      <p class="sub" id="final-line">คะแนนของเรา</p>
+      <p class="sub" id="final-line"></p>
 
       <div class="miss" id="miss" hidden>
         <h3>คำที่ยังต้องทบทวน</h3>
@@ -262,16 +598,16 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
   "use strict";
 
   var WORDS = [
-    { en:"cat",      emoji:"🐱", th:"แมว" },
-    { en:"dog",      emoji:"🐶", th:"สุนัข" },
-    { en:"bird",     emoji:"🐦", th:"นก" },
-    { en:"fish",     emoji:"🐟", th:"ปลา" },
-    { en:"cow",      emoji:"🐮", th:"วัว" },
-    { en:"pig",      emoji:"🐷", th:"หมู" },
-    { en:"duck",     emoji:"🦆", th:"เป็ด" },
-    { en:"rabbit",   emoji:"🐰", th:"กระต่าย" },
-    { en:"elephant", emoji:"🐘", th:"ช้าง" },
-    { en:"monkey",   emoji:"🐵", th:"ลิง" }
+    { en:"cat",      id:"a-cat",      th:"แมว" },
+    { en:"dog",      id:"a-dog",      th:"สุนัข" },
+    { en:"bird",     id:"a-bird",     th:"นก" },
+    { en:"fish",     id:"a-fish",     th:"ปลา" },
+    { en:"cow",      id:"a-cow",      th:"วัว" },
+    { en:"pig",      id:"a-pig",      th:"หมู" },
+    { en:"duck",     id:"a-duck",     th:"เป็ด" },
+    { en:"rabbit",   id:"a-rabbit",   th:"กระต่าย" },
+    { en:"elephant", id:"a-elephant", th:"ช้าง" },
+    { en:"monkey",   id:"a-monkey",   th:"ลิง" }
   ];
 
   var cfg = { rounds:10, choices:4, sound:true };
@@ -279,10 +615,8 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
 
   var $ = function(id){ return document.getElementById(id); };
   var screens = { start:$("s-start"), play:$("s-play"), end:$("s-end") };
-
-  function show(name){
-    Object.keys(screens).forEach(function(k){ screens[k].hidden = (k !== name); });
-  }
+  function show(name){ Object.keys(screens).forEach(function(k){ screens[k].hidden = (k !== name); }); }
+  function art(id){ return '<svg class="ch" viewBox="0 0 100 100" aria-hidden="true"><use href="#' + id + '"></use></svg>'; }
 
   /* ---------- audio ---------- */
   var actx = null;
@@ -313,6 +647,34 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
     }catch(e){}
   }
 
+  /* ---------- visual feedback ---------- */
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function burst(host){
+    if (reduced) return;
+    var box = host.querySelector(".burst");
+    if (!box) return;
+    box.innerHTML = "";
+    for (var i = 0; i < 12; i++){
+      var a = (Math.PI * 2 * i) / 12 + Math.random() * 0.35;
+      var dist = 62 + Math.random() * 46;
+      var s = document.createElement("span");
+      s.style.setProperty("--tx", (Math.cos(a) * dist).toFixed(1) + "px");
+      s.style.setProperty("--ty", (Math.sin(a) * dist).toFixed(1) + "px");
+      s.style.setProperty("--rot", Math.round(Math.random() * 360 - 180) + "deg");
+      s.style.setProperty("--d", (Math.random() * 0.09).toFixed(2) + "s");
+      box.appendChild(s);
+    }
+    setTimeout(function(){ box.innerHTML = ""; }, 900);
+  }
+  function ring(host){
+    if (reduced) return;
+    var r = document.createElement("span");
+    r.className = "ring";
+    host.appendChild(r);
+    setTimeout(function(){ if (r.parentNode) r.parentNode.removeChild(r); }, 700);
+  }
+
   /* ---------- helpers ---------- */
   function shuffle(a){
     var arr = a.slice();
@@ -322,7 +684,6 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
     }
     return arr;
   }
-
   function buildQueue(pool, n){
     var q = [], deck = [];
     while (q.length < n){
@@ -348,16 +709,14 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
   wireSeg("opt-choices", function(v){ cfg.choices = parseInt(v,10); });
   wireSeg("opt-sound",   function(v){ cfg.sound   = (v === "on"); syncMute(); });
 
-  function syncMute(){ $("btn-mute").textContent = cfg.sound ? "🔊" : "🔇"; }
+  function syncMute(){
+    $("ic-sound").innerHTML = '<use href="#' + (cfg.sound ? "i-sound-on" : "i-sound-off") + '"></use>';
+  }
 
   /* ---------- game ---------- */
   function start(pool){
     var source = (pool && pool.length >= 2) ? pool : WORDS;
-    st = {
-      queue: buildQueue(source, cfg.rounds),
-      i: 0, score: 0, streak: 0, best: 0, correct: 0,
-      missed: [], locked: false
-    };
+    st = { queue: buildQueue(source, cfg.rounds), i:0, score:0, streak:0, best:0, correct:0, missed:[], locked:false };
     show("play");
     render();
   }
@@ -379,12 +738,12 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
     if (mode === "word2pic"){
       $("ask").textContent = "คำนี้คือสัตว์ตัวไหน";
       $("prompt-word").hidden = false; $("prompt-word").textContent = w.en;
-      $("prompt-emoji").hidden = true;
+      $("prompt-art").hidden = true;
       $("btn-say").hidden = false;
     } else {
       $("ask").textContent = "สัตว์ตัวนี้ภาษาอังกฤษว่าอะไร";
       $("prompt-word").hidden = true;
-      $("prompt-emoji").hidden = false; $("prompt-emoji").textContent = w.emoji;
+      $("prompt-art").hidden = false; $("prompt-art").innerHTML = art(w.id);
       $("btn-say").hidden = true;
     }
 
@@ -398,20 +757,24 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
     opts.forEach(function(o, idx){
       var b = document.createElement("button");
       b.type = "button";
-      b.className = "choice";
+      b.className = "choice tap pop-in";
+      b.style.setProperty("--i", idx);
       b.dataset.en = o.en;
+      var inner = '<span class="burst"></span>';
       if (mode === "word2pic"){
-        b.innerHTML = '<span class="pic">' + o.emoji + '</span><span class="key">' + (idx+1) + '</span>';
+        inner += '<span class="art idle" style="animation-delay:' + (idx * 0.28) + 's">' + art(o.id) + '</span>';
         b.setAttribute("aria-label", "ตัวเลือกที่ " + (idx+1) + " " + o.th);
       } else {
-        b.innerHTML = '<span class="txt en">' + o.en + '</span><span class="key">' + (idx+1) + '</span>';
+        inner += '<span class="txt en">' + o.en + '</span>';
         b.setAttribute("aria-label", "ตัวเลือกที่ " + (idx+1) + " " + o.en);
       }
+      inner += '<span class="key">' + (idx+1) + '</span>';
+      b.innerHTML = inner;
       b.addEventListener("click", function(){ answer(b, o); });
       box.appendChild(b);
     });
 
-    if (mode === "word2pic") setTimeout(function(){ speak(w.en); }, 260);
+    if (mode === "word2pic") setTimeout(function(){ speak(w.en); }, 280);
   }
 
   function answer(btn, picked){
@@ -426,17 +789,18 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
       st.correct++; st.streak++; st.best = Math.max(st.best, st.streak);
       var bonus = Math.min(Math.max(st.streak - 1, 0), 5) * 2;
       st.score += 10 + bonus;
-      btn.classList.add("right");
+      btn.classList.add("is-right");
       all.forEach(function(b){ if (b !== btn) b.classList.add("dim"); });
+      burst(btn); ring(btn);
       $("flash").className = "flash ok";
       $("flash").textContent = bonus ? ("เก่งมาก! +" + (10 + bonus) + " คะแนน (โบนัสตอบถูกติดกัน)") : "ถูกต้อง! +10 คะแนน";
       chime(); speak(w.en);
     } else {
       st.streak = 0;
       if (st.missed.indexOf(w.en) === -1) st.missed.push(w.en);
-      btn.classList.add("wrong");
+      btn.classList.add("is-wrong");
       all.forEach(function(b){
-        if (b.dataset.en === w.en) b.classList.add("right");
+        if (b.dataset.en === w.en) b.classList.add("is-right");
         else if (b !== btn) b.classList.add("dim");
       });
       $("flash").className = "flash no";
@@ -445,7 +809,7 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
     }
 
     $("hud-score").textContent = st.score;
-    setTimeout(next, right ? 1000 : 1900);
+    setTimeout(next, right ? 1050 : 1900);
   }
 
   function next(){
@@ -458,8 +822,19 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
     $("bar").style.width = "100%";
     var total = st.queue.length;
     var pct = Math.round((st.correct / total) * 100);
-    var stars = pct >= 90 ? "⭐⭐⭐" : pct >= 70 ? "⭐⭐" : pct >= 40 ? "⭐" : "🌱";
-    $("stars").textContent = stars;
+    var full = pct >= 90 ? 3 : pct >= 70 ? 2 : pct >= 40 ? 1 : 0;
+
+    var sBox = $("stars"); sBox.innerHTML = "";
+    if (full === 0){
+      sBox.innerHTML = '<svg class="on" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-sprout"></use></svg>';
+      sBox.setAttribute("aria-label", "ยังไม่ได้ดาว ลองอีกครั้งนะ");
+    } else {
+      for (var i = 0; i < 3; i++){
+        sBox.innerHTML += '<svg class="' + (i < full ? "on" : "off") + '" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-star"></use></svg>';
+      }
+      sBox.setAttribute("aria-label", "ได้ " + full + " ดาว");
+    }
+
     $("final-score").textContent = st.score;
     $("final-line").textContent = "ตอบถูก " + st.correct + " จาก " + total + " ข้อ (" + pct + "%) · ตอบถูกติดกันสูงสุด " + st.best + " ข้อ";
 
@@ -469,10 +844,7 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
       var box = $("misslist"); box.innerHTML = "";
       st.missed.forEach(function(en){
         var w = WORDS.filter(function(x){ return x.en === en; })[0];
-        var s = document.createElement("span");
-        s.className = "en";
-        s.textContent = w.en + " · " + w.th;
-        box.appendChild(s);
+        box.innerHTML += '<span class="m"><span class="art">' + art(w.id) + '</span><span>' + w.en + ' · ' + w.th + '</span></span>';
       });
     } else {
       $("miss").hidden = true;
@@ -487,12 +859,12 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
   $("btn-start").addEventListener("click", function(){ start(null); });
   $("btn-again").addEventListener("click", function(){ start(null); });
   $("btn-home").addEventListener("click",  function(){ show("start"); });
+  $("btn-quit").addEventListener("click",  function(){ show("start"); });
   $("btn-retry-miss").addEventListener("click", function(){
     var pool = WORDS.filter(function(w){ return st.missed.indexOf(w.en) !== -1; });
     while (pool.length < 2) pool = pool.concat(shuffle(WORDS).slice(0, 2));
     start(pool);
   });
-  $("btn-quit").addEventListener("click", function(){ show("start"); });
   $("btn-say").addEventListener("click", function(){ if (st) speak(st.answer.en); });
   $("btn-mute").addEventListener("click", function(){
     cfg.sound = !cfg.sound;
@@ -509,9 +881,7 @@ footer{text-align:center;color:var(--ink-2);font-size:.88rem;padding-bottom:.5re
         var b = $("choices").querySelectorAll(".choice")[n - 1];
         if (b && !b.disabled) b.click();
       }
-      if (e.key === " " || e.key === "Enter"){
-        if (st && st.mode === "word2pic"){ e.preventDefault(); speak(st.answer.en); }
-      }
+      if ((e.key === " " || e.key === "Enter") && st && st.mode === "word2pic"){ e.preventDefault(); speak(st.answer.en); }
     } else if (!screens.start.hidden && (e.key === "Enter" || e.key === " ")){
       if (document.activeElement === document.body){ e.preventDefault(); start(null); }
     }

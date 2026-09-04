@@ -1,0 +1,97 @@
+/* ============================================================
+   MOTION KIT — VIP English Hub  v1
+   ชุดอนิเมชันมาตรฐานสำหรับสื่อ Interactive ทุกตัวในคลัง
+   คัดลอกทั้งไฟล์ไปแปะใน <style> ของเกมได้เลย
+
+   หลักการ: อนิเมชันต้องสื่อสารบางอย่างเสมอ ห้ามใส่เพราะสวย
+   ใช้เฉพาะ transform และ opacity เพื่อไม่ให้คอมพิวเตอร์ห้องเรียนเก่ากระตุก
+   ============================================================ */
+
+/* ---------- จานสีมาตรฐานของแบรนด์ ---------- */
+:root{
+  --ink:#2A2340;      /* เส้นขอบและตัวอักษร ดำอมม่วง ไม่ใช่ดำสนิท */
+  --ground:#F0EEF9;   /* พื้นหลัง ม่วงอ่อนมาก สบายตาบนโปรเจกเตอร์ */
+  --grape:#6B4EE6;    /* สีแบรนด์หลัก ใช้ได้เยอะ */
+  --mint:#17C3A2;     /* สถานะถูกต้อง ใช้เฉพาะตอนสื่อสารสถานะ */
+  --coral:#F4665F;    /* สถานะผิด ใช้เฉพาะตอนสื่อสารสถานะ */
+  --sun:#FFC93C;      /* รางวัลและดาว ใช้เฉพาะตอนให้รางวัล */
+}
+
+/* ---------- ตัวละคร ---------- */
+/* .ch = character svg ใช้กับทุก <svg> ที่ <use> ตัวละครจาก sprite */
+.ch{display:block;width:100%;height:auto;overflow:visible}
+.ch .eyes{transform-box:fill-box;transform-origin:center;animation:blink 6.5s infinite}
+
+/* ---------- 1. ลอยเบา ๆ ตอนรอการกด ---------- */
+/* ใช้บอกว่า "ของชิ้นนี้กดได้" โดยไม่ต้องเขียนคำอธิบาย */
+.idle{animation:bob 3.2s ease-in-out infinite}
+.idle:nth-child(2){animation-delay:.35s}
+.idle:nth-child(3){animation-delay:.7s}
+.idle:nth-child(4){animation-delay:1.05s}
+
+/* ---------- 2. Squish and Stretch ตอนชี้และตอนกด ---------- */
+/* ความรู้สึกว่าของมีน้ำหนักมาจากการย่อแนวตั้งพร้อมขยายแนวนอน */
+.tap{transition:transform .16s cubic-bezier(.34,1.56,.64,1)}
+.tap:hover:not(:disabled){transform:translateY(-5px) scale(1.03)}
+.tap:active:not(:disabled){transform:translateY(1px) scale(.97)}
+.tap:hover:not(:disabled) .ch{animation:squish .45s ease-out}
+
+/* ---------- 3. ตอบถูก: เด้งดีใจ + ดาวกระจาย ---------- */
+.is-right .ch{animation:successBounce .62s cubic-bezier(.34,1.56,.64,1)}
+.ring{position:absolute;inset:-6px;border-radius:inherit;pointer-events:none;
+      border:4px solid var(--mint);opacity:0;animation:ring .62s ease-out}
+
+/* ดาวกระจาย: JS สร้าง span แล้วใส่ตัวแปร --tx --ty --rot --d ให้แต่ละชิ้น */
+.burst{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.burst span{
+  position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;
+  background:var(--sun);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  animation:burst .72s ease-out forwards;animation-delay:var(--d,0s);opacity:0;
+}
+.burst span:nth-child(3n){background:var(--grape)}
+.burst span:nth-child(3n+1){background:var(--mint)}
+.burst span:nth-child(4n){width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;clip-path:none}
+
+/* ---------- 4. ตอบผิด: สั่นหัวเบา ๆ ---------- */
+.is-wrong .ch{animation:shake .42s ease-in-out}
+
+/* ---------- 5. การ์ดโผล่เข้ามาแบบไล่ทีละใบ ---------- */
+.pop-in{animation:popIn .34s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:calc(var(--i,0) * .06s)}
+
+/* ---------- keyframes ---------- */
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%,98%{transform:scaleY(.12)}}
+@keyframes squish{
+  0%{transform:scale(1,1)}
+  35%{transform:scale(1.1,.9)}
+  65%{transform:scale(.95,1.06)}
+  100%{transform:scale(1,1)}
+}
+@keyframes press{0%{transform:scale(1,1)}50%{transform:scale(1.12,.86)}100%{transform:scale(1,1)}}
+@keyframes successBounce{
+  0%{transform:translateY(0) scale(1,1)}
+  25%{transform:translateY(-16px) scale(.94,1.1)}
+  55%{transform:translateY(0) scale(1.12,.9)}
+  75%{transform:translateY(-6px) scale(.98,1.02)}
+  100%{transform:translateY(0) scale(1,1)}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0) rotate(0)}
+  20%{transform:translateX(-7px) rotate(-4deg)}
+  45%{transform:translateX(6px) rotate(3deg)}
+  70%{transform:translateX(-4px) rotate(-2deg)}
+}
+@keyframes ring{0%{opacity:1;transform:scale(.9)}100%{opacity:0;transform:scale(1.18)}}
+@keyframes burst{
+  0%{opacity:1;transform:translate(0,0) rotate(0) scale(.4)}
+  70%{opacity:1}
+  100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(1)}
+}
+@keyframes popIn{0%{opacity:0;transform:translateY(14px) scale(.9)}100%{opacity:1;transform:none}}
+
+/* ---------- เข้าถึงได้: ตัดการเคลื่อนไหว แต่สถานะต้องยังอ่านออกจากสีและกรอบ ---------- */
+@media (prefers-reduced-motion:reduce){
+  .idle,.ch .eyes,.pop-in,.is-right .ch,.is-wrong .ch,.ring,.burst span{animation:none!important}
+  .tap,.tap:hover,.tap:active{transition:none;transform:none}
+  .burst{display:none}
+}
