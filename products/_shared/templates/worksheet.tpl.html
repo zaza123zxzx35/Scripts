@@ -1,110 +1,163 @@
 <title>เทมเพลตใบงานแม่แบบ</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Sarabun:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Sarabun:wght@400;600;700&display=swap">
 <style>
 /* ============================================================
-   WORKSHEET MASTER TEMPLATE — VIP English Hub  v1
-   ใบงาน A4 พิมพ์ได้จริง ประหยัดหมึก ใช้ตัวละครจาก animal-sprite.svg
+   WORKSHEET MASTER TEMPLATE — VIP English Hub  v3
+   ใบงาน A4 สีเต็ม พร้อมโหมดประหยัดหมึกในไฟล์เดียวกัน
+
+   แนวทาง v3
+   - หัวเรื่องตัวอักษรหลากสีแบบสติกเกอร์ ดึงสายตาเป็นอันดับแรก
+   - ทุกกิจกรรมอยู่ในกรอบสีของตัวเอง มีป้ายหัวข้อพร้อมเลขกำกับ
+     เด็กรู้ทันทีว่าโจทย์หนึ่งจบตรงไหน ครูสั่งเป็นข้อ ๆ ได้
+   - หนึ่งหน้ามีหลายกิจกรรมไล่จากจำคำ ไปจนถึงแต่งประโยคเอง
+   - ปุ่มโหมดประหยัดหมึกเปลี่ยนทั้งหน้าเป็นขาวดำ ครูเลือกได้ก่อนพิมพ์
+     ไม่ต้องมีสองไฟล์ให้สับสน
 
    วิธีใช้
-   1. ก็อปไฟล์นี้ตั้งชื่อตามกฎ เช่น G1-U05-VOC-Animals-L1-BW-v1.html
-   2. แก้ตรง CONTENT START ถึง CONTENT END เท่านั้น ห้ามแตะส่วนอื่น
-   3. แก้ชื่อแบรนด์ที่ตัวแปร --brand-name ในบล็อก BRAND ด้านล่าง
-   4. เปิดในเบราว์เซอร์ กด Ctrl+P เลือก A4 แล้ว Save as PDF
-      ตั้งค่า Margins เป็น Default และปิด Headers and footers
-
-   ทำไมถึงใช้ HTML ไม่ใช่ Canva
-   - แก้ 300 ใบพร้อมกันได้ด้วยการแก้ไฟล์เดียว
-   - ตัวละครเป็นเส้นขาวดำอัตโนมัติ ไม่ต้องเจนภาพใหม่ ไม่มีค่าลิขสิทธิ์
-   - ไฟล์เล็ก เปิดได้ทุกเครื่อง ไม่ต้องมีบัญชีอะไรเลย
+   1. เขียนเนื้อหาที่ products/<หน่วย>/worksheets/src/<รหัส>.part.html
+   2. รัน python3 products/_shared/build.py
+   3. เปิดไฟล์ผลลัพธ์ กด Ctrl+P เลือก A4 · Margins: Default
+      เปิด Background graphics · ปิด Headers and footers
    ============================================================ */
 
-/* ---------- BRAND: แก้ 2 บรรทัดนี้ให้เป็นของคุณ ---------- */
 :root{
   --brand-name:"คลังสื่อภาษาอังกฤษ VIP";
   --brand-note:"ใช้ได้ในห้องเรียนของผู้ซื้อเท่านั้น · ห้ามแชร์ต่อ ห้ามขายซ้ำ";
+
+  --ink:#243042;
+  --blue:#2D7FD3;   --blue-bg:#EAF4FD;
+  --green:#3FA34D;  --green-bg:#EDF8EE;
+  --orange:#F0851E; --orange-bg:#FFF4E7;
+  --purple:#8659C5; --purple-bg:#F4EEFC;
+  --pink:#E23D7A;   --pink-bg:#FDECF3;
+  --yellow:#FFC93C;
+  --frame:#DCEBF8;
+  --rule:#9AA7B6;
 }
 
-/* ---------- หน้ากระดาษ ---------- */
-@page{ size:A4; margin:12mm 12mm 10mm; }
+@page{ size:A4; margin:9mm; }
 *{box-sizing:border-box}
 body{
-  margin:0;background:#EFEFEF;color:#111;
-  font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;font-size:12pt;line-height:1.7;
+  margin:0;background:#E9E9E9;color:var(--ink);
+  font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;font-size:11pt;line-height:1.55;
 }
 .en{font-family:'Fredoka','Sarabun',sans-serif}
 
 .sheet{
-  width:186mm;min-height:273mm;margin:8mm auto;padding:0;background:#fff;
-  display:flex;flex-direction:column;
-  box-shadow:0 2px 12px rgba(0,0,0,.18);
+  width:192mm;min-height:279mm;margin:8mm auto;background:#fff;
+  border:1.3mm solid var(--frame);border-radius:5mm;padding:3.2mm;
+  display:flex;flex-direction:column;box-shadow:0 2px 14px rgba(0,0,0,.2);
 }
-.sheet + .sheet{margin-top:10mm}
+
+/* ---------- ตัวละคร ---------- */
+.art{display:block}
+.art svg{display:block;width:100%;height:auto}
 
 /* ---------- หัวกระดาษ ---------- */
-.head{display:flex;align-items:flex-end;gap:6mm;border-bottom:2.5pt solid #111;padding-bottom:2.5mm}
-.head .ttl{flex:1;min-width:0}
-.head .unit{font-size:9pt;letter-spacing:.06em;text-transform:uppercase;color:#555}
-.head h1{margin:0;font-family:'Fredoka',sans-serif;font-size:20pt;font-weight:700;line-height:1.15}
-.head .lv{
-  border:1.6pt solid #111;border-radius:3mm;padding:1mm 3mm;font-family:'Fredoka',sans-serif;
-  font-size:11pt;font-weight:600;white-space:nowrap;
+.top{display:flex;align-items:center;gap:4mm}
+.top .mascot{width:20mm;flex:none}
+.titlewrap{flex:1;min-width:0;text-align:center}
+.title{
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:47pt;line-height:.95;
+  letter-spacing:.02em;margin:0;
+  -webkit-text-stroke:1.2mm #fff;paint-order:stroke fill;
+  filter:drop-shadow(0 1.1mm 0 rgba(36,48,66,.22));
 }
-.namebar{
-  display:flex;gap:5mm;padding:3mm 0;border-bottom:1pt solid #111;font-size:11pt;
+.title span:nth-child(6n+1){color:#E4453A}
+.title span:nth-child(6n+2){color:#F0851E}
+.title span:nth-child(6n+3){color:#E09600}
+.title span:nth-child(6n+4){color:#3FA34D}
+.title span:nth-child(6n+5){color:#2D7FD3}
+.title span:nth-child(6n+6){color:#8659C5}
+.ribbon{
+  display:inline-block;margin-top:1mm;background:var(--blue);color:#fff;
+  font-family:'Fredoka',sans-serif;font-size:12pt;font-weight:600;
+  padding:1mm 7mm;border-radius:100px;
 }
-.namebar .f{display:flex;align-items:baseline;gap:2mm;flex:1}
-.namebar .f i{font-style:normal;color:#333;white-space:nowrap}
-.namebar .f u{flex:1;text-decoration:none;border-bottom:1pt dotted #111;min-height:1.2em}
+.namebox{
+  width:56mm;flex:none;border:.9mm solid var(--blue);border-radius:3.5mm;
+  padding:2mm 3mm;display:flex;flex-direction:column;gap:1.6mm;
+}
+.namebox .r{display:flex;align-items:baseline;gap:2mm;font-size:10pt}
+.namebox .r i{font-style:normal;font-family:'Fredoka',sans-serif;font-weight:600;width:13mm;flex:none}
+.namebox .r u{flex:1;text-decoration:none;border-bottom:.5mm solid var(--rule);min-height:4.4mm}
 
-/* ---------- คำสั่งโจทย์ ---------- */
-.task{margin-top:4mm;break-inside:avoid}
-.task > .cmd{display:flex;gap:2.5mm;align-items:baseline}
-.task .no{
-  font-family:'Fredoka',sans-serif;font-weight:700;font-size:12pt;
-  border:1.6pt solid #111;border-radius:50%;width:7mm;height:7mm;
-  display:inline-grid;place-items:center;flex:none;line-height:1;
+/* ---------- พาเนลกิจกรรม ---------- */
+.panel{
+  border:.9mm solid var(--c,var(--blue));border-radius:4mm;
+  background:var(--cbg,var(--blue-bg));
+  padding:2mm 3mm 2.5mm;margin-top:2.4mm;break-inside:avoid;
 }
-.task .cmd-en{font-family:'Fredoka',sans-serif;font-size:13pt;font-weight:600}
-.task .cmd-th{font-size:10.5pt;color:#333;margin:.5mm 0 0 9.5mm}
+.p-blue{--c:var(--blue);--cbg:var(--blue-bg)}
+.p-green{--c:var(--green);--cbg:var(--green-bg)}
+.p-orange{--c:var(--orange);--cbg:var(--orange-bg)}
+.p-purple{--c:var(--purple);--cbg:var(--purple-bg)}
+.p-pink{--c:var(--pink);--cbg:var(--pink-bg)}
 
-/* ---------- ตัวละครโหมดประหยัดหมึก ---------- */
-.art{width:26mm;display:block}
-.art svg{display:block;width:100%;height:auto}
-/* โหมดประหยัดหมึก: ส่งค่าผ่าน custom property เพราะ selector ธรรมดา
-   เข้าไปในเงาของ <use> ไม่ได้ แต่ custom property สืบทอดเข้าไปได้ */
-.line-art{--art-fill:#fff;--ink:#111}
+.tab{
+  display:inline-flex;align-items:center;gap:2.2mm;background:var(--c);color:#fff;
+  border-radius:100px;padding:.9mm 4.5mm .9mm 1.2mm;
+  font-family:'Fredoka',sans-serif;font-size:12pt;font-weight:600;line-height:1.25;
+}
+.tab .n{
+  width:6.6mm;height:6.6mm;border-radius:50%;background:#fff;color:var(--c);
+  display:grid;place-items:center;font-size:10.5pt;font-weight:700;flex:none;
+}
+.th{font-size:9pt;color:#4A5566;margin:1mm 0 0}
+.row2{display:flex;gap:3mm;align-items:stretch}
+.row2 > .panel{flex:1;margin-top:0;display:flex;flex-direction:column}
 
-/* ---------- ชิ้นส่วนที่ใช้ซ้ำในใบงาน ---------- */
-.matchrow{display:flex;justify-content:space-between;gap:8mm;margin-top:4mm}
-.matchrow .art{width:16mm}
-.matchcol{display:flex;flex-direction:column;gap:3mm;flex:none}
-.mitem{display:flex;align-items:center;gap:3mm}
-.dot{width:3.2mm;height:3.2mm;border:1.4pt solid #111;border-radius:50%;flex:none}
-.wordbox{
-  border:1.6pt solid #111;border-radius:2.5mm;padding:1.5mm 5mm;
-  font-family:'Fredoka',sans-serif;font-size:15pt;font-weight:600;min-width:34mm;text-align:center;
+/* ---------- 1 คลังคำศัพท์ ---------- */
+.vocab{display:grid;grid-template-columns:repeat(8,1fr);gap:1.5mm;margin-top:2mm}
+.vocab .v{
+  background:#fff;border:.5mm solid var(--c);border-radius:3mm;padding:1.2mm .6mm;
+  display:flex;flex-direction:column;align-items:center;gap:.4mm;
 }
-.trace{
-  font-family:'Fredoka',sans-serif;font-size:22pt;font-weight:500;
-  color:#C9C9C9;letter-spacing:.1em;
+.vocab .art{width:14mm}
+.vocab b{font-family:'Fredoka',sans-serif;font-size:10pt;font-weight:600;color:var(--ink)}
+
+/* ---------- 2 ดูภาพแล้วเขียน ---------- */
+.look{display:grid;grid-template-columns:repeat(4,1fr);gap:2mm;margin-top:2mm;flex:1;align-content:space-evenly}
+.look .l{display:flex;flex-direction:column;align-items:center;gap:1.5mm}
+.look .art{width:15mm}
+.look .ln{width:100%;border-bottom:.6mm solid var(--rule);min-height:6mm}
+
+/* ---------- 3 เติมคำในช่องว่าง ---------- */
+.bank{
+  background:#fff;border:.5mm dashed var(--c);border-radius:2.5mm;
+  padding:1.4mm 3mm;margin-top:2.5mm;display:flex;flex-wrap:wrap;gap:1mm 5mm;justify-content:center;
+  font-family:'Fredoka',sans-serif;font-size:11.5pt;font-weight:600;
 }
-.pickrow{display:flex;align-items:center;gap:5mm;margin-top:3mm;break-inside:avoid}
-.pickrow .art{width:16mm}
-.picks{display:flex;gap:4mm;flex-wrap:wrap}
-.pick{
-  border:1.6pt solid #111;border-radius:2.5mm;padding:1mm 4mm;
-  font-family:'Fredoka',sans-serif;font-size:14pt;font-weight:600;
+.qs{list-style:none;margin:2mm 0 0;padding:0;display:flex;flex-direction:column;gap:1.6mm}
+.qs li{display:flex;gap:2mm;align-items:baseline;font-family:'Fredoka',sans-serif;font-size:11.5pt}
+.qs li .i{color:var(--c);font-weight:700;width:5mm;flex:none}
+.blank{display:inline-block;min-width:26mm;border-bottom:.6mm solid var(--rule);margin:0 1mm}
+
+/* ---------- 4 เลือกคำตอบ ---------- */
+.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5mm;margin-top:2.5mm}
+.choices .q{
+  background:#fff;border:.5mm solid var(--c);border-radius:3mm;padding:1.6mm;
+  display:flex;flex-direction:column;gap:1mm;
 }
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-top:4mm}
-.cell{border:1.4pt solid #111;border-radius:3mm;padding:2mm;text-align:center;break-inside:avoid}
-.cell .lbl{font-family:'Fredoka',sans-serif;font-size:13pt;font-weight:600;margin-top:2mm}
-.cell .art{width:100%;max-width:21mm;margin:0 auto}
-.writeline{border-bottom:1pt dotted #111;min-height:9mm;margin-top:3mm}
+.choices .q .h{font-family:'Fredoka',sans-serif;font-size:10.5pt;font-weight:600;line-height:1.3}
+.choices .q .h i{font-style:normal;color:var(--c);font-weight:700}
+.opt{display:flex;align-items:center;gap:2mm;font-family:'Fredoka',sans-serif;font-size:11pt}
+.opt .o{width:4mm;height:4mm;border:.5mm solid var(--rule);border-radius:50%;flex:none}
+.choices .pic{width:11mm;align-self:flex-end;margin-top:-3mm}
+
+/* ---------- 5 เขียนประโยค ---------- */
+.write{display:flex;gap:3mm;align-items:flex-end;margin-top:2.5mm}
+.write .lines{flex:1;display:flex;flex-direction:column;gap:3mm}
+.write .wl{border-bottom:.6mm solid var(--rule);min-height:6mm;position:relative}
+.write .wl::before{
+  content:"";position:absolute;left:0;right:0;top:55%;border-top:.35mm dashed #C9D2DC;
+}
+.write .art{width:20mm;flex:none}
 
 /* ---------- ท้ายกระดาษ ---------- */
 .foot{
-  margin-top:auto;padding-top:3mm;border-top:1pt solid #999;
-  display:flex;justify-content:space-between;gap:4mm;font-size:8pt;color:#555;
+  margin-top:auto;padding-top:2mm;
+  display:flex;justify-content:space-between;gap:4mm;font-size:7.5pt;color:#7A8694;
 }
 .foot .code{font-family:'Fredoka',sans-serif;letter-spacing:.04em}
 .foot .brand::before{content:var(--brand-name)}
@@ -112,18 +165,39 @@ body{
 
 /* ---------- เฉลย ---------- */
 .keytag{
-  display:inline-block;border:1.6pt solid #111;background:#111;color:#fff;
-  border-radius:2mm;padding:.5mm 3mm;font-family:'Fredoka',sans-serif;font-size:10pt;
+  display:inline-block;background:var(--pink);color:#fff;border-radius:2mm;
+  padding:.5mm 3.5mm;font-family:'Fredoka',sans-serif;font-size:11pt;
 }
-.ans{color:#111;font-weight:600}
-.ans-line{stroke:#111;stroke-width:1.6;stroke-dasharray:0}
+.ans{color:var(--green);font-weight:700}
+.anslist{display:flex;flex-wrap:wrap;gap:2mm;margin-top:2.5mm}
+.anslist .a{
+  background:#fff;border:.6mm solid var(--c);border-radius:3mm;padding:1.5mm 3mm;
+  display:flex;align-items:center;gap:2mm;
+}
+.anslist .a .art{width:12mm}
+.anslist .a b{font-family:'Fredoka',sans-serif;font-size:11.5pt}
 body:not(.show-key) .sheet.key{display:none}
+
+/* ============================================================
+   โหมดประหยัดหมึก: ปิดสีทั้งหมด เหลือเส้นและเทาอ่อน
+   ============================================================ */
+body.bw .sheet{--blue:#1A1A1A;--green:#1A1A1A;--orange:#1A1A1A;--purple:#1A1A1A;--pink:#1A1A1A;
+  --blue-bg:#fff;--green-bg:#fff;--orange-bg:#fff;--purple-bg:#fff;--pink-bg:#fff;
+  --frame:#CFCFCF;--ink:#1A1A1A;--rule:#8A8A8A;
+  --art-fill:#FFFFFF;
+}
+body.bw .title{color:#1A1A1A!important;-webkit-text-stroke:0;filter:none}
+body.bw .title span{color:#1A1A1A!important}
+body.bw .ribbon{background:#1A1A1A}
+body.bw .tab{background:#1A1A1A}
+body.bw .tab .n{color:#1A1A1A}
+body.bw .ans{color:#1A1A1A}
+body.bw .keytag{background:#1A1A1A}
 
 /* ---------- แถบควบคุมบนจอ ไม่ติดไปกับกระดาษ ---------- */
 .bar{
-  position:sticky;top:0;z-index:9;background:#111;color:#fff;
-  display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;
-  padding:.7rem 1rem;font-size:.9rem;
+  position:sticky;top:0;z-index:9;background:#1A1A1A;color:#fff;
+  display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;padding:.7rem 1rem;font-size:.9rem;
 }
 .bar b{font-weight:600}
 .bar .sp{flex:1}
@@ -131,26 +205,24 @@ body:not(.show-key) .sheet.key{display:none}
   font-family:inherit;font-size:.88rem;border:1.5px solid #fff;background:transparent;color:#fff;
   border-radius:6px;padding:.35rem .9rem;cursor:pointer;
 }
-.bar button[aria-pressed="true"]{background:#fff;color:#111;font-weight:600}
+.bar button[aria-pressed="true"]{background:#fff;color:#1A1A1A;font-weight:600}
 .bar button:focus-visible{outline:3px solid #FFC93C;outline-offset:2px}
 
 @media print{
   body{background:#fff}
   .bar{display:none}
-  /* ขึ้นหน้าใหม่ "ก่อน" แผ่นถัดไป ไม่ใช่ "หลัง" แผ่นก่อนหน้า
-     ไม่งั้นเวลาซ่อนเฉลย จะได้หน้าเปล่าติดมาด้วยหนึ่งหน้า */
   .sheet{width:auto;min-height:0;margin:0;box-shadow:none}
   .sheet + .sheet{page-break-before:always}
 }
 </style>
 
-<!-- SPRITE: วางไฟล์ products/_shared/animal-sprite.svg ทั้งก้อนตรงนี้ -->
 __SPRITE__
 
 <div class="bar">
   <b>ใบงาน</b>
   <span id="bar-title">เทมเพลตแม่แบบ</span>
   <span class="sp"></span>
+  <button type="button" id="t-bw" aria-pressed="false">โหมดประหยัดหมึก</button>
   <button type="button" id="t-key" aria-pressed="false">แสดงเฉลย</button>
   <button type="button" id="t-print">พิมพ์ / บันทึกเป็น PDF</button>
 </div>
@@ -162,12 +234,16 @@ __CONTENT__
 <script>
 (function(){
   var body = document.body;
-  var k = document.getElementById("t-key");
-  k.addEventListener("click", function(){
-    var on = body.classList.toggle("show-key");
-    k.setAttribute("aria-pressed", String(on));
-    k.textContent = on ? "ซ่อนเฉลย" : "แสดงเฉลย";
-  });
+  function toggle(id, cls, onText, offText){
+    var b = document.getElementById(id);
+    b.addEventListener("click", function(){
+      var on = body.classList.toggle(cls);
+      b.setAttribute("aria-pressed", String(on));
+      b.textContent = on ? onText : offText;
+    });
+  }
+  toggle("t-key", "show-key", "ซ่อนเฉลย", "แสดงเฉลย");
+  toggle("t-bw", "bw", "กลับเป็นสี", "โหมดประหยัดหมึก");
   document.getElementById("t-print").addEventListener("click", function(){ window.print(); });
 })();
 </script>
